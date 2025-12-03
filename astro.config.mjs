@@ -7,8 +7,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: 'https://misiakfilip.github.io',
   base: '/portfolio',
-  output: 'static',  // DODAJ TO
-  trailingSlash: 'always',  // DODAJ TO
+  trailingSlash: 'always',
   
   vite: {
     plugins: [tailwindcss()],

@@ -3,7 +3,7 @@ interface Props {
   title: string;
   description?: string;
 }
-
+import "../styles/global.css";
 const { title, description = 'Portfolio projektów GitHub - Filip Misiak' } = Astro.props;
 const base = import.meta.env.BASE_URL;
 ---
