@@ -49,7 +49,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
               className="bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-white/10 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-300"
             >
               {/* Project Image */}
-              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-purple-600 to-cyan-400">
+              <div className="relative h-56 overflow-hidden bg-linear-to-br from-purple-600 to-cyan-400">
                 {project.image ? (
                   <img 
                     src={project.image} 
@@ -63,7 +63,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
                 )}
                 
                 {/* Overlay */}
-                <div className="absolute inset-0 bg-gradient-to-t from-black/50 to-transparent"></div>
+                <div className="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
               </div>
 
               {/* Content */}

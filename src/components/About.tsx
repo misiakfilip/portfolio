@@ -38,7 +38,7 @@ const About: React.FC<AboutProps> = ({ experience, language }) => {
         
         <div className="relative">
           {/* Timeline Line */}
-          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-gradient-to-b from-purple-500 via-cyan-400 to-transparent transform md:-translate-x-1/2 shadow-lg shadow-purple-500/50"></div>
+          <div className="absolute left-8 md:left-1/2 top-0 bottom-0 w-0.5 bg-linear-to-b from-purple-500 via-cyan-400 to-transparent transform md:-translate-x-1/2 shadow-lg shadow-purple-500/50"></div>
 
           <div className="space-y-12">
             {experience.map((exp, index) => (

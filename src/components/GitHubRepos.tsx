@@ -326,7 +326,7 @@ const RepoCard: React.FC<RepoCardProps> = ({ repo, onOpen, getLanguageColor, for
   >
     <div className="flex items-start justify-between mb-3">
       <h3 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center gap-2 flex-1">
-        <Code size={20} className="text-purple-600 dark:text-purple-400 flex-shrink-0" />
+        <Code size={20} className="text-purple-600 dark:text-purple-400 shrink-0" />
         <span className="truncate">{repo.name}</span>
       </h3>
       {isPinned && (

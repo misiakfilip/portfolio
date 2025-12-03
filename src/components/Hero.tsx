@@ -40,7 +40,7 @@ const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, languag
           <div className="flex-1 text-center md:text-left">
             <h1 className="text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 animate-fade-in">
               {t.greeting[language]}{' '}
-              <span className="text-transparent bg-clip-text bg-gradient-to-r from-purple-400 to-cyan-400">
+              <span className="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">
                 {name}
               </span>
             </h1>
@@ -115,7 +115,7 @@ const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, languag
 
           {/* Avatar + Stats */}
           {userData && (
-            <div className="flex-shrink-0">
+            <div className="shrink-0">
               <div className="relative">
                   <div className="absolute inset-0 bg-purple-500 rounded-full blur-2xl opacity-20 animate-pulse"></div>
                     <img

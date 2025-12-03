@@ -48,7 +48,7 @@ const Achievements: React.FC<AchievementsProps> = ({ achievements, language }) =
 
               {/* Title */}
               <h3 className="text-xl font-bold text-gray-900 dark:text-white mb-3 flex items-start gap-2">
-                <Award size={24} className="text-purple-600 dark:text-purple-400 flex-shrink-0 mt-1" />
+                <Award size={24} className="text-purple-600 dark:text-purple-400 shrink-0 mt-1" />
                 <span>{achievement.title}</span>
               </h3>
 
