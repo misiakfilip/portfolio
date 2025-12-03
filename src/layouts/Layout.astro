@@ -20,9 +20,9 @@ const base = import.meta.env.BASE_URL;
     
     <!-- Devicons for technology icons -->
     <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-  </head>
-  <body class="bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 min-h-screen">
-    <!-- Header -->
+    </head>
+
+     <!-- Header -->
     <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/30">
       <nav class="max-w-7xl mx-auto px-6 py-4">
         <div class="flex items-center justify-between">
@@ -53,15 +53,22 @@ const base = import.meta.env.BASE_URL;
     </header>
 
     <!-- Main content -->
-    <main class="pt-20">
+    <body class="min-h-screen relative overflow-x-hidden">
+      <!-- Animated Background -->
+      <div class="fixed inset-0 -z-10 bg-gradient-to-br from-slate-950 via-slate-900 to-slate-950 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"></div>
+      <div class="fixed inset-0 -z-10 bg-gradient-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
+      
       <slot />
-    </main>
+    </body>
 
-    <!-- Footer -->
-    <footer class="mt-20 py-8 border-t border-purple-500/30">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-400">
-        <p>© {new Date().getFullYear()} Filip Misiak. Wszystkie projekty automatycznie pobierane z GitHub.</p>
-      </div>
-    </footer>
+  <style>
+    @keyframes gradient {
+      0%, 100% { opacity: 0.3; }
+      50% { opacity: 0.6; }
+    }
+    .animate-gradient {
+      animation: gradient 15s ease-in-out infinite;
+    }
+  </style>
   </body>
 </html>

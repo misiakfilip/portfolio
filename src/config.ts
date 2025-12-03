@@ -4,19 +4,20 @@ export const config = {
   name: "Filip Misiak",
   username: "misiakfilip",
   title: {
-    pl: "Full-Stack Developer",
-    en: "Full-Stack Developer"
+    pl: "Software Engineer – Web, Mobile & Games",
+    en: "Software Engineer – Web, Mobile & Games"
   },
+
   bio: {
-    pl: "Pasjonat tworzenia aplikacji webowych i mobilnych. Specjalizuję się w React, Node.js i technologiach cloud.",
-    en: "Passionate about creating web and mobile applications. I specialize in React, Node.js and cloud technologies."
+    pl: "Pasjonat tworzenia aplikacji webowych, mobilnych oraz gier komputerowych. Specjalizuję się w technologiach takich jak React, Node.js, Astro, Unity, Unreal Engine, a także w rozwiązaniach cloud i automatyzacji procesów biznesowych.",
+    en: "Passionate about creating web and mobile applications, as well as computer games. I specialize in technologies like React, Node.js, Astro, Unity, Unreal Engine, as well as cloud solutions and business process automation."
   },
   
   // Social links
   social: {
     github: "https://github.com/misiakfilip",
-    linkedin: "https://linkedin.com/in/twoj-profil", // ZMIEŃ!
-    email: "twoj.email@example.com", // ZMIEŃ!
+    linkedin: "https://linkedin.com/in/filip-misiak", // ZMIEŃ!
+    email: "filip.misiak11@gmail.com", // ZMIEŃ!
     twitter: "", // Opcjonalnie
   },
   
@@ -26,7 +27,7 @@ export const config = {
   // Google Analytics
   googleAnalyticsId: "G-XXXXXXXXXX", // ZMIEŃ na swoje ID lub zostaw puste
   
-  // Technologie (będą pokazane jako ikony)
+  // Technology icons
   technologies: [
     { name: "Python", icon: "devicon-python-plain" },
     { name: "Java", icon: "devicon-java-plain" },
@@ -39,51 +40,113 @@ export const config = {
     { name: "React", icon: "devicon-react-original" },
     { name: "Node.js", icon: "devicon-nodejs-plain" },
     { name: "Astro", icon: "devicon-astro-plain" },
-    { name: "Unity", icon: "devicon-unity-original" },
+    { name: "Unity", icon: "devicon-unity-original-wordmark" },
     { name: "Unreal Engine", icon: "devicon-unrealengine-original" },
     { name: "Android", icon: "devicon-android-plain" },
     { name: ".NET", icon: "devicon-dotnetcore-plain" },
     { name: "SQL", icon: "devicon-mysql-plain" },
     { name: "MongoDB", icon: "devicon-mongodb-plain" },
+    { name: "Power Apps", icon: "🟣" },
   ],
   
-  // Timeline doświadczenia
-  experience: {
-    pl: [
-      {
-        period: "2023 - Teraz",
-        title: "Full-Stack Developer",
-        company: "Nazwa Firmy", // ZMIEŃ!
-        description: "Tworzenie aplikacji webowych w React i Node.js. Zarządzanie bazami danych i API.",
-        technologies: ["React", "Node.js", "TypeScript", "MongoDB"]
-      },
-      {
-        period: "2021 - 2023",
-        title: "Junior Developer",
-        company: "Inna Firma", // ZMIEŃ!
-        description: "Rozwój aplikacji mobilnych w React Native. Współpraca z zespołem backend.",
-        technologies: ["React Native", "JavaScript", "Firebase"]
-      },
-      // Dodaj więcej...
-    ],
-    en: [
-      {
-        period: "2023 - Present",
-        title: "Full-Stack Developer",
-        company: "Company Name",
-        description: "Building web applications with React and Node.js. Managing databases and APIs.",
-        technologies: ["React", "Node.js", "TypeScript", "MongoDB"]
-      },
-      {
-        period: "2021 - 2023",
-        title: "Junior Developer",
-        company: "Other Company",
-        description: "Developing mobile apps in React Native. Collaborating with backend team.",
-        technologies: ["React Native", "JavaScript", "Firebase"]
-      },
-      // Add more...
-    ]
-  },
+// Timeline doświadczenia
+experience: {
+  pl: [
+    {
+      period: "2019",
+      title: "Serwisant – Praktykant",
+      company: "Comtrade",
+      description: "Miesięczna praktyka jako serwisant sprzętu komputerowego. Diagnozowanie usterek, modernizacja podzespołów oraz wsparcie techniczne dla klientów.",
+      technologies: ["Hardware", "Serwis IT", "Diagnostyka"]
+    },
+    {
+      period: "2023",
+      title: "Praktykant – Tworzenie aplikacji biznesowych",
+      company: "TIM S.A.",
+      description: "Dwumiesięczne praktyki polegające na budowaniu aplikacji biznesowych z wykorzystaniem Power Apps. Automatyzacja procesów i integracja z usługami Microsoft.",
+      technologies: ["Power Apps", "Microsoft 365", "Power Automate"]
+    },
+    {
+      period: "2024",
+      title: "Praktykant – Wsparcie Wdrożeń ERP",
+      company: "Albus-IT",
+      description: "Czteromiesięczna praktyka przy wdrożeniach systemu ERP (enova365): pomoc przy migracji danych, konfiguracji systemu, integracji modułów oraz testowaniu procesów biznesowych.",
+      technologies: ["enova365", "ERP", "Migracja danych", "Integracje systemowe"]
+    }
+  ],
+  en: [
+    {
+      period: "2019",
+      title: "IT Technician Intern",
+      company: "Comtrade",
+      description: "One-month internship involving computer hardware servicing, troubleshooting, component upgrades and providing technical support to customers.",
+      technologies: ["Hardware", "IT Service", "Diagnostics"]
+    },
+    {
+      period: "2023",
+      title: "Business Apps Intern",
+      company: "TIM S.A.",
+      description: "Two-month internship focused on building business applications using Power Apps. Process automation and integration with Microsoft services.",
+      technologies: ["Power Apps", "Microsoft 365", "Power Automate"]
+    },
+    {
+      period: "2024",
+      title: "ERP Implementation Intern",
+      company: "Albus-IT",
+      description: "Four-month internship supporting the implementation of the enova365 ERP system. Responsibilities included assisting with data migration, system configuration, module integration and testing business processes.",
+      technologies: ["enova365", "ERP", "Data Migration", "System Integrations"]
+    }
+  ]
+},
+  // Wykształcenie
+education: {
+  pl: [
+    {
+      title: "Technik informatyk",
+      school: "Zespół Szkół Elektrycznych i Informatycznych w Katowicach",
+      website: "https://zseeim.edu.pl/",
+      period: "2019",
+      icon: "🎓"
+    },
+    {
+      title: "Licencjat z informatyki – Programowanie gier i aplikacji mobilnych",
+      school: "Uniwersytet Ekonomiczny w Katowicach",
+      website: "https://www.ue.katowice.pl/",
+      period: "2024",
+      icon: "🎓"
+    },
+    {
+      title: "Magisterka z informatyki – Analiza danych",
+      school: "Uniwersytet Ekonomiczny w Katowicach",
+      website: "https://www.ue.katowice.pl/",
+      period: "w trakcie",
+      icon: "🎓"
+    }
+  ],
+  en: [
+    {
+      title: "IT Technician",
+      school: "Zespół Szkół Elektrycznych i Informatycznych w Katowicach",
+      website: "https://zseeim.edu.pl/",
+      period: "2019",
+      icon: "🎓"
+    },
+    {
+      title: "Bachelor of Computer Science – Game and Mobile App Programming",
+      school: "University of Economics in Katowice",
+      website: "https://www.ue.katowice.pl/",
+      period: "2024",
+      icon: "🎓"
+    },
+    {
+      title: "Master of Computer Science – Data Analysis",
+      school: "University of Economics in Katowice",
+      website: "https://www.ue.katowice.pl/",
+      period: "in progress",
+      icon: "🎓"
+    }
+  ]
+},
   
   // Certyfikaty i osiągnięcia
   achievements: {
@@ -94,13 +157,6 @@ export const config = {
         date: "2023",
         icon: "🏆"
       },
-      {
-        title: "React Advanced Course",
-        issuer: "Udemy",
-        date: "2022",
-        icon: "📜"
-      },
-      // Dodaj więcej...
     ],
     en: [
       {
@@ -109,13 +165,6 @@ export const config = {
         date: "2023",
         icon: "🏆"
       },
-      {
-        title: "React Advanced Course",
-        issuer: "Udemy",
-        date: "2022",
-        icon: "📜"
-      },
-      // Add more...
     ]
   },
   
@@ -123,45 +172,43 @@ export const config = {
   featuredProjects: {
     pl: [
       {
-        title: "Aplikacja E-commerce",
-        description: "Pełna aplikacja sklepu internetowego z systemem płatności i zarządzaniem produktami.",
-        image: "/projects/ecommerce.jpg", // Umieść w public/projects/
-        technologies: ["React", "Node.js", "Stripe", "MongoDB"],
-        demoUrl: "https://demo.example.com",
-        githubUrl: "", // Jeśli nie ma na GitHub
+        title: "Blog Najlepszy muzyczny adres",
+        description: "Blog muzyczny stworzony z wykorzystaniem Payload CMS.",
+        image: "./projects/blog.jpg", 
+        technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
+        demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
+        githubUrl: "", 
         featured: true
       },
       {
-        title: "Portfolio Generator",
-        description: "Narzędzie do automatycznego generowania portfolio na podstawie danych z GitHub.",
-        image: "/projects/portfolio-gen.jpg",
-        technologies: ["Astro", "TypeScript", "GitHub API"],
+        title: "Arakanoid",
+        description: "Gra stworzona w Unity wzorująca się na klasycznej grze Arkanoid.",
+        image: "./projects/arkanoid.jpg",
+        technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
-        githubUrl: "https://github.com/misiakfilip/portfolio-generator",
+        githubUrl: "https://github.com/misiakfilip/arkanoid",
         featured: true
       },
-      // Dodaj więcej...
     ],
     en: [
       {
-        title: "E-commerce Application",
-        description: "Full e-commerce store with payment system and product management.",
-        image: "/projects/ecommerce.jpg",
-        technologies: ["React", "Node.js", "Stripe", "MongoDB"],
-        demoUrl: "https://demo.example.com",
-        githubUrl: "",
+        title: "Best Music Blog",
+        description: "A music blog created using Payload CMS.",
+        image: "./projects/blog.jpg", 
+        technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
+        demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
+        githubUrl: "", 
         featured: true
       },
       {
-        title: "Portfolio Generator",
-        description: "Tool for automatically generating portfolios based on GitHub data.",
-        image: "/projects/portfolio-gen.jpg",
-        technologies: ["Astro", "TypeScript", "GitHub API"],
+        title: "Arkanoid",
+        description: "A Unity game inspired by the classic Arkanoid game.",
+        image: "./projects/arkanoid.jpg",
+        technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
-        githubUrl: "https://github.com/misiakfilip/portfolio-generator",
+        githubUrl: "https://github.com/misiakfilip/arkanoid",
         featured: true
       },
-      // Add more...
     ]
   }
 };

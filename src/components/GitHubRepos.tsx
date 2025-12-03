@@ -202,7 +202,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
   }
 
   return (
-    <section id="projects" className="py-20 px-6 bg-gray-50 dark:bg-slate-800/30">
+    <section id="projects" className="py-20 px-6 border-t border-white/5">
       <div className="max-w-7xl mx-auto">
         
         {/* Pinned Repositories */}
@@ -242,7 +242,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
                 placeholder={t.search[language]}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white dark:bg-slate-800 border border-gray-300 dark:border-purple-500 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-purple-500"
+                className="w-full pl-10 pr-4 py-3 bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
               />
             </div>
             
@@ -322,7 +322,7 @@ interface RepoCardProps {
 const RepoCard: React.FC<RepoCardProps> = ({ repo, onOpen, getLanguageColor, formatDate, t, isPinned }) => (
   <div
     onClick={() => onOpen(repo)}
-    className={`bg-white dark:bg-slate-800 rounded-lg p-6 border border-gray-200 dark:border-purple-500/30 hover:border-purple-500 transition-all duration-300 hover:shadow-xl cursor-pointer ${isPinned ? 'ring-2 ring-purple-500' : ''}`}
+    className={`bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:border-cyan-500 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer ${isPinned ? 'ring-2 ring-cyan-500' : ''}`}
   >
     <div className="flex items-start justify-between mb-3">
       <h3 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center gap-2 flex-1">
@@ -330,7 +330,7 @@ const RepoCard: React.FC<RepoCardProps> = ({ repo, onOpen, getLanguageColor, for
         <span className="truncate">{repo.name}</span>
       </h3>
       {isPinned && (
-        <span className="text-xs bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 px-2 py-1 rounded-full">
+        <span className="text-xs bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 px-2 py-1 rounded-full backdrop-blur-sm">
           ⭐ Pinned
         </span>
       )}
@@ -405,11 +405,11 @@ const RepoModal: React.FC<RepoModalProps> = ({
     onClick={onClose}
   >
     <div 
-      className="bg-white dark:bg-slate-800 rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden border-2 border-purple-500 shadow-2xl"
+      className="bg-white/10 dark:bg-white/10 backdrop-blur-xl rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden border-2 border-cyan-500 shadow-2xl"
       onClick={(e) => e.stopPropagation()}
     >
       {/* Modal Header */}
-      <div className="bg-gray-50 dark:bg-slate-900 p-6 border-b border-gray-200 dark:border-purple-500/30">
+      <div className="bg-white/5 dark:bg-white/5 backdrop-blur-md p-6 border-b border-white/10">
         <div className="flex items-start justify-between">
           <div className="flex-1">
             <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
@@ -472,7 +472,7 @@ const RepoModal: React.FC<RepoModalProps> = ({
       </div>
 
       {/* Modal Content */}
-      <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)] bg-white dark:bg-slate-800">
+      <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)] bg-white/5 dark:bg-white/5 backdrop-blur-md">
         {loadingReadme ? (
           <div className="text-center py-8">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>

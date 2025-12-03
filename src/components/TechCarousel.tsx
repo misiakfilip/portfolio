@@ -42,7 +42,7 @@ const TechCarousel: React.FC<TechCarouselProps> = ({ technologies, language }) =
   const dotsCount = Math.ceil(technologies.length / itemsPerView);
 
   return (
-    <section className="py-16 bg-gray-100 dark:bg-slate-800/50">
+    <section className="py-16 border-t border-b border-white/5 dark:border-white/5 backdrop-blur-md bg-white/5 dark:bg-white/5">
       <div className="max-w-7xl mx-auto px-6">
         <div className="text-center mb-12">
           <h2 className="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">
@@ -59,7 +59,7 @@ const TechCarousel: React.FC<TechCarouselProps> = ({ technologies, language }) =
             {visibleTechs.map((tech, index) => (
               <div
                 key={`${tech.name}-${currentIndex}-${index}`}
-                className="flex flex-col items-center gap-3 p-4 bg-white dark:bg-slate-700 rounded-xl shadow-lg hover:shadow-2xl transition-all duration-300 hover:-translate-y-2 min-w-[120px] animate-slide-in"
+                className="flex flex-col items-center gap-3 p-4 bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/10 rounded-xl shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-2 min-w-[120px] animate-slide-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
                 <i className={`${tech.icon} text-5xl colored`}></i>
@@ -94,7 +94,7 @@ const TechCarousel: React.FC<TechCarouselProps> = ({ technologies, language }) =
           {technologies.map((tech, index) => (
             <div
               key={`${tech.name}-grid-${index}`}
-              className="flex flex-col items-center gap-2 p-3 bg-white dark:bg-slate-700 rounded-lg hover:shadow-lg transition-all hover:-translate-y-1 cursor-pointer"
+              className="flex flex-col items-center gap-2 p-3 bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/10 rounded-lg hover:shadow-lg hover:shadow-cyan-500/10 transition-all hover:-translate-y-1 cursor-pointer"
               title={tech.name}
             >
               <i className={`${tech.icon} text-3xl colored`}></i>

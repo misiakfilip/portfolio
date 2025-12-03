@@ -35,12 +35,12 @@ const Navigation: React.FC<NavigationProps> = ({
   };
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/80 dark:bg-slate-900/80 backdrop-blur-md border-b border-gray-200 dark:border-purple-500/30">
+    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-white/10 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           <button 
             onClick={() => scrollToSection('home')}
-            className="text-2xl font-bold text-gray-900 dark:text-white hover:text-purple-600 dark:hover:text-purple-400 transition-colors"
+            className="text-2xl font-bold text-gray-900 dark:text-white hover:text-cyan-400 dark:hover:text-purple-400 transition-colors"
           >
             {name}
           </button>
@@ -51,7 +51,7 @@ const Navigation: React.FC<NavigationProps> = ({
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors font-medium"
+                className="text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 transition-colors font-medium"
               >
                 {t[section as keyof typeof t][language]}
               </button>
@@ -94,7 +94,7 @@ const Navigation: React.FC<NavigationProps> = ({
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
-                className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 py-2"
+                className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 py-2"
               >
                 {t[section as keyof typeof t][language]}
               </button>

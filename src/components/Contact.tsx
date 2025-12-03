@@ -23,8 +23,9 @@ const Contact: React.FC<ContactProps> = ({ name, email, github, linkedin, langua
   };
 
   return (
-    <section id="contact" className="py-20 px-6 bg-gradient-to-br from-purple-600 to-pink-600 dark:from-purple-900 dark:to-pink-900">
-      <div className="max-w-4xl mx-auto text-center">
+    <section id="contact" className="py-20 px-6 relative border-t border-white/5">
+    <div className="absolute inset-0 bg-gradient-to-br from-purple-600/20 to-cyan-600/20 dark:from-purple-500/10 dark:to-cyan-500/10"></div>
+    <div className="relative max-w-4xl mx-auto text-center">
         <h2 className="text-4xl md:text-5xl font-bold text-white mb-6">
           {t.title[language]}
         </h2>

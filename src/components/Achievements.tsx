@@ -26,7 +26,7 @@ const Achievements: React.FC<AchievementsProps> = ({ achievements, language }) =
   if (achievements.length === 0) return null;
 
   return (
-    <section id="experience" className="py-20 px-6 bg-gray-50 dark:bg-slate-800/30">
+    <section id="experience" className="py-20 px-6">
       <div className="max-w-7xl mx-auto">
         <div className="text-center mb-16">
           <h2 className="text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">
@@ -41,7 +41,7 @@ const Achievements: React.FC<AchievementsProps> = ({ achievements, language }) =
           {achievements.map((achievement, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-800 rounded-xl p-6 shadow-lg border border-gray-200 dark:border-purple-500/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              className="bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-xl p-6 shadow-lg border border-white/10 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-300"
             >
               {/* Icon */}
               <div className="text-5xl mb-4">{achievement.icon}</div>

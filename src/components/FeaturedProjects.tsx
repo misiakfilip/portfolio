@@ -46,10 +46,10 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
           {projects.map((project, index) => (
             <div
               key={index}
-              className="bg-white dark:bg-slate-800 rounded-xl overflow-hidden shadow-lg border border-gray-200 dark:border-purple-500/30 hover:shadow-2xl hover:-translate-y-2 transition-all duration-300"
+              className="bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-white/10 hover:shadow-2xl hover:shadow-cyan-500/20 hover:-translate-y-2 transition-all duration-300"
             >
               {/* Project Image */}
-              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-purple-600 to-pink-600">
+              <div className="relative h-56 overflow-hidden bg-gradient-to-br from-purple-600 to-cyan-400">
                 {project.image ? (
                   <img 
                     src={project.image} 
@@ -81,7 +81,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
                   {project.technologies.map((tech, techIndex) => (
                     <span
                       key={techIndex}
-                      className="px-3 py-1 bg-purple-100 dark:bg-purple-900/30 text-purple-800 dark:text-purple-300 rounded-full text-sm font-medium"
+                      className="px-3 py-1 bg-purple-500/20 border border-purple-500/30 text-purple-300 rounded-full text-sm font-medium backdrop-blur-sm"
                     >
                       {tech}
                     </span>

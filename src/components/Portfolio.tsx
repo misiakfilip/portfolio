@@ -4,10 +4,11 @@ import Navigation from './Navigation';
 import Hero from './Hero';
 import TechCarousel from './TechCarousel';
 import About from './About';
-import Achievements from './Achievements';
+// import Achievements from './Achievements';
 import FeaturedProjects from './FeaturedProjects';
 import GitHubRepos from './GitHubRepos';
 import Contact from './Contact';
+import Education from './Education';
 
 interface GitHubUser {
   avatar_url: string;
@@ -41,6 +42,24 @@ interface Config {
       company: string;
       description: string;
       technologies: string[];
+    }>;
+  };
+    education: {
+    pl: Array<{
+      period: string;       
+      title: string;        
+      school: string;       
+      description?: string; 
+      website?: string;     
+      icon?: string;
+    }>;        
+    en: Array<{
+      period: string;
+      title: string;
+      school: string;
+      description?: string;
+      website?: string;
+      icon?: string;
     }>;
   };
   achievements: {
@@ -111,7 +130,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ config }) => {
 
   return (
     <div className={darkMode ? 'dark' : ''}>
-      <div className="min-h-screen bg-white dark:bg-gradient-to-br dark:from-slate-900 dark:via-purple-900 dark:to-slate-900 transition-colors">
+      <div className="min-h-screen bg-slate-50 dark:bg-transparent transition-colors">
         
         {/* Navigation */}
         <Navigation
@@ -146,11 +165,17 @@ const Portfolio: React.FC<PortfolioProps> = ({ config }) => {
           language={language}
         />
 
-        {/* Achievements */}
-        <Achievements
-          achievements={config.achievements[language]}
+        {/* Education Timeline */}
+        <Education
+          education={config.education[language]}
           language={language}
         />
+
+        {/* Achievements */}
+        {/* <Achievements
+          achievements={config.achievements[language]}
+          language={language}
+        /> */}
 
         {/* Featured Projects */}
         <FeaturedProjects
@@ -174,13 +199,13 @@ const Portfolio: React.FC<PortfolioProps> = ({ config }) => {
         />
 
         {/* Footer */}
-        <footer className="py-8 border-t border-gray-200 dark:border-purple-500/30 bg-white dark:bg-slate-900">
+        <footer className="py-8 border-t border-white/10 bg-transparent backdrop-blur-md">
           <div className="max-w-7xl mx-auto px-6 text-center text-gray-600 dark:text-gray-400">
             <p>
               © {new Date().getFullYear()} {config.name}.{' '}
               {language === 'pl' 
-                ? 'Wszystkie prawa zastrzeżone. Projekty automatycznie synchronizowane z GitHub.' 
-                : 'All rights reserved. Projects automatically synced with GitHub.'}
+                ? 'Wszystkie prawa zastrzeżone.' 
+                : 'All rights reserved.'}
             </p>
           </div>
         </footer>
