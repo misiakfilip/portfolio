@@ -62,7 +62,11 @@ const TechCarousel: React.FC<TechCarouselProps> = ({ technologies, language }) =
                 className="flex flex-col items-center gap-3 p-4 bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/10 rounded-xl shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-2 min-w-[120px] animate-slide-in"
                 style={{ animationDelay: `${index * 0.1}s` }}
               >
-                <i className={`${tech.icon} text-5xl colored`}></i>
+                {tech.icon.startsWith('devicon') ? (
+                    <i className={`${tech.icon} text-5xl colored`}></i>
+                  ) : (
+                    <span className="text-5xl">{tech.icon}</span>
+                  )}
                 <span className="text-gray-900 dark:text-white font-semibold text-center text-sm">
                   {tech.name}
                 </span>

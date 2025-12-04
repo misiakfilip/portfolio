@@ -157,22 +157,51 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
 
   const renderMarkdown = (text: string): string => {
     let html = text;
+
+    // Headers
     html = html.replace(/^### (.*$)/gim, '<h3 class="text-xl font-bold text-white mt-6 mb-3">$1</h3>');
     html = html.replace(/^## (.*$)/gim, '<h2 class="text-2xl font-bold text-white mt-8 mb-4">$1</h2>');
     html = html.replace(/^# (.*$)/gim, '<h1 class="text-3xl font-bold text-white mt-8 mb-4">$1</h1>');
+
+    // Bold
     html = html.replace(/\*\*(.*?)\*\*/g, '<strong class="font-bold text-purple-400">$1</strong>');
+    html = html.replace(/__(.*?)__/g, '<strong class="font-bold text-purple-400">$1</strong>');
+
+    // Italic
     html = html.replace(/\*(.*?)\*/g, '<em class="italic text-gray-300">$1</em>');
-    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" class="text-purple-400 hover:text-purple-300 underline">$1</a>');
+    html = html.replace(/_(.*?)_/g, '<em class="italic text-gray-300">$1</em>');
+
+    // Links
+    html = html.replace(/\[([^\]]+)\]\(([^)]+)\)/g, '<a href="$2" target="_blank" rel="noopener noreferrer" class="text-purple-400 hover:text-purple-300 underline">$1</a>');
+
+    // Images
     html = html.replace(/!\[([^\]]*)\]\(([^)]+)\)/g, '<img src="$2" alt="$1" class="max-w-full h-auto rounded-lg my-4 border border-purple-500/30" />');
-    html = html.replace(/```[\s\S]*?```/g, (match) => {
-      const code = match.replace(/```\w*\n?/g, '').trim();
-      return `<pre class="bg-slate-950 rounded-lg p-4 my-4 overflow-x-auto border border-purple-500/30"><code class="text-sm text-gray-300">${code}</code></pre>`;
-    });
+
+    // Code blocks
+    html = html.replace(/```(\w+)?\n([\s\S]*?)```/g, '<pre class="bg-slate-950 rounded-lg p-4 my-4 overflow-x-auto border border-purple-500/30"><code class="text-sm text-gray-300">$2</code></pre>');
+
+    // Inline code
     html = html.replace(/`([^`]+)`/g, '<code class="bg-slate-950 px-2 py-1 rounded text-purple-400 text-sm">$1</code>');
+
+    // Lists
     html = html.replace(/^\* (.+)$/gim, '<li class="ml-6 mb-2 text-gray-300 list-disc">$1</li>');
     html = html.replace(/^- (.+)$/gim, '<li class="ml-6 mb-2 text-gray-300 list-disc">$1</li>');
+    html = html.replace(/^\d+\. (.+)$/gim, '<li class="ml-6 mb-2 text-gray-300 list-decimal">$1</li>');
+
+    // Wrap consecutive list items in ul/ol
+    html = html.replace(/(<li class="ml-6 mb-2 text-gray-300 list-disc">.*?<\/li>\n?)+/g, '<ul class="my-4">$&</ul>');
+    html = html.replace(/(<li class="ml-6 mb-2 text-gray-300 list-decimal">.*?<\/li>\n?)+/g, '<ol class="my-4">$&</ol>');
+
+    // Blockquotes
     html = html.replace(/^> (.+)$/gim, '<blockquote class="border-l-4 border-purple-500 pl-4 py-2 my-4 text-gray-400 italic">$1</blockquote>');
-    html = html.replace(/\n\n/g, '<br/><br/>');
+
+    // Horizontal rules
+    html = html.replace(/^---$/gim, '<hr class="my-6 border-purple-500/30" />');
+
+    // Line breaks
+    html = html.replace(/\n\n/g, '</p><p class="text-gray-300 mb-4">');
+    html = '<p class="text-gray-300 mb-4">' + html + '</p>';
+
     return html;
   };
 
@@ -220,6 +249,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
                   getLanguageColor={getLanguageColor}
                   formatDate={formatDate}
                   t={t}
+                  language={language}
                   isPinned
                 />
               ))}
@@ -277,6 +307,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
                 getLanguageColor={getLanguageColor}
                 formatDate={formatDate}
                 t={t}
+                language={language}
               />
             ))}
           </div>
@@ -302,6 +333,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
             renderMarkdown={renderMarkdown}
             getLanguageColor={getLanguageColor}
             t={t}
+            language={language}
           />
         )}
       </div>
@@ -316,10 +348,11 @@ interface RepoCardProps {
   getLanguageColor: (lang: string) => string;
   formatDate: (date: string) => string;
   t: any;
+  language: 'pl' | 'en';
   isPinned?: boolean;
 }
 
-const RepoCard: React.FC<RepoCardProps> = ({ repo, onOpen, getLanguageColor, formatDate, t, isPinned }) => (
+const RepoCard: React.FC<RepoCardProps> = ({ repo, onOpen, getLanguageColor, formatDate, t, language, isPinned }) => (
   <div
     onClick={() => onOpen(repo)}
     className={`bg-white/10 dark:bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:border-cyan-500 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer ${isPinned ? 'ring-2 ring-cyan-500' : ''}`}
@@ -336,9 +369,9 @@ const RepoCard: React.FC<RepoCardProps> = ({ repo, onOpen, getLanguageColor, for
       )}
     </div>
 
-    {/* <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-2 min-h-[2.5rem]">
+    <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-2 min-h-10">
       {repo.description || t.noDescription[language || 'en']}
-    </p> */}
+    </p>
 
     <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
       {repo.language && (
@@ -360,10 +393,10 @@ const RepoCard: React.FC<RepoCardProps> = ({ repo, onOpen, getLanguageColor, for
       </div>
     </div>
 
-    {/* <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-500 mb-4">
+    <div className="flex items-center gap-2 text-xs text-gray-500 dark:text-gray-500 mb-4">
       <Calendar size={14} />
       <span>{t.updated[language || 'en']}: {formatDate(repo.updated_at)}</span>
-    </div> */}
+    </div>
 
     {repo.topics && repo.topics.length > 0 && (
       <div className="flex flex-wrap gap-2">
@@ -389,6 +422,7 @@ interface RepoModalProps {
   renderMarkdown: (text: string) => string;
   getLanguageColor: (lang: string) => string;
   t: any;
+  language: 'pl' | 'en';
 }
 
 const RepoModal: React.FC<RepoModalProps> = ({ 
@@ -398,7 +432,8 @@ const RepoModal: React.FC<RepoModalProps> = ({
   onClose, 
   renderMarkdown, 
   getLanguageColor, 
-  t 
+  t,
+  language 
 }) => (
   <div 
     className="fixed inset-0 bg-black/70 backdrop-blur-sm flex items-center justify-center p-4 z-50" 
@@ -455,7 +490,7 @@ const RepoModal: React.FC<RepoModalProps> = ({
                 className="flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
               >
                 <ExternalLink size={16} />
-                <span>{t.liveDemo}</span>
+                <span>{t.liveDemo[language]}</span>
               </a>
             )}
             <a
@@ -465,7 +500,7 @@ const RepoModal: React.FC<RepoModalProps> = ({
               className="flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
             >
               <Eye size={16} />
-              <span>{t.viewOnGitHub}</span>
+              <span>{t.viewOnGitHub[language]}</span>
             </a>
           </div>
         </div>
@@ -476,7 +511,7 @@ const RepoModal: React.FC<RepoModalProps> = ({
         {loadingReadme ? (
           <div className="text-center py-8">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">{t.loadingReadme}</p>
+            <p className="mt-4 text-gray-600 dark:text-gray-400">{t.loadingReadme[language]}</p>
           </div>
         ) : (
           <div 

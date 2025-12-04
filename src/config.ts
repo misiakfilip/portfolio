@@ -16,7 +16,7 @@ export const config = {
   // Social links
   social: {
     github: "https://github.com/misiakfilip",
-    linkedin: "https://linkedin.com/in/filip-misiak", // ZMIEŃ!
+    linkedin: "https://linkedin.com/in/filip-misiak-031090281", // ZMIEŃ!
     email: "filip.misiak11@gmail.com", // ZMIEŃ!
     twitter: "", // Opcjonalnie
   },
@@ -40,13 +40,13 @@ export const config = {
     { name: "React", icon: "devicon-react-original" },
     { name: "Node.js", icon: "devicon-nodejs-plain" },
     { name: "Astro", icon: "devicon-astro-plain" },
-    { name: "Unity", icon: "devicon-unity-original-wordmark" },
     { name: "Unreal Engine", icon: "devicon-unrealengine-original" },
     { name: "Android", icon: "devicon-android-plain" },
     { name: ".NET", icon: "devicon-dotnetcore-plain" },
     { name: "SQL", icon: "devicon-mysql-plain" },
     { name: "MongoDB", icon: "devicon-mongodb-plain" },
-    { name: "Power Apps", icon: "🟣" },
+    { name: "Unity", icon: "🎮" },
+    { name: "Power Apps", icon: "⚡" },
   ],
   
 // Timeline doświadczenia
