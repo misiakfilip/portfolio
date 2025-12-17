@@ -7,7 +7,7 @@ import react from "@astrojs/react";
 export default defineConfig({
   site: 'https://misiakfilip.github.io',
   base: '/portfolio',
-  trailingSlash: 'always',
+  trailingSlash: 'ignore',
   
   vite: {
     plugins: [tailwindcss()],

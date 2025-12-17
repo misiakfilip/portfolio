@@ -24,7 +24,7 @@ const Navigation: React.FC<NavigationProps> = ({
   const t = {
     home: { pl: "Start", en: "Home" },
     about: { pl: "O mnie", en: "About" },
-    experience: { pl: "Doświadczenie", en: "Experience" },
+    education: { pl: "Wykształcenie", en: "Education" },
     projects: { pl: "Projekty", en: "Projects" },
     contact: { pl: "Kontakt", en: "Contact" },
   };
@@ -47,7 +47,7 @@ const Navigation: React.FC<NavigationProps> = ({
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
-            {['home', 'about', 'experience', 'projects', 'contact'].map(section => (
+            {['home', 'about', 'education', 'projects', 'contact'].map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
@@ -64,7 +64,7 @@ const Navigation: React.FC<NavigationProps> = ({
               {language === 'pl' ? 'EN' : 'PL'}
             </button>
             
-            <button
+            {/* <button
               onClick={() => setDarkMode(!darkMode)}
               className="p-2 rounded-lg bg-gray-200 dark:bg-slate-800 hover:bg-gray-300 dark:hover:bg-slate-700 transition-colors"
             >
@@ -73,7 +73,7 @@ const Navigation: React.FC<NavigationProps> = ({
               ) : (
                 <Moon size={20} className="text-gray-700" />
               )}
-            </button>
+            </button> */}
           </div>
 
           {/* Mobile Menu Button */}

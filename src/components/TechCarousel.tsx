@@ -94,7 +94,7 @@ const TechCarousel: React.FC<TechCarouselProps> = ({ technologies, language }) =
         </div>
 
         {/* All Technologies Grid (Desktop only) */}
-        <div className="hidden lg:grid grid-cols-8 gap-4 mt-16">
+        {/* <div className="hidden lg:grid grid-cols-8 gap-4 mt-16">
           {technologies.map((tech, index) => (
             <div
               key={`${tech.name}-grid-${index}`}
@@ -107,7 +107,7 @@ const TechCarousel: React.FC<TechCarouselProps> = ({ technologies, language }) =
               </span>
             </div>
           ))}
-        </div>
+        </div> */}
       </div>
 
       <style>{`

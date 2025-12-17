@@ -4,13 +4,13 @@ export const config = {
   name: "Filip Misiak",
   username: "misiakfilip",
   title: {
-    pl: "Software Engineer – Web, Mobile & Games",
-    en: "Software Engineer – Web, Mobile & Games"
+    pl: "Software Engineer",
+    en: "Software Engineer"
   },
 
   bio: {
-    pl: "Pasjonat tworzenia aplikacji webowych, mobilnych oraz gier komputerowych. Specjalizuję się w technologiach takich jak React, Node.js, Astro, Unity, Unreal Engine, a także w rozwiązaniach cloud i automatyzacji procesów biznesowych.",
-    en: "Passionate about creating web and mobile applications, as well as computer games. I specialize in technologies like React, Node.js, Astro, Unity, Unreal Engine, as well as cloud solutions and business process automation."
+    pl: "Pasjonat tworzenia aplikacji webowych, mobilnych oraz gier komputerowych. Specjalizuję się w technologiach takich jak React, Node.js, Unity i Unreal Engine.",
+    en: "Passionate about creating web and mobile applications, as well as computer games. I specialize in technologies like React, Node.js, Unity and Unreal Engine."
   },
   
   // Social links
@@ -103,20 +103,20 @@ education: {
   pl: [
     {
       title: "Technik informatyk",
-      school: "Zespół Szkół Elektrycznych i Informatycznych w Katowicach",
+      school: "Zespół Szkół Elektronicznych Elektrycznych i Mechanicznych w Bielsku-Białej im. Jędrzeja Śniadeckiego",
       website: "https://zseeim.edu.pl/",
       period: "2019",
       icon: "🎓"
     },
     {
-      title: "Licencjat z informatyki – Programowanie gier i aplikacji mobilnych",
+      title: "Studia I Stopnia, kierunek: informatyka, specjalizacja: Programowanie gier i aplikacji mobilnych",
       school: "Uniwersytet Ekonomiczny w Katowicach",
       website: "https://www.ue.katowice.pl/",
       period: "2024",
       icon: "🎓"
     },
     {
-      title: "Magisterka z informatyki – Analiza danych",
+      title: "Studia II Stopnia, kierunek: informatyka, specjalizacja: Analiza danych",
       school: "Uniwersytet Ekonomiczny w Katowicach",
       website: "https://www.ue.katowice.pl/",
       period: "w trakcie",
@@ -126,20 +126,20 @@ education: {
   en: [
     {
       title: "IT Technician",
-      school: "Zespół Szkół Elektrycznych i Informatycznych w Katowicach",
+      school: "Zespół Szkół Elektronicznych Elektrycznych i Mechanicznych w Bielsku-Białej im. Jędrzeja Śniadeckiego",
       website: "https://zseeim.edu.pl/",
       period: "2019",
       icon: "🎓"
     },
     {
-      title: "Bachelor of Computer Science – Game and Mobile App Programming",
+      title: "Bachelor of Computer Science, specialization: Game and Mobile App Programming",
       school: "University of Economics in Katowice",
       website: "https://www.ue.katowice.pl/",
       period: "2024",
       icon: "🎓"
     },
     {
-      title: "Master of Computer Science – Data Analysis",
+      title: "Master of Computer Science, specialization: Data Analysis",
       school: "University of Economics in Katowice",
       website: "https://www.ue.katowice.pl/",
       period: "in progress",
@@ -174,41 +174,117 @@ education: {
       {
         title: "Blog Najlepszy muzyczny adres",
         description: "Blog muzyczny stworzony z wykorzystaniem Payload CMS.",
-        image: "./projects/blog.jpg", 
+        image: "/portfolio/projects/blog.jpg", 
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
         githubUrl: "", 
         featured: true
       },
       {
-        title: "Arakanoid",
-        description: "Gra stworzona w Unity wzorująca się na klasycznej grze Arkanoid.",
-        image: "./projects/arkanoid.jpg",
+        title: "Retro Brick Breaker",
+        description: "Gra stworzona w Unity wzorująca się na klasycznych grach Arcade.",
+        image: "/portfolio/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
-        githubUrl: "https://github.com/misiakfilip/arkanoid",
+        githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
         featured: true
       },
+      {
+        title: "Arct",
+        description: "Narracyjna gra dokumentalna stworzona w Unreal Engine 5, skupiona na interaktywnej opowieści i immersji. Projekt bada połączenie narracji dokumentalnej z mechanikami gier.",
+        image: "/portfolio/projects/arct.svg",
+        technologies: ["Unreal Engine 5", "Blueprints", "C++"],
+        demoUrl: "",
+        githubUrl: "",
+        slug: "praca-dyplomowa",  // ← DODAJ 
+        hasDetailPage: true,
+        featured: true
+      },
+      {
+        title: "Skarbnik: Duch kopalni",
+        description: "Survival horror osadzony w polskiej kopalni, inspirowany słowiańską mitologią. Gra kładzie nacisk na atmosferę, narrację środowiskową i psychologiczny horror.",
+        image: "/portfolio/projects/skarbnik.jpg",
+        technologies: ["Unity", "C#"],
+        demoUrl: "",
+        githubUrl: "",
+        featured: true
+      },
+      {
+        title: "Impostor",
+        description: "Imprezowa gra mobilna stworzona w React Native, przeznaczona do wspólnej zabawy w grupie. Projekt skupia się na prostych zasadach, szybkiej rozgrywce i interakcji między graczami.",
+        image: "/portfolio/projects/impostor.png",
+        technologies: ["React Native", "JavaScript"],
+        demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
+        githubUrl: "",
+        featured: false
+      },
+      {
+        title: "recipE",
+        description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
+        image: "/portfolio/projects/recipe.jpg",
+        technologies: ["React Native", "JavaScript"],
+        demoUrl: "",
+        githubUrl: "https://github.com/misiakfilip/recipe",
+        featured: false
+      }
+
     ],
     en: [
       {
         title: "Best Music Blog",
         description: "A music blog created using Payload CMS.",
-        image: "./projects/blog.jpg", 
+        image: "/portfolio/projects/blog.jpg", 
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
         githubUrl: "", 
         featured: true
       },
       {
-        title: "Arkanoid",
-        description: "A Unity game inspired by the classic Arkanoid game.",
-        image: "./projects/arkanoid.jpg",
+        title: "Retro Brick Breaker",
+        description: "A Unity game inspired by the classic arcade games.",
+        image: "/portfolio/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
-        githubUrl: "https://github.com/misiakfilip/arkanoid",
+        githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
         featured: true
       },
+      {
+        title: "Arct",
+        description: "A narrative documentary game developed in Unreal Engine 5, focused on interactive storytelling and immersion. The project explores documentary-driven game design.",
+        image: "/portfolio/projects/arct.jpg",
+        technologies: ["Unreal Engine 5", "Blueprints", "C++"],
+        demoUrl: "",
+        githubUrl: "",
+        featured: true
+      },
+      {
+        title: "Skarbnik: Spirit of the Mine",
+        description: "A survival horror set in a Polish coal mine, inspired by Slavic mythology. The game focuses on atmosphere, environmental storytelling, and psychological horror.",
+        image: "/portfolio/projects/skarbnik.jpg",
+        technologies: ["Unity", "C#"],
+        demoUrl: "",
+        githubUrl: "",
+        featured: true
+      },
+      {
+        title: "Impostor",
+        description: "A party mobile game developed in React Native, designed for group play. The project focuses on simple rules, fast-paced gameplay, and player interaction.",
+        image: "/portfolio/projects/impostor.png",
+        technologies: ["React Native", "JavaScript"],
+        demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
+        githubUrl: "",
+        featured: false
+      },
+      {
+        title: "recipE",
+        description: "A mobile application for storing and managing cooking recipes. It allows users to organize, edit, and quickly access their personal recipe collection.",
+        image: "/portfolio/projects/recipe.jpg",
+        technologies: ["React Native", "JavaScript"],
+        demoUrl: "",
+        githubUrl: "https://github.com/misiakfilip/recipe",
+        featured: false
+      }
+
     ]
   }
 };

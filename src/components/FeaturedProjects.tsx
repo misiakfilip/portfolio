@@ -9,6 +9,8 @@ interface FeaturedProject {
   technologies: string[];
   demoUrl?: string;
   githubUrl?: string;
+  slug?: string;              // ← DODAJ
+  hasDetailPage?: boolean; 
   featured: boolean;
 }
 
@@ -89,7 +91,44 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
                 </div>
 
                 {/* Links */}
-                <div className="flex gap-4">
+                  <div className="flex gap-4">
+                    {project.hasDetailPage && project.slug ? (
+                      <a
+                        href={`/portfolio/projects/${project.slug}`}
+                        className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium"
+                      >
+                        <ExternalLink size={18} />
+                        {language === 'pl' ? 'Zobacz więcej' : 'Learn more'}
+                      </a>
+                    ) : (
+                      <>
+                        {project.demoUrl && (
+                          <a
+                            href={project.demoUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium"
+                          >
+                            <ExternalLink size={18} />
+                            {t.demo[language]}
+                          </a>
+                        )}
+                        
+                        {project.githubUrl && (
+                          <a
+                            href={project.githubUrl}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                            className="flex items-center gap-2 px-4 py-2 border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg transition-colors font-medium"
+                          >
+                            <Github size={18} />
+                            {t.github[language]}
+                          </a>
+                        )}
+                      </>
+                    )}
+                  </div>
+                {/* <div className="flex gap-4">
                   {project.demoUrl && (
                     <a
                       href={project.demoUrl}
@@ -113,7 +152,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
                       {t.github[language]}
                     </a>
                   )}
-                </div>
+                </div> */}
               </div>
             </div>
           ))}

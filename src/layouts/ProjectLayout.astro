@@ -1,0 +1,117 @@
+---
+// src/layouts/ProjectLayout.astro
+import "../styles/global.css";
+
+interface Props {
+  title: string;
+  description: string;
+  technologies?: string[];
+  github?: string;
+  demo?: string;
+}
+
+const { title, description, technologies = [], github, demo } = Astro.props;
+const base = import.meta.env.BASE_URL;
+---
+
+<!doctype html>
+<html lang="pl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="description" content={description} />
+    <meta name="viewport" content="width=device-width" />
+    <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
+    <meta name="generator" content={Astro.generator} />
+    <title>{title} - Filip Misiak</title>
+    
+    <!-- Devicons -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
+  </head>
+  <body class="min-h-screen relative overflow-x-hidden">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950"></div>
+    <div class="fixed inset-0 -z-10 bg-linear-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
+    
+    <!-- Navigation Bar -->
+    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-6 py-4">
+        <div class="flex items-center justify-between">
+          <a href={base} class="text-xl font-bold text-white hover:text-cyan-400 transition-colors">
+            ← Powrót do portfolio
+          </a>
+          
+          <div class="flex gap-4">
+            {github && (
+              <a 
+                href={github}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors backdrop-blur-md border border-white/10"
+              >
+                GitHub
+              </a>
+            )}
+            {demo && (
+              <a 
+                href={demo}
+                target="_blank"
+                rel="noopener noreferrer"
+                class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+              >
+                Demo
+              </a>
+            )}
+          </div>
+        </div>
+      </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section class="pt-32 pb-12 px-6">
+      <div class="max-w-5xl mx-auto">
+        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+          {title}
+        </h1>
+        <p class="text-xl text-gray-300 mb-8">
+          {description}
+        </p>
+        
+        {technologies.length > 0 && (
+          <div class="flex flex-wrap gap-3">
+            {technologies.map((tech) => (
+              <span class="px-4 py-2 bg-purple-500/20 border border-purple-500/30 text-purple-300 rounded-full text-sm font-medium backdrop-blur-sm">
+                {tech}
+              </span>
+            ))}
+          </div>
+        )}
+      </div>
+    </section>
+
+    <!-- Main Content -->
+    <main class="pb-20 px-6">
+      <div class="max-w-5xl mx-auto">
+        <slot />
+      </div>
+    </main>
+
+    <!-- Footer -->
+    <footer class="py-8 border-t border-white/10 bg-transparent backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-6 text-center text-gray-400">
+        <a href={base} class="text-cyan-400 hover:text-cyan-300 transition-colors">
+          ← Powrót do głównej strony
+        </a>
+      </div>
+    </footer>
+  </body>
+</html>
+
+<style>
+  @keyframes gradient {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  .animate-gradient {
+    animation: gradient 15s ease-in-out infinite;
+  }
+</style>
