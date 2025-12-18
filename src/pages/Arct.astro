@@ -1,0 +1,200 @@
+---
+// src/pages/projects/praca-dyplomowa.astro
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { 
+  YouTubeVideo, 
+  DownloadsSection, 
+  ImageGallery, 
+  FeaturesList,
+  TextSection,
+  LinksSection 
+} from '../../components/ProjectComponents';
+
+import { loadGalleryImages } from '../../utils/loadGalleryImages';
+const galleryImages = loadGalleryImages('arct');
+---
+
+<ProjectLayout
+  title="Arct"
+  description="Narracyjna gra dokumentalna oparta na historycznej wyprawie statku Belgica (1897–1899), łącząca edukację, narrację i elementy survivalu."
+  technologies={["Unreal Engine", "Blueprints", "Narrative Design", "Game Design"]}
+  github="https://github.com/misiakfilip/arct"
+>
+  
+  <!-- O Projekcie -->
+  <TextSection client:load title="O Projekcie">
+    <p>
+    Praca dyplomowa pt. <em>„Projekt i implementacja narracyjnej gry dokumentalnej”</em> 
+    koncentruje się na wykorzystaniu medium gier wideo do przekazywania treści historycznych 
+    i edukacyjnych. Projekt gry <strong>Arct</strong> stanowi praktyczną realizację założeń 
+    teoretycznych opisanych w pracy, w szczególności w obszarze narracyjnych gier dokumentalnych.
+    </p>
+    <p>
+    Gra opowiada o pierwszej w historii wyprawie antarktycznej, podczas której statek 
+    <strong>Belgica</strong> został uwięziony w lodach Morza Bellingshausena. Gracz wciela się 
+    w członków ekspedycji, uczestnicząc w codziennym życiu załogi, badaniach naukowych 
+    oraz walce o przetrwanie w ekstremalnych warunkach.
+    </p>
+    <p>
+    Projekt łączy elementy przygodowej gry narracyjnej, dokumentu historycznego 
+    oraz subtelne mechaniki survival horroru, które służą budowaniu napięcia 
+    i oddaniu psychologicznych aspektów izolacji.
+  </p>
+
+  </TextSection>
+
+  <!-- YouTube Video -->
+  <div class="mt-8">
+    <YouTubeVideo 
+      client:load 
+      videoId="dQw4w9WgXcQ" 
+      title="Gameplay - Demonstracja rozgrywki"
+    />
+  </div>
+
+  <!-- Funkcje -->
+  <div class="mt-8">
+    <FeaturesList 
+      client:load
+      title="Główne funkcje"
+      features={[
+      "Narracyjna struktura oparta na autentycznych wydarzeniach historycznych",
+      "Interakcje dialogowe z historycznymi członkami ekspedycji",
+      "Wykorzystanie oryginalnych zapisków dziennikowych jako elementu narracji",
+      "Segmenty edukacyjne dotyczące geografii, biologii i geologii",
+      "Eksploracja statku Belgica i otoczenia antarktycznego",
+      "Elementy survivalu budujące napięcie i poczucie zagrożenia",
+      "Silny nacisk na immersję i atmosferę",
+      "Projekt gry zgodny z założeniami gier poważnych (serious games)"
+      ]}
+    />
+  </div>
+
+  <!-- Galeria -->
+<div class="mt-8">
+  <ImageGallery
+    client:load
+    title="Zrzuty ekranu"
+    images={galleryImages}
+  />
+</div>
+
+  <!-- Dokumentacja techniczna -->
+  <div class="mt-8">
+    <TextSection client:load title="Dokumentacja Techniczna">
+      <h4 class="text-xl font-bold text-white mb-3">Architektura</h4>
+      <p>
+        Projekt gry został opisany w głównym dokumencie koncepcyjnym (GDD), 
+        który obejmuje założenia narracyjne, mechaniczne oraz edukacyjne. 
+        Implementacja prototypu miała na celu weryfikację kluczowych założeń projektu.
+      </p>
+      <ul>
+        <li><strong>System narracji</strong> – dialogi, dzienniki, wydarzenia fabularne</li>
+        <li><strong>System eksploracji</strong> – poruszanie się po statku i otoczeniu</li>
+        <li><strong>System postaci</strong> – historyczni członkowie wyprawy</li>
+        <li><strong>Elementy survivalowe</strong> – ograniczone zasoby, napięcie psychologiczne</li>
+      </ul>
+
+      <h4 class="text-xl font-bold text-white mb-3 mt-6">Zastosowane technologie</h4>
+      <ul>
+        <li>Silnik gry: Unreal Engine</li>
+        <li>Blueprints – logika prototypu</li>
+        <li>Narzędzia graficzne – photobashing i edycja materiałów źródłowych</li>
+        <li>Materiały historyczne jako baza narracyjna</li>
+      </ul>
+    </TextSection>
+  </div>
+
+  <!-- Wyzwania i rozwiązania -->
+  <div class="mt-8">
+    <TextSection client:load title="Wyzwania projektowe">
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">
+        1. Połączenie dokumentu i gry
+      </h4>
+      <p>
+        Wyzwaniem było zachowanie równowagi pomiędzy wiernością historyczną 
+        a atrakcyjnością interaktywnej narracji. Rozwiązaniem było zastosowanie 
+        dialogów i dzienników jako głównego nośnika wiedzy.
+      </p>
+
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">
+        2. Budowanie napięcia bez klasycznej akcji
+      </h4>
+      <p>
+        Zamiast intensywnej rozgrywki akcji wykorzystano elementy survival horroru: 
+        izolację, ograniczoną widoczność oraz dźwięk, aby oddać psychologiczny aspekt wyprawy.
+      </p>
+
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">
+        3. Ograniczenia prototypu
+      </h4>
+      <p>
+        Prototyp skupia się na kluczowych mechanikach narracyjnych i atmosferze, 
+        rezygnując z pełnej skali zawartości na rzecz czytelnej demonstracji koncepcji.
+      </p>
+    </TextSection>
+  </div>
+
+  <!-- Pliki do pobrania -->
+  <div class="mt-8">
+    <DownloadsSection 
+      client:load
+      title="Pliki do pobrania"
+      downloads={[
+        {
+          href: "/downloads/praca-dyplomowa.pdf",
+          label: "Praca dyplomowa (PDF)",
+          icon: "pdf",
+        },
+        {
+          href: "/downloads/arkanoid-build.zip",
+          label: "Gra - Build Windows",
+          icon: "file",
+        },
+        {
+          href: "https://github.com/misiakfilip/arkanoid",
+          label: "Kod źródłowy (GitHub)",
+          icon: "code"
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Linki -->
+  <div class="mt-8">
+    <LinksSection 
+      client:load
+      title="Przydatne linki"
+      links={[
+        // {
+        //   href: "https://github.com/misiakfilip/arct",
+        //   label: "Repozytorium GitHub",
+        //   description: "Pełny kod źródłowy projektu"
+        // },
+        {
+          href: "https://UnrealEngine.com/",
+          label: "Unreal Engine",
+          description: "Oficjalna strona silnika Unreal"
+        },
+      ]}
+    />
+  </div>
+
+</ProjectLayout>
+
+<style>
+  /* Dodatkowe style dla prose */
+  :global(.prose) {
+    color: #d1d5db;
+  }
+  :global(.prose strong) {
+    color: #a78bfa;
+  }
+  :global(.prose ul) {
+    list-style: disc;
+    margin-left: 1.5rem;
+  }
+  :global(.prose li) {
+    margin-bottom: 0.5rem;
+  }
+</style>

@@ -187,6 +187,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
+        slug: "brick-breaker",  // ← DODAJ 
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -196,7 +198,7 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
-        slug: "arct", 
+        slug: "Arct",  // ← DODAJ 
         hasDetailPage: true,
         featured: true
       },
@@ -207,6 +209,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
+        slug: "skarbnik",  // ← DODAJ 
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -221,7 +225,7 @@ education: {
       {
         title: "recipE",
         description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
-        image: "/portfolio/projects/recipe.png",
+        image: "/portfolio/projects/recipe.jpg",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
@@ -255,8 +259,6 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
-        slug: "arct", 
-        hasDetailPage: true,
         featured: true
       },
       {
@@ -280,7 +282,7 @@ education: {
       {
         title: "recipE",
         description: "A mobile application for storing and managing cooking recipes. It allows users to organize, edit, and quickly access their personal recipe collection.",
-        image: "/portfolio/projects/recipe.png",
+        image: "/portfolio/projects/recipe.jpg",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",

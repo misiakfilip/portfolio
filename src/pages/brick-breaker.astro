@@ -1,0 +1,207 @@
+---
+// src/pages/projects/praca-dyplomowa.astro
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { 
+  YouTubeVideo, 
+  DownloadsSection, 
+  ImageGallery, 
+  FeaturesList,
+  TextSection,
+  LinksSection 
+} from '../../components/ProjectComponents';
+---
+
+<ProjectLayout
+  title="Retro Brick Breaker "
+  description="Implementacja gry wzorowanej na klasycznych grach Arcade z nowoczesnymi mechanikami i efektami wizualnymi."
+  technologies={["Unity", "C#", ".NET", "Game Design"]}
+  github="https://github.com/misiakfilip/retro-brick-breaker"
+>
+  
+  <!-- O Projekcie -->
+  <TextSection client:load title="O Projekcie">
+    <p>
+      Implementacja gry wzorowanej na klasycznych grach Arcade z nowoczesnymi mechanikami i efektami wizualnymi.
+    </p>
+    <p>
+      Gra zawiera zaawansowane mechaniki rozgrywki, system power-upów, różnorodne poziomy 
+      oraz dynamiczny system trudności dostosowujący się do umiejętności gracza.
+    </p>
+  </TextSection>
+
+  <!-- YouTube Video -->
+  <div class="mt-8">
+    <YouTubeVideo 
+      client:load 
+      videoId="dQw4w9WgXcQ" 
+      title="Gameplay - Demonstracja rozgrywki"
+    />
+  </div>
+
+  <!-- Funkcje -->
+  <div class="mt-8">
+    <FeaturesList 
+      client:load
+      title="Główne funkcje"
+      features={[
+        "System poziomów z rosnącą trudnością",
+        "Power-upy wpływające na rozgrywkę",
+        "Dynamiczny system fizyki piłki",
+        "System highscore'ów z zapisem lokalnym",
+        "Efekty wizualne i dźwiękowe",
+        "Menu główne z ustawieniami",
+      ]}
+    />
+  </div>
+
+  <!-- Galeria -->
+  <div class="mt-8">
+    <ImageGallery 
+      client:load
+      title="Zrzuty ekranu"
+      images={[
+        {
+          src: "/projects/arkanoid/screenshot1.jpg",
+          alt: "Menu główne",
+          caption: "Menu główne gry"
+        },
+        {
+          src: "/projects/arkanoid/screenshot2.jpg",
+          alt: "Gameplay",
+          caption: "Rozgrywka - poziom 3"
+        },
+        {
+          src: "/projects/arkanoid/screenshot3.jpg",
+          alt: "Power-upy",
+          caption: "System power-upów w akcji"
+        },
+      ]}
+    />
+  </div>
+
+  <!-- Dokumentacja techniczna -->
+  <div class="mt-8">
+    <TextSection client:load title="Dokumentacja Techniczna">
+      <h4 class="text-xl font-bold text-white mb-3">Architektura</h4>
+      <p>
+        Projekt wykorzystuje wzorzec MVC (Model-View-Controller) do separacji logiki biznesowej 
+        od warstwy prezentacji. Główne moduły:
+      </p>
+      <ul>
+        <li><strong>Sesja</strong> - Singleton zarządzający stanem gry</li>
+        <li><strong>LevelManager</strong> - System generowania i ładowania poziomów</li>
+        <li><strong>PowerUp</strong> - Obsługa power-upów i efektów</li>
+        <li><strong>Pilka</strong> - Zaawansowana fizyka piłki</li>
+        <li><strong>Controller</strong> - System sterowania</li>
+      </ul>
+
+      <h4 class="text-xl font-bold text-white mb-3 mt-6">Technologie</h4>
+      <ul>
+        <li><strong>Unity 2021.3 LTS</strong> - Silnik gry</li>
+        <li><strong>C# 9.0</strong> - Język programowania</li>
+        <li><strong>Unity Physics 2D</strong> - System fizyki</li>
+        <li><strong>TextMeshPro</strong> - Rendering tekstu</li>
+      </ul>
+    </TextSection>
+  </div>
+
+  <!-- Wyzwania i rozwiązania -->
+  <!-- <div class="mt-8">
+    <TextSection client:load title="Wyzwania i Rozwiązania">
+      <p>
+        Podczas implementacji napotkałem kilka znaczących wyzwań:
+      </p>
+      
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">1. Fizyka piłki</h4>
+      <p>
+        Problem: Standardowa fizyka Unity powodowała nieprzewidywalne odbicia.
+        <br/>
+        Rozwiązanie: Implementacja własnego systemu PhysicsController z kontrolowanymi kątami odbicia.
+      </p>
+
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">2. Optymalizacja wydajności</h4>
+      <p>
+        Problem: Spadki FPS przy dużej liczbie power-upów i efektów cząsteczkowych.
+        <br/>
+        Rozwiązanie: Object Pooling dla power-upów i optymalizacja shaderów efektów.
+      </p>
+
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">3. Balans rozgrywki</h4>
+      <p>
+        Problem: Trudność poziomów była nierówna.
+        <br/>
+        Rozwiązanie: Implementacja systemu dynamicznego dostosowywania trudności na podstawie 
+        statystyk gracza.
+      </p>
+    </TextSection>
+  </div> -->
+
+  <!-- Pliki do pobrania -->
+  <div class="mt-8">
+    <DownloadsSection 
+      client:load
+      title="Pliki do pobrania"
+      downloads={[
+        {
+          href: "/downloads/praca-dyplomowa.pdf",
+          label: "Praca dyplomowa (PDF)",
+          icon: "pdf",
+          size: "2.5 MB"
+        },
+        {
+          href: "/downloads/dokumentacja-techniczna.pdf",
+          label: "Dokumentacja techniczna",
+          icon: "pdf",
+        },
+        {
+          href: "/downloads/brick-breaker-build.zip",
+          label: "Gra - Build Windows",
+          icon: "file",
+        },
+        {
+          href: "https://github.com/misiakfilip/retro-brick-breaker",
+          label: "Kod źródłowy (GitHub)",
+          icon: "code"
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Linki -->
+  <div class="mt-8">
+    <LinksSection 
+      client:load
+      title="Przydatne linki"
+      links={[
+        {
+          href: "https://github.com/misiakfilip/arkanoid",
+          label: "Repozytorium GitHub",
+          description: "Pełny kod źródłowy projektu"
+        },
+        {
+          href: "https://unity.com/",
+          label: "Unity Engine",
+          description: "Oficjalna strona silnika Unity"
+        },
+      ]}
+    />
+  </div>
+
+</ProjectLayout>
+
+<style>
+  /* Dodatkowe style dla prose */
+  :global(.prose) {
+    color: #d1d5db;
+  }
+  :global(.prose strong) {
+    color: #a78bfa;
+  }
+  :global(.prose ul) {
+    list-style: disc;
+    margin-left: 1.5rem;
+  }
+  :global(.prose li) {
+    margin-bottom: 0.5rem;
+  }
+</style>
