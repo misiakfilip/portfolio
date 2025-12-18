@@ -196,7 +196,7 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
-        slug: "praca-dyplomowa",  // ← DODAJ 
+        slug: "arct", 
         hasDetailPage: true,
         featured: true
       },
@@ -221,7 +221,7 @@ education: {
       {
         title: "recipE",
         description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
-        image: "/portfolio/projects/recipe.jpg",
+        image: "/portfolio/projects/recipe.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
@@ -255,6 +255,8 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
+        slug: "arct", 
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -278,7 +280,7 @@ education: {
       {
         title: "recipE",
         description: "A mobile application for storing and managing cooking recipes. It allows users to organize, edit, and quickly access their personal recipe collection.",
-        image: "/portfolio/projects/recipe.jpg",
+        image: "/portfolio/projects/recipe.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
