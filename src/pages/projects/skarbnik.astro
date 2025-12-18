@@ -1,0 +1,206 @@
+---
+// src/pages/projects/praca-dyplomowa.astro
+import ProjectLayout from '../../layouts/ProjectLayout.astro';
+import { 
+  YouTubeVideo, 
+  DownloadsSection, 
+  ImageGallery, 
+  FeaturesList,
+  TextSection,
+  LinksSection 
+} from '../../components/ProjectComponents';
+---
+
+<ProjectLayout
+  title="Skarbnik / Treasurer – Gra Survival Horror"
+  description="Narracyjna gra survival horror FPP osadzona w kopalni na Górnym Śląsku w okresie międzywojennym, inspirowana słowiańską mitologią."
+  technologies={["Unity", "C#", "HDRP", "FMOD", "Game Design", "Narrative Design"]}
+  github="https://github.com/misiakfilip/skarbnk"
+>
+  
+  <!-- O Projekcie -->
+  <TextSection client:load title="O Projekcie">
+    <p>
+      <strong>„Skarbnik / Treasurer”</strong> to autorska gra typu survival horror z perspektywy 
+      pierwszej osoby, tworzona w silniku Unity. Akcja rozgrywa się w zawalonej kopalni 
+      na terenie Górnego Śląska w okresie dwudziestolecia międzywojennego.
+    </p>
+    <p>
+      Gracz wciela się w Niklausa Pieruna – górnika, który po katastrofie górniczej zostaje 
+      uwięziony pod ziemią i musi odnaleźć drogę ucieczki, jednocześnie mierząc się z 
+      nadprzyrodcznym antagonistą – Skarbnikiem, duchem kopalni znanym ze słowiańskich wierzeń.
+    </p>
+    <p>
+      Projekt skupia się na budowaniu napięcia poprzez światło, dźwięk, eksplorację 
+      oraz narrację środowiskową, zamiast bezpośredniej walki.
+    </p>
+  </TextSection>
+
+  <!-- YouTube Video -->
+  <div class="mt-8">
+    <YouTubeVideo 
+      client:load 
+      videoId="dQw4w9WgXcQ" 
+      title="Gameplay - Demonstracja rozgrywki"
+    />
+  </div>
+
+  <!-- Funkcje -->
+  <div class="mt-8">
+    <FeaturesList 
+      client:load
+      title="Główne funkcje"
+      features={[
+        "Perspektywa pierwszej osoby (FPP)",
+        "Narracyjny survival horror",
+        "Eksploracja klaustrofobicznych lokacji kopalni",
+        "Zarządzanie światłem (latarnia, ciemność jako zagrożenie)",
+        "Dynamiczna obecność antagonisty – Skarbnika",
+        "Narracja środowiskowa (notatki, ślady, dźwięki)",
+        "Elementy słowiańskiej mitologii",
+        "Kilka możliwych zakończeń zależnych od decyzji gracza"
+      ]}
+    />
+  </div>
+
+  <!-- Galeria -->
+  <div class="mt-8">
+    <ImageGallery 
+      client:load
+      title="Zrzuty ekranu"
+      images={[
+        {
+          src: "/projects/arkanoid/screenshot1.jpg",
+          alt: "Menu główne",
+          caption: "Menu główne gry"
+        },
+        {
+          src: "/projects/skarbnk/screenshot1.jpg",
+          alt: "Kopalnia – korytarz",
+          caption: "Ciemne, klaustrofobiczne korytarze kopalni"
+        },
+        {
+          src: "/projects/skarbnk/screenshot2.jpg",
+          alt: "Latarnia",
+          caption: "Światło jako kluczowy element rozgrywki"
+        },
+        {
+          src: "/projects/skarbnk/screenshot3.jpg",
+          alt: "Ślady katastrofy",
+          caption: "Narracja środowiskowa – ślady po katastrofie"
+        },
+        {
+          src: "/projects/skarbnk/screenshot4.jpg",
+          alt: "Skarbnik",
+          caption: "Antagonista – Skarbnik"
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Dokumentacja techniczna -->
+  <div class="mt-8">
+    <TextSection client:load title="Dokumentacja Techniczna">
+      <h4 class="text-xl font-bold text-white mb-3">Architektura projektu</h4>
+      <p>
+        Projekt oparty jest na modularnej architekturze, z wyraźnym podziałem 
+        odpowiedzialności pomiędzy systemami rozgrywki, AI oraz narracji.
+      </p>
+      <!-- <ul>
+        <li><strong>GameManager</strong> – zarządzanie stanem gry i checkpointami</li>
+        <li><strong>LightSystem</strong> – obsługa latarni i interakcji światła z otoczeniem</li>
+        <li><strong>EntityAI</strong> – system zachowań Skarbnika</li>
+        <li><strong>AudioManager</strong> – dynamiczny dźwięk przestrzenny (FMOD)</li>
+        <li><strong>NarrativeSystem</strong> – zdarzenia fabularne i zakończenia</li>
+      </ul> -->
+      <h4 class="text-xl font-bold text-white mb-3 mt-6">Technologie</h4>
+      <ul>
+        <li><strong>Unity 6.3 LTS</strong> – silnik gry</li>
+        <li><strong>C#</strong> – logika rozgrywki</li>
+        <li><strong>HDRP</strong> – realistyczne oświetlenie i cienie</li>
+        <li><strong>Cinemachine</strong> – kamera FPP</li>
+      </ul>
+    </TextSection>
+  </div>
+
+  <!-- Wyzwania i rozwiązania -->
+  <div class="mt-8">
+    <TextSection client:load title="Wyzwania projektowe">
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">1. Budowanie strachu bez jump scare’ów</h4>
+      <p>
+        Rozwiązanie: oparcie rozgrywki na dźwięku, ograniczonym świetle oraz 
+        nieprzewidywalnym zachowaniu Skarbnika.
+      </p>
+
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">2. Nawigacja w kopalni</h4>
+      <p>
+        Rozwiązanie: projekt labiryntowy z charakterystycznymi punktami orientacyjnymi
+        i narracyjnym prowadzeniem gracza.
+      </p>
+
+      <h4 class="text-lg font-bold text-white mt-4 mb-2">3. Atmosfera historyczna</h4>
+      <p>
+        Rozwiązanie: stylizacja lokacji, rekwizyty, język i dźwięki inspirowane 
+        realiami Górnego Śląska lat 20. XX wieku.
+      </p>
+    </TextSection>
+  </div>
+
+  <!-- Pliki do pobrania -->
+  <div class="mt-8">
+    <DownloadsSection 
+      client:load
+      title="Pliki do pobrania"
+      downloads={[
+        {
+          href: "/downloads/skarbnik-gdd.pdf",
+          label: "Praca dyplomowa (PDF)",
+          icon: "pdf",
+        },
+        {
+          href: "/downloads/skarbnik-build.zip",
+          label: "Gra - Build Windows",
+          icon: "file",
+        },
+        {
+          href: "https://github.com/misiakfilip/skarbnik",
+          label: "Kod źródłowy (GitHub)",
+          icon: "code"
+        }
+      ]}
+    />
+  </div>
+
+  <!-- Linki -->
+  <div class="mt-8">
+    <LinksSection 
+      client:load
+      title="Przydatne linki"
+      links={[
+        {
+          href: "https://Unity.com/",
+          label: "Unity Engine",
+          description: "Oficjalna strona silnika Unity"
+        },
+      ]}
+    />
+  </div>
+
+</ProjectLayout>
+
+<style>
+  /* Dodatkowe style dla prose */
+  :global(.prose) {
+    color: #d1d5db;
+  }
+  :global(.prose strong) {
+    color: #a78bfa;
+  }
+  :global(.prose ul) {
+    list-style: disc;
+    margin-left: 1.5rem;
+  }
+  :global(.prose li) {
+    margin-bottom: 0.5rem;
+  }
+</style>

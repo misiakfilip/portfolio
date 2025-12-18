@@ -187,6 +187,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
+        slug: "brick-breaker",  // ← DODAJ 
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -196,7 +198,7 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
-        slug: "praca-dyplomowa",  // ← DODAJ 
+        slug: "Arct",  // ← DODAJ 
         hasDetailPage: true,
         featured: true
       },
@@ -207,6 +209,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
+        slug: "skarbnik",  // ← DODAJ 
+        hasDetailPage: true,
         featured: true
       },
       {
