@@ -71,13 +71,13 @@ const galleryImages = loadGalleryImages('arct');
   </div>
 
   <!-- Galeria -->
-<div class="mt-8">
-  <ImageGallery
-    client:load
-    title="Zrzuty ekranu"
-    images={galleryImages}
-  />
-</div>
+  <div class="mt-8">
+    <ImageGallery
+      client:load
+      title="Zrzuty ekranu"
+      images={galleryImages}
+    />
+  </div>
 
   <!-- Dokumentacja techniczna -->
   <div class="mt-8">
@@ -142,20 +142,10 @@ const galleryImages = loadGalleryImages('arct');
       title="Pliki do pobrania"
       downloads={[
         {
-          href: "/downloads/praca-dyplomowa.pdf",
+          href: "/downloads/ARCT-GDD.pdf",
           label: "Praca dyplomowa (PDF)",
           icon: "pdf",
         },
-        {
-          href: "/downloads/arkanoid-build.zip",
-          label: "Gra - Build Windows",
-          icon: "file",
-        },
-        {
-          href: "https://github.com/misiakfilip/arkanoid",
-          label: "Kod źródłowy (GitHub)",
-          icon: "code"
-        }
       ]}
     />
   </div>

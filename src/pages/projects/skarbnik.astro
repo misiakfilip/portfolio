@@ -9,6 +9,9 @@ import {
   TextSection,
   LinksSection 
 } from '../../components/ProjectComponents';
+
+import { loadGalleryImages } from '../../utils/loadGalleryImages';
+const galleryImages = loadGalleryImages('skarbnik');
 ---
 
 <ProjectLayout
@@ -21,7 +24,7 @@ import {
   <!-- O Projekcie -->
   <TextSection client:load title="O Projekcie">
     <p>
-      <strong>„Skarbnik / Treasurer”</strong> to autorska gra typu survival horror z perspektywy 
+      <strong>Skarbnik</strong> to autorska gra typu survival horror z perspektywy 
       pierwszej osoby, tworzona w silniku Unity. Akcja rozgrywa się w zawalonej kopalni 
       na terenie Górnego Śląska w okresie dwudziestolecia międzywojennego.
     </p>
@@ -65,36 +68,10 @@ import {
 
   <!-- Galeria -->
   <div class="mt-8">
-    <ImageGallery 
+    <ImageGallery
       client:load
       title="Zrzuty ekranu"
-      images={[
-        {
-          src: "/projects/arkanoid/screenshot1.jpg",
-          alt: "Menu główne",
-          caption: "Menu główne gry"
-        },
-        {
-          src: "/projects/skarbnk/screenshot1.jpg",
-          alt: "Kopalnia – korytarz",
-          caption: "Ciemne, klaustrofobiczne korytarze kopalni"
-        },
-        {
-          src: "/projects/skarbnk/screenshot2.jpg",
-          alt: "Latarnia",
-          caption: "Światło jako kluczowy element rozgrywki"
-        },
-        {
-          src: "/projects/skarbnk/screenshot3.jpg",
-          alt: "Ślady katastrofy",
-          caption: "Narracja środowiskowa – ślady po katastrofie"
-        },
-        {
-          src: "/projects/skarbnk/screenshot4.jpg",
-          alt: "Skarbnik",
-          caption: "Antagonista – Skarbnik"
-        }
-      ]}
+      images={galleryImages}
     />
   </div>
 
@@ -154,19 +131,19 @@ import {
       downloads={[
         {
           href: "/downloads/skarbnik-gdd.pdf",
-          label: "Praca dyplomowa (PDF)",
+          label: "Dokumentacja Projektowa (PDF)",
           icon: "pdf",
         },
-        {
-          href: "/downloads/skarbnik-build.zip",
-          label: "Gra - Build Windows",
-          icon: "file",
-        },
-        {
-          href: "https://github.com/misiakfilip/skarbnik",
-          label: "Kod źródłowy (GitHub)",
-          icon: "code"
-        }
+        // {
+        //   href: "/downloads/skarbnik-build.zip",
+        //   label: "Gra - Build Windows",
+        //   icon: "file",
+        // },
+        // {
+        //   href: "https://github.com/misiakfilip/skarbnik",
+        //   label: "Kod źródłowy (GitHub)",
+        //   icon: "code"
+        // }
       ]}
     />
   </div>

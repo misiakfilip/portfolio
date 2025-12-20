@@ -185,7 +185,7 @@ education: {
         description: "Gra stworzona w Unity wzorująca się na klasycznych grach Arcade.",
         image: "/portfolio/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
-        demoUrl: "https://demo2.example.com",
+        demoUrl: "https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
         slug: "brick-breaker",  // ← DODAJ 
         hasDetailPage: true,
@@ -225,7 +225,7 @@ education: {
       {
         title: "recipE",
         description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
-        image: "/portfolio/projects/recipe.jpg",
+        image: "/portfolio/projects/recipe.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
