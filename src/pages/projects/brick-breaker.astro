@@ -19,7 +19,7 @@ const galleryImages = loadGalleryImages('brick-breaker-');
   title="Retro Brick Breaker"
   description="Gra inspirowana klasycznymi grami Arcade typu brick breaker z nowoczesnymi mechanikami i efektami wizualnymi."
   technologies={["Unity", "C#", ".NET", "Game Design"]}
-  github="https://github.com/misiakfilip/arkanoid"
+  github="https://github.com/misiakfilip/retro-brick-breaker"
 >
   
   <!-- O Projekcie -->
@@ -71,25 +71,25 @@ const galleryImages = loadGalleryImages('brick-breaker-');
         od warstwy prezentacji. Główne moduły:
       </p>
       <ul>
-        <li><strong>GameManager</strong> - Singleton zarządzający stanem gry</li>
+        <li><strong>Sesja</strong> - Singleton zarządzający stanem gry</li>
         <li><strong>LevelManager</strong> - System generowania i ładowania poziomów</li>
-        <li><strong>PowerUpSystem</strong> - Obsługa power-upów i efektów</li>
-        <li><strong>PhysicsController</strong> - Zaawansowana fizyka piłki</li>
+        <li><strong>PowerUp</strong> - Obsługa power-upów i efektów</li>
+        <li><strong>Pilka</strong> - Zaawansowana fizyka piłki</li>
+        <li><strong>Controller</strong> - System sterowania</li>
       </ul>
 
       <h4 class="text-xl font-bold text-white mb-3 mt-6">Technologie</h4>
       <ul>
-        <li><strong>Unity 2022.3 LTS</strong> - Silnik gry</li>
+        <li><strong>Unity 2021.3 LTS</strong> - Silnik gry</li>
         <li><strong>C# 9.0</strong> - Język programowania</li>
         <li><strong>Unity Physics 2D</strong> - System fizyki</li>
         <li><strong>TextMeshPro</strong> - Rendering tekstu</li>
-        <li><strong>Post-Processing Stack</strong> - Efekty wizualne</li>
       </ul>
     </TextSection>
   </div>
 
   <!-- Wyzwania i rozwiązania -->
-  <div class="mt-8">
+  <!-- <div class="mt-8">
     <TextSection client:load title="Wyzwania i Rozwiązania">
       <p>
         Podczas implementacji napotkałem kilka znaczących wyzwań:
@@ -117,7 +117,7 @@ const galleryImages = loadGalleryImages('brick-breaker-');
         statystyk gracza.
       </p>
     </TextSection>
-  </div>
+  </div> -->
 
   <!-- Pliki do pobrania -->
   <div class="mt-8">

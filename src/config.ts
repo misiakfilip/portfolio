@@ -185,7 +185,7 @@ education: {
         description: "Gra stworzona w Unity wzorująca się na klasycznych grach Arcade.",
         image: "/portfolio/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
-        demoUrl: "https://demo2.example.com",
+        demoUrl: "https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
         slug: "brick-breaker", 
         hasDetailPage: true,
