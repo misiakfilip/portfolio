@@ -18,13 +18,14 @@ interface HeroProps {
     github: string;
     linkedin: string;
     email: string;
+    CV: string;
   };
   language: 'pl' | 'en';
 }
 
 const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, language }) => {
   const t = {
-    greeting: { pl: 'Cześć, jestem', en: "Hi, I'm" },
+    greeting: { pl: '', en: "" },
     viewGitHub: { pl: 'Zobacz GitHub', en: 'View GitHub' },
     contact: { pl: 'Kontakt', en: 'Contact' },
     downloadCV: { pl: 'Pobierz CV', en: 'Download CV' },
@@ -52,36 +53,6 @@ const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, languag
             <p className="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">
               {bio}
             </p>
-            
-            {/* CTA Buttons */}
-            <div className="flex gap-4 justify-center md:justify-start flex-wrap mb-8">
-              <a
-                href={social.github}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg flex items-center gap-2 transition-colors font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                <Github size={20} />
-                {t.viewGitHub[language]}
-              </a>
-              
-              <a
-                href={`mailto:${social.email}`}
-                className="px-6 py-3 bg-gray-800 dark:bg-slate-800 hover:bg-gray-700 dark:hover:bg-slate-700 text-white rounded-lg flex items-center gap-2 transition-colors font-semibold shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
-              >
-                <Mail size={20} />
-                {t.contact[language]}
-              </a>
-              
-              <a
-                href="/cv.pdf"
-                download
-                className="px-6 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg flex items-center gap-2 transition-colors font-semibold transform hover:-translate-y-0.5"
-              >
-                <Download size={20} />
-                {t.downloadCV[language]}
-              </a>
-            </div>
 
             {/* Social Links */}
             <div className="flex gap-6 justify-center md:justify-start">
@@ -109,6 +80,14 @@ const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, languag
                 aria-label="Email"
               >
                 <Mail size={28} />
+              </a>
+                            <a 
+                href="/portfolio/public/downloads/Filip_Misiak_CV_ENG.pdf"
+                download
+                className="text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors transform hover:scale-110"
+                aria-label="CV"
+              >
+                <Download size={28}/>
               </a>
             </div>
           </div>

@@ -11,7 +11,7 @@ export function loadGalleryImages(prefix: string) {
       const fileName = path.split('/').pop() ?? '';
 
       return {
-        src: path.replace('/public', ''),
+        src: `/portfolio${path.replace('/public', '')}`,
         alt: fileName.replace(/\.(jpg|jpeg|png|webp)/, ''),
         caption: ''
       };

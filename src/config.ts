@@ -54,21 +54,21 @@ experience: {
   pl: [
     {
       period: "2019",
-      title: "Serwisant – Praktykant",
+      title: "Praktykant - Serwisant sprzętu komputerowego",
       company: "Comtrade",
       description: "Miesięczna praktyka jako serwisant sprzętu komputerowego. Diagnozowanie usterek, modernizacja podzespołów oraz wsparcie techniczne dla klientów.",
       technologies: ["Hardware", "Serwis IT", "Diagnostyka"]
     },
     {
       period: "2023",
-      title: "Praktykant – Tworzenie aplikacji biznesowych",
+      title: "Praktykant – Programista aplikacji biznesowych",
       company: "TIM S.A.",
       description: "Dwumiesięczne praktyki polegające na budowaniu aplikacji biznesowych z wykorzystaniem Power Apps. Automatyzacja procesów i integracja z usługami Microsoft.",
       technologies: ["Power Apps", "Microsoft 365", "Power Automate"]
     },
     {
       period: "2024",
-      title: "Praktykant – Wsparcie Wdrożeń ERP",
+      title: "Praktykant – Software Developer",
       company: "Albus-IT",
       description: "Czteromiesięczna praktyka przy wdrożeniach systemu ERP (enova365): pomoc przy migracji danych, konfiguracji systemu, integracji modułów oraz testowaniu procesów biznesowych.",
       technologies: ["enova365", "ERP", "Migracja danych", "Integracje systemowe"]
@@ -91,7 +91,7 @@ experience: {
     },
     {
       period: "2024",
-      title: "ERP Implementation Intern",
+      title: "Software Developer Intern",
       company: "Albus-IT",
       description: "Four-month internship supporting the implementation of the enova365 ERP system. Responsibilities included assisting with data migration, system configuration, module integration and testing business processes.",
       technologies: ["enova365", "ERP", "Data Migration", "System Integrations"]
@@ -187,7 +187,7 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
-        slug: "brick-breaker",  // ← DODAJ 
+        slug: "brick-breaker", 
         hasDetailPage: true,
         featured: true
       },
@@ -198,7 +198,7 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
-        slug: "Arct",  // ← DODAJ 
+        slug: "Arct",  
         hasDetailPage: true,
         featured: true
       },
@@ -209,7 +209,7 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
-        slug: "skarbnik",  // ← DODAJ 
+        slug: "skarbnik", 
         hasDetailPage: true,
         featured: true
       },
@@ -226,7 +226,7 @@ education: {
         title: "recipE",
         description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
         image: "/portfolio/projects/recipe.jpg",
-        technologies: ["React Native", "JavaScript"],
+        technologies: [" .Net Maui", "C#"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
         featured: false
@@ -235,7 +235,7 @@ education: {
     ],
     en: [
       {
-        title: "Best Music Blog",
+        title: "Music Blog",
         description: "A music blog created using Payload CMS.",
         image: "/portfolio/projects/blog.jpg", 
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
@@ -250,6 +250,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
+        slug: "brick_breaker", 
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -259,6 +261,8 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
+        slug: "Arct", 
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -268,6 +272,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
+        slug: "skarbnik", 
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -283,7 +289,7 @@ education: {
         title: "recipE",
         description: "A mobile application for storing and managing cooking recipes. It allows users to organize, edit, and quickly access their personal recipe collection.",
         image: "/portfolio/projects/recipe.jpg",
-        technologies: ["React Native", "JavaScript"],
+        technologies: [".NET Maui", "C#"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
         featured: false

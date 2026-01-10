@@ -24,10 +24,8 @@ const galleryImages = loadGalleryImages('arct');
   <!-- O Projekcie -->
   <TextSection client:load title="O Projekcie">
     <p>
-    Praca dyplomowa pt. <em>„Projekt i implementacja narracyjnej gry dokumentalnej”</em> 
-    koncentruje się na wykorzystaniu medium gier wideo do przekazywania treści historycznych 
-    i edukacyjnych. Projekt gry <strong>Arct</strong> stanowi praktyczną realizację założeń 
-    teoretycznych opisanych w pracy, w szczególności w obszarze narracyjnych gier dokumentalnych.
+    Projekt koncentruje się na wykorzystaniu medium gier wideo do przekazywania treści historycznych 
+    i edukacyjnych.
     </p>
     <p>
     Gra opowiada o pierwszej w historii wyprawie antarktycznej, podczas której statek 
@@ -44,13 +42,13 @@ const galleryImages = loadGalleryImages('arct');
   </TextSection>
 
   <!-- YouTube Video -->
-  <div class="mt-8">
+  <!-- <div class="mt-8">
     <YouTubeVideo 
       client:load 
       videoId="dQw4w9WgXcQ" 
       title="Gameplay - Demonstracja rozgrywki"
     />
-  </div>
+  </div> -->
 
   <!-- Funkcje -->
   <div class="mt-8">
@@ -143,19 +141,9 @@ const galleryImages = loadGalleryImages('arct');
       downloads={[
         {
           href: "/downloads/praca-dyplomowa.pdf",
-          label: "Praca dyplomowa (PDF)",
+          label: "GDD",
           icon: "pdf",
         },
-        {
-          href: "/downloads/arkanoid-build.zip",
-          label: "Gra - Build Windows",
-          icon: "file",
-        },
-        {
-          href: "https://github.com/misiakfilip/arkanoid",
-          label: "Kod źródłowy (GitHub)",
-          icon: "code"
-        }
       ]}
     />
   </div>
@@ -166,11 +154,6 @@ const galleryImages = loadGalleryImages('arct');
       client:load
       title="Przydatne linki"
       links={[
-        // {
-        //   href: "https://github.com/misiakfilip/arct",
-        //   label: "Repozytorium GitHub",
-        //   description: "Pełny kod źródłowy projektu"
-        // },
         {
           href: "https://UnrealEngine.com/",
           label: "Unreal Engine",
