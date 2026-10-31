@@ -11,8 +11,10 @@ interface Props {
   noindex?: boolean;
 }
 const { title, description, lang, path, noindex = false } = Astro.props;
-const canonical = new URL(Astro.url.pathname, Astro.site).href;
-const abs = (p: string) => new URL(p, Astro.site).href;
+// Directory-style URLs with a trailing slash, matching the sitemap and what GitHub Pages finally serves.
+const withSlash = (p: string) => (p.endsWith('/') ? p : `${p}/`);
+const abs = (p: string) => new URL(withSlash(p), Astro.site).href;
+const canonical = abs(path ? localizedPath(lang, path) : Astro.url.pathname);
 const alternates = path
   ? [...(Object.keys(languages) as Lang[]).map((l) => ({ hreflang: l, href: abs(localizedPath(l, path)) })),
      { hreflang: 'x-default', href: abs(localizedPath('pl', path)) }]

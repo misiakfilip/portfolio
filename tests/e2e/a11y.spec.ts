@@ -1,7 +1,6 @@
-import { test, expect } from '@playwright/test';
 import AxeBuilder from '@axe-core/playwright';
 import fs from 'node:fs';
-import { PAGES } from './helpers';
+import { test, expect, PAGES } from './helpers';
 
 for (const p of PAGES) {
   test(`axe /${p}`, async ({ page }, info) => {

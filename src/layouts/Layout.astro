@@ -41,9 +41,11 @@ const description = Astro.props.description ?? useTranslations(lang).meta.homeDe
     <div class="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950"></div>
     <div class="fixed inset-0 -z-10 bg-linear-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
 
+    <slot name="nav" />
     <main id="main">
       <slot />
     </main>
+    <slot name="footer" />
   </body>
 </html>
 

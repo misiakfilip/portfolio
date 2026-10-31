@@ -1,4 +1,17 @@
 // src/config.ts
+export interface FeaturedProject {
+  title: string;
+  description: string;
+  image?: string;
+  technologies: string[];
+  demoUrl?: string;
+  githubUrl?: string;
+  /** Route slug of the project subpage (see src/i18n/projects.ts); set together with hasDetailPage. */
+  slug?: string;
+  hasDetailPage?: boolean;
+  featured: boolean;
+}
+
 export const config = {
   // Podstawowe info
   name: "Filip Misiak",
@@ -20,6 +33,14 @@ export const config = {
     email: "filip.misiak11@gmail.com",
   },
   
+  // "Pinned" repositories on the home page: a curated list of repo names, fetched live from the
+  // public REST API together with the rest of the repos (no token needed, nothing secret in the
+  // client). The GitHub "pinned" list itself is only exposed by the GraphQL API, which requires
+  // an auth token that must not ship in client code, so the list is maintained here instead.
+  // Names that do not exist (or are forks of other people's projects) are simply skipped.
+  // TODO(owner): potwierdź, które repozytoria mają być wyróżnione.
+  pinnedRepos: ["recipe", "impostor-demo"],
+
   // CV
   // TODO(owner): wgraj public/cv.pdf i ustaw cvUrl: "/cv.pdf" - przycisk "Pobierz CV" pojawi się sam.
   cvUrl: undefined as string | undefined,
@@ -147,7 +168,7 @@ education: {
   
   // Featured Projects (spoza GitHub lub highlight z GitHub)
   featuredProjects: {
-    pl: [
+    pl: <FeaturedProject[]>[
       {
         title: "Blog Najlepszy muzyczny adres",
         description: "Blog muzyczny stworzony z wykorzystaniem Payload CMS.",
@@ -210,7 +231,7 @@ education: {
       }
 
     ],
-    en: [
+    en: <FeaturedProject[]>[
       {
         title: "Best Music Blog",
         description: "A music blog created using Payload CMS.",
@@ -227,6 +248,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "", // TODO(owner): adres demo wersji EN (nieznany)
         githubUrl: "", // TODO(owner): URL repozytorium Brick Breaker (ukryte do potwierdzenia)
+        slug: "brick-breaker",
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -236,6 +259,8 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
+        slug: "Arct",
+        hasDetailPage: true,
         featured: true
       },
       {
@@ -245,6 +270,8 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
+        slug: "skarbnik",
+        hasDetailPage: true,
         featured: true
       },
       {

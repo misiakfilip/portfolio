@@ -17,7 +17,7 @@ export const pl = {
     projects: 'Projekty',
     contact: 'Kontakt',
     menu: 'Menu',
-    switchLabel: 'Przełącz język na angielski',
+    switchLabel: 'EN: przełącz język na angielski',
     switchShort: 'EN',
   },
   hero: {

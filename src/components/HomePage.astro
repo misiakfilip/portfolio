@@ -1,0 +1,87 @@
+---
+// The whole home page for one language. Everything is static HTML; only TechCarousel and
+// GitHubRepos are hydrated (client:visible).
+import { Briefcase, GraduationCap } from 'lucide-react';
+import Layout from '../layouts/Layout.astro';
+import Nav from './Nav.astro';
+import Hero from './Hero.astro';
+import Timeline from './Timeline.astro';
+import FeaturedProjects from './FeaturedProjects.astro';
+import Contact from './Contact.astro';
+import TechCarousel from './TechCarousel';
+import GitHubRepos from './GitHubRepos';
+import { config } from '../config';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+}
+
+const { lang } = Astro.props;
+const t = useTranslations(lang);
+
+const experience = config.experience[lang].map((e) => ({
+  period: e.period,
+  title: e.title,
+  organization: e.company,
+  description: e.description,
+  tags: e.technologies,
+}));
+const education = config.education[lang].map((e) => ({
+  period: e.period,
+  title: e.title,
+  organization: e.school,
+  organizationUrl: e.website,
+}));
+---
+
+<Layout title={t.meta.homeTitle} description={t.meta.homeDescription} lang={lang} path="/">
+  <Nav slot="nav" lang={lang} name={config.name} path="/" />
+
+  <Hero
+    lang={lang}
+    name={config.name}
+    title={config.title[lang]}
+    bio={config.bio[lang]}
+    social={config.social}
+    cvUrl={config.cvUrl}
+  />
+
+  <section aria-labelledby="tech-title" class="py-16 border-t border-b border-white/5 backdrop-blur-md bg-white/5">
+    <div class="max-w-7xl mx-auto px-6">
+      <div class="text-center mb-12">
+        <h2 id="tech-title" class="text-3xl md:text-4xl font-bold text-gray-900 dark:text-white mb-4">{t.tech.title}</h2>
+        <p class="text-lg text-gray-600 dark:text-gray-400">{t.tech.subtitle}</p>
+      </div>
+      <TechCarousel client:visible technologies={config.technologies} labels={t.tech} />
+    </div>
+  </section>
+
+  <Timeline id="about" title={t.about.title} subtitle={t.about.subtitle} items={experience} icon={Briefcase} />
+  <Timeline id="education" title={t.education.title} subtitle={t.education.subtitle} items={education} icon={GraduationCap} />
+
+  <FeaturedProjects lang={lang} projects={config.featuredProjects[lang]} />
+
+  <section id="repos" class="py-20 px-6 border-t border-white/5 scroll-mt-16">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-12">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-gray-900 dark:text-white mb-4">{t.repos.title}</h2>
+        <p class="text-lg sm:text-xl text-gray-600 dark:text-gray-400">{t.repos.subtitle}</p>
+      </div>
+      <GitHubRepos client:visible username={config.username} pinned={config.pinnedRepos} lang={lang} labels={t.repos} />
+      <noscript>
+        <p class="text-center text-gray-700 dark:text-gray-300">
+          {t.repos.noscript} <a class="underline" href={config.social.github}>{config.social.github}</a>
+        </p>
+      </noscript>
+    </div>
+  </section>
+
+  <Contact lang={lang} email={config.social.email} github={config.social.github} linkedin={config.social.linkedin} />
+
+  <footer slot="footer" class="py-8 border-t border-white/10 backdrop-blur-md">
+    <div class="max-w-7xl mx-auto px-6 text-center text-gray-600 dark:text-gray-400">
+      <p>© {new Date().getFullYear()} {config.name}. {t.footer.rights}</p>
+    </div>
+  </footer>
+</Layout>

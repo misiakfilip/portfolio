@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { PAGES, VIEWPORTS } from './helpers';
+import { test, expect, PAGES, VIEWPORTS } from './helpers';
 
 // Screenshoty robione tylko w projekcie chromium; overflow sprawdzany wszedzie.
 for (const p of PAGES) for (const w of VIEWPORTS) {

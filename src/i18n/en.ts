@@ -18,7 +18,7 @@ export const en: Dictionary = {
     projects: 'Projects',
     contact: 'Contact',
     menu: 'Menu',
-    switchLabel: 'Switch language to Polish',
+    switchLabel: 'PL: switch language to Polish',
     switchShort: 'PL',
   },
   hero: {

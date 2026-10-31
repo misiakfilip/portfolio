@@ -1,5 +1,4 @@
-import { test, expect } from '@playwright/test';
-import { PAGES, collect, isThirdParty } from './helpers';
+import { test, expect, PAGES, collect, isThirdParty } from './helpers';
 
 const scrollAll = (page: any) =>
   page.evaluate(async () => {
@@ -56,12 +55,24 @@ for (const p of PAGES) {
       expect(o.sw, `scrollWidth ${o.sw} vs clientWidth ${o.cw}`).toBeLessThanOrEqual(o.cw);
     });
 
-    test('struktura: <body>, <main>, brak formularza', async ({ page }) => {
+    test('struktura: dokladnie jeden <body>, <main>, <nav>, <h1>, brak formularza', async ({ page }) => {
       await page.goto(p);
       const html = await (await page.request.get(p)).text();
-      expect.soft(/<body[\s>]/i.test(html), 'surowy HTML zawiera <body>').toBe(true);
-      expect.soft(await page.locator('main').count(), 'landmark <main>').toBeGreaterThan(0);
+      const count = (re: RegExp) => (html.match(re) ?? []).length;
+      expect.soft(count(/<body[\s>]/gi), 'liczba <body> w surowym HTML').toBe(1);
+      expect.soft(count(/<main[\s>]/gi), 'liczba <main> w surowym HTML').toBe(1);
+      expect.soft(count(/<nav[\s>]/gi), 'liczba <nav> w surowym HTML').toBe(1);
+      expect.soft(count(/<h1[\s>]/gi), 'liczba <h1> w surowym HTML').toBe(1);
       expect(await page.locator('form').count(), 'formularze (oczekiwany brak, kontakt przez mailto)').toBe(0);
+    });
+
+    test('SEO: canonical, hreflang, og:title, html[lang] zgodny z jezykiem strony', async ({ page }) => {
+      await page.goto(p);
+      await expect(page.locator('html')).toHaveAttribute('lang', p.startsWith('en/') ? 'en' : 'pl');
+      expect(await page.getAttribute('link[rel=canonical]', 'href')).toContain('https://misiakfilip.github.io/portfolio/');
+      expect(await page.locator('meta[property="og:title"]').count()).toBe(1);
+      const alternates = await page.locator('link[rel=alternate][hreflang]').evaluateAll(els => els.map(e => e.getAttribute('hreflang')));
+      expect(alternates.sort()).toEqual(['en', 'pl', 'x-default']);
     });
   });
 }

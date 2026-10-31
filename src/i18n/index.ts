@@ -43,7 +43,4 @@ export function localizedPath(lang: Lang, path = '/'): string {
   return withBase(clean === '/' ? '/en/' : `/en${clean}`);
 }
 
-/** Replaces `{key}` placeholders in a dictionary string. */
-export function format(template: string, values: Record<string, string | number>): string {
-  return template.replace(/\{(\w+)\}/g, (_, key: string) => String(values[key] ?? ''));
-}
+export { format } from './format';

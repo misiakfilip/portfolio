@@ -1,0 +1,50 @@
+---
+import { Mail, Github, Linkedin } from 'lucide-react';
+import { useTranslations, type Lang } from '../i18n';
+
+interface Props {
+  lang: Lang;
+  email: string;
+  github: string;
+  linkedin: string;
+}
+
+const { lang, email, github, linkedin } = Astro.props;
+const t = useTranslations(lang).contact;
+const round = 'flex items-center justify-center w-14 h-14 bg-white/10 hover:bg-white/20 backdrop-blur-sm rounded-full transition-colors';
+---
+
+<section id="contact" class="py-20 px-6 relative border-t border-white/5 scroll-mt-16">
+  <div class="absolute inset-0 bg-linear-to-br from-purple-600/20 to-cyan-600/20 dark:from-purple-500/10 dark:to-cyan-500/10"></div>
+  <div class="relative max-w-4xl mx-auto text-center">
+    <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-white mb-6">{t.title}</h2>
+    <p class="text-lg sm:text-xl text-white/90 mb-12">{t.subtitle}</p>
+
+    <a
+      href={`mailto:${email}`}
+      class="inline-flex items-center gap-3 px-8 py-4 bg-white text-purple-700 text-lg font-semibold rounded-lg hover:bg-gray-100 transition-colors shadow-xl hover:shadow-2xl"
+    >
+      <Mail size={24} aria-hidden="true" />
+      {t.sendEmail}
+    </a>
+
+    <div class="flex items-center gap-4 my-12 max-w-md mx-auto">
+      <div class="flex-1 h-px bg-white/30"></div>
+      <span class="text-white/70">{t.or}</span>
+      <div class="flex-1 h-px bg-white/30"></div>
+    </div>
+
+    <p class="text-white/90 mb-6 text-lg">{t.findMe}</p>
+    <div class="flex gap-6 justify-center">
+      <a href={github} target="_blank" rel="noopener noreferrer" class={round} aria-label="GitHub">
+        <Github size={28} aria-hidden="true" className="text-white" />
+      </a>
+      <a href={linkedin} target="_blank" rel="noopener noreferrer" class={round} aria-label="LinkedIn">
+        <Linkedin size={28} aria-hidden="true" className="text-white" />
+      </a>
+      <a href={`mailto:${email}`} class={round} aria-label="Email">
+        <Mail size={28} aria-hidden="true" className="text-white" />
+      </a>
+    </div>
+  </div>
+</section>

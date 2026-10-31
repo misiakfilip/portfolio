@@ -1,6 +1,5 @@
-import { test, expect } from '@playwright/test';
 import fs from 'node:fs';
-import { PAGES } from './helpers';
+import { test, expect, PAGES } from './helpers';
 
 const ORIGIN = 'http://localhost:4399';
 const external: Record<string, string[]> = {};
