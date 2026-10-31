@@ -174,7 +174,7 @@ education: {
       {
         title: "Blog Najlepszy muzyczny adres",
         description: "Blog muzyczny stworzony z wykorzystaniem Payload CMS.",
-        image: "/portfolio/projects/blog.jpg", 
+        image: "/projects/blog.jpg", 
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
         githubUrl: "", 
@@ -183,7 +183,7 @@ education: {
       {
         title: "Retro Brick Breaker",
         description: "Gra stworzona w Unity wzorująca się na klasycznych grach Arcade.",
-        image: "/portfolio/projects/retro-brick-breaker.png",
+        image: "/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
         demoUrl: "https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
@@ -194,7 +194,7 @@ education: {
       {
         title: "Arct",
         description: "Narracyjna gra dokumentalna stworzona w Unreal Engine 5, skupiona na interaktywnej opowieści i immersji. Projekt bada połączenie narracji dokumentalnej z mechanikami gier.",
-        image: "/portfolio/projects/arct.svg",
+        image: "/projects/arct.svg",
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
@@ -205,7 +205,7 @@ education: {
       {
         title: "Skarbnik: Duch kopalni",
         description: "Survival horror osadzony w polskiej kopalni, inspirowany słowiańską mitologią. Gra kładzie nacisk na atmosferę, narrację środowiskową i psychologiczny horror.",
-        image: "/portfolio/projects/skarbnik.jpg",
+        image: "/projects/skarbnik.jpg",
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
@@ -216,7 +216,7 @@ education: {
       {
         title: "Impostor",
         description: "Imprezowa gra mobilna stworzona w React Native, przeznaczona do wspólnej zabawy w grupie. Projekt skupia się na prostych zasadach, szybkiej rozgrywce i interakcji między graczami.",
-        image: "/portfolio/projects/impostor.png",
+        image: "/projects/impostor.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
         githubUrl: "",
@@ -225,7 +225,7 @@ education: {
       {
         title: "recipE",
         description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
-        image: "/portfolio/projects/recipe.png",
+        image: "/projects/recipe.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
@@ -237,7 +237,7 @@ education: {
       {
         title: "Best Music Blog",
         description: "A music blog created using Payload CMS.",
-        image: "/portfolio/projects/blog.jpg", 
+        image: "/projects/blog.jpg", 
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
         githubUrl: "", 
@@ -246,7 +246,7 @@ education: {
       {
         title: "Retro Brick Breaker",
         description: "A Unity game inspired by the classic arcade games.",
-        image: "/portfolio/projects/retro-brick-breaker.png",
+        image: "/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
         demoUrl: "https://demo2.example.com",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
@@ -255,7 +255,7 @@ education: {
       {
         title: "Arct",
         description: "A narrative documentary game developed in Unreal Engine 5, focused on interactive storytelling and immersion. The project explores documentary-driven game design.",
-        image: "/portfolio/projects/arct.jpg",
+        image: "/projects/arct.svg",
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
@@ -264,7 +264,7 @@ education: {
       {
         title: "Skarbnik: Spirit of the Mine",
         description: "A survival horror set in a Polish coal mine, inspired by Slavic mythology. The game focuses on atmosphere, environmental storytelling, and psychological horror.",
-        image: "/portfolio/projects/skarbnik.jpg",
+        image: "/projects/skarbnik.jpg",
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
@@ -273,7 +273,7 @@ education: {
       {
         title: "Impostor",
         description: "A party mobile game developed in React Native, designed for group play. The project focuses on simple rules, fast-paced gameplay, and player interaction.",
-        image: "/portfolio/projects/impostor.png",
+        image: "/projects/impostor.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
         githubUrl: "",
@@ -282,7 +282,7 @@ education: {
       {
         title: "recipE",
         description: "A mobile application for storing and managing cooking recipes. It allows users to organize, edit, and quickly access their personal recipe collection.",
-        image: "/portfolio/projects/recipe.jpg",
+        image: "/projects/recipe.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",

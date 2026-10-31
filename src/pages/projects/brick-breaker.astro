@@ -9,6 +9,7 @@ import {
   TextSection,
   LinksSection 
 } from '../../components/ProjectComponents';
+import { withBase } from '../../utils/withBase';
 ---
 
 <ProjectLayout
@@ -61,17 +62,17 @@ import {
       title="Zrzuty ekranu"
       images={[
         {
-          src: "/projects/arkanoid/screenshot1.jpg",
+          src: withBase("/projects/arkanoid/screenshot1.jpg"),
           alt: "Menu główne",
           caption: "Menu główne gry"
         },
         {
-          src: "/projects/arkanoid/screenshot2.jpg",
+          src: withBase("/projects/arkanoid/screenshot2.jpg"),
           alt: "Gameplay",
           caption: "Rozgrywka - poziom 3"
         },
         {
-          src: "/projects/arkanoid/screenshot3.jpg",
+          src: withBase("/projects/arkanoid/screenshot3.jpg"),
           alt: "Power-upy",
           caption: "System power-upów w akcji"
         },

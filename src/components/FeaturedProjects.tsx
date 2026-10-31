@@ -1,6 +1,7 @@
 // src/components/FeaturedProjects.tsx
 import React from 'react';
 import { ExternalLink, Github, Code } from 'lucide-react';
+import { withBase } from '../utils/withBase';
 
 interface FeaturedProject {
   title: string;
@@ -54,7 +55,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
               <div className="relative h-56 overflow-hidden bg-linear-to-br from-purple-600 to-cyan-400">
                 {project.image ? (
                   <img 
-                    src={project.image} 
+                    src={withBase(project.image)} 
                     alt={project.title}
                     className="w-full h-full object-cover"
                   />
@@ -94,7 +95,7 @@ const FeaturedProjects: React.FC<FeaturedProjectsProps> = ({ projects, language 
                   <div className="flex gap-4">
                     {project.hasDetailPage && project.slug ? (
                       <a
-                        href={`/portfolio/projects/${project.slug}`}
+                        href={withBase(`/projects/${project.slug}`)}
                         className="flex items-center gap-2 px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-medium"
                       >
                         <ExternalLink size={18} />

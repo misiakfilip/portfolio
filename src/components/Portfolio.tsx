@@ -27,6 +27,7 @@ interface Config {
     linkedin: string;
     email: string;
   };
+  cvUrl?: string;
   technologies: Array<{ name: string; icon: string }>;
   experience: {
     pl: Array<{
@@ -150,6 +151,7 @@ const Portfolio: React.FC<PortfolioProps> = ({ config }) => {
           bio={config.bio[language]}
           userData={userData}
           social={config.social}
+          cvUrl={config.cvUrl}
           language={language}
         /> 
 

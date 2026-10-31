@@ -1,6 +1,7 @@
 // src/components/ProjectComponents.tsx
 import React from 'react';
 import { Download, Youtube, FileText, Image as ImageIcon, Code, ExternalLink } from 'lucide-react';
+import { withBase } from '../utils/withBase';
 
 // YouTube Video Component
 interface YouTubeVideoProps {
@@ -44,7 +45,7 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
   
   return (
     <a
-      href={href}
+      href={withBase(href)}
       download
       className="inline-flex items-center gap-3 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-semibold shadow-lg hover:shadow-xl"
     >

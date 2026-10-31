@@ -1,3 +1,5 @@
+import { withBase } from './withBase';
+
 export function loadGalleryImages(prefix: string) {
   const images = import.meta.glob(
     '/public/projects/*.{jpg,jpeg,png,webp}',
@@ -11,7 +13,7 @@ export function loadGalleryImages(prefix: string) {
       const fileName = path.split('/').pop() ?? '';
 
       return {
-        src: path.replace('/public', ''),
+        src: withBase(path.replace('/public', '')),
         alt: fileName.replace(/\.(jpg|jpeg|png|webp)/, ''),
         caption: ''
       };

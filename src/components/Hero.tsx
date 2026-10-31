@@ -1,6 +1,7 @@
 // src/components/Hero.tsx
 import React from 'react';
 import { Github, Linkedin, Mail, Download } from 'lucide-react';
+import { withBase } from '../utils/withBase';
 
 interface GitHubUser {
   avatar_url: string;
@@ -19,10 +20,11 @@ interface HeroProps {
     linkedin: string;
     email: string;
   };
+  cvUrl?: string;
   language: 'pl' | 'en';
 }
 
-const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, language }) => {
+const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, cvUrl, language }) => {
   const t = {
     greeting: { pl: 'Cześć, jestem', en: "Hi, I'm" },
     viewGitHub: { pl: 'Zobacz GitHub', en: 'View GitHub' },
@@ -74,7 +76,7 @@ const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, languag
               </a>
               
               <a
-                href="/cv.pdf"
+                href={withBase(cvUrl)}
                 download
                 className="px-6 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg flex items-center gap-2 transition-colors font-semibold transform hover:-translate-y-0.5"
               >
