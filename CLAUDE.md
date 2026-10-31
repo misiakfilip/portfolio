@@ -18,6 +18,12 @@ Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna
 - `src/styles/global.css` – style globalne Tailwind.
 - `public/` – statyczne zasoby, w tym `public/projects/` (zrzuty ekranu projektów).
 
+## i18n (decyzja architektoniczna)
+- Osobne statyczne strony per język (routing plikowy Astro): PL bez prefiksu (`/`, `/projects/<slug>`), EN pod `/en/` (`/en/`, `/en/projects/<slug>`).
+- Język wynika z URL, nie ze stanu klienta: przełącznik języka to zwykły `<a>` do odpowiednika strony (`localizedPath`), wyspy React dostają potrzebne teksty jako propsy.
+- Teksty UI: `src/i18n/{pl,en}.ts` (typ `Dictionary` z `pl.ts` wymusza ten sam kształt), helpery `useTranslations`, `getLangFromUrl`, `localizedPath` w `src/i18n/index.ts`. Treści projektów: `src/i18n/projects.ts`; dane osobowe w `src/config.ts` kluczowane `pl`/`en`.
+- `<html lang>`, `hreflang` (pl/en/x-default), canonical i `og:locale` ustawia `SeoHead` na podstawie propsów `lang` i `path` (ścieżka bez prefiksu języka).
+
 ## Komendy
 - `npm ci` – instalacja
 - `npm run dev` – serwer dev

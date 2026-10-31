@@ -1,25 +1,26 @@
 ---
+import { useTranslations, type Lang } from '../i18n';
+
 interface Props {
   title: string;
   description?: string;
+  lang?: Lang;
+  /** Language-neutral route, used for hreflang alternates. */
+  path?: string;
   noindex?: boolean;
 }
 import "../styles/global.css";
 import SeoHead from '../components/SeoHead.astro';
 import { withBase } from '../utils/withBase';
-const {
-  title,
-  description = 'Portfolio Filipa Misiaka - Software Engineer: aplikacje webowe, mobilne i gry (React, Node.js, Unity, Unreal Engine).',
-  noindex = false,
-} = Astro.props;
-const home = withBase('/');
+const { title, lang = 'pl', path, noindex = false } = Astro.props;
+const description = Astro.props.description ?? useTranslations(lang).meta.homeDescription;
 ---
 
 <!doctype html>
-<html lang="pl">
+<html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <SeoHead title={title} description={description} noindex={noindex} />
+    <SeoHead title={title} description={description} lang={lang} path={path} noindex={noindex} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <meta name="generator" content={Astro.generator} />

@@ -9,10 +9,20 @@ export default defineConfig({
   site: 'https://misiakfilip.github.io',
   base: '/portfolio',
   trailingSlash: 'ignore',
+
+  // File-based routing: PL at /, EN under /en/ (see src/i18n/index.ts for the decision).
+  i18n: {
+    defaultLocale: 'pl',
+    locales: ['pl', 'en'],
+    routing: { prefixDefaultLocale: false },
+  },
   
   vite: {
     plugins: [tailwindcss()],
   },
 
-  integrations: [react(), sitemap({ filter: (page) => !page.endsWith("/404") && !page.endsWith("/404/") })],
+  integrations: [react(), sitemap({
+    filter: (page) => !page.endsWith("/404") && !page.endsWith("/404/"),
+    i18n: { defaultLocale: 'pl', locales: { pl: 'pl-PL', en: 'en-US' } },
+  })],
 });

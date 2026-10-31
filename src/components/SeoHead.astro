@@ -1,21 +1,33 @@
 ---
-// Shared SEO tags for every page: canonical, Open Graph, Twitter Card, theme-color.
+// Shared SEO tags for every page: canonical, hreflang alternates, Open Graph, Twitter Card, theme-color.
+import { languages, localizedPath, ogLocale, otherLang, type Lang } from '../i18n';
+
 interface Props {
   title: string;
   description: string;
+  lang: Lang;
+  /** Language-neutral route (e.g. "/projects/Arct"); enables hreflang alternates. Omit for pages without a translation. */
+  path?: string;
   noindex?: boolean;
 }
-const { title, description, noindex = false } = Astro.props;
+const { title, description, lang, path, noindex = false } = Astro.props;
 const canonical = new URL(Astro.url.pathname, Astro.site).href;
+const abs = (p: string) => new URL(p, Astro.site).href;
+const alternates = path
+  ? [...(Object.keys(languages) as Lang[]).map((l) => ({ hreflang: l, href: abs(localizedPath(l, path)) })),
+     { hreflang: 'x-default', href: abs(localizedPath('pl', path)) }]
+  : [];
 ---
 
 <meta name="description" content={description} />
 <meta name="theme-color" content="#0f172a" />
 <link rel="canonical" href={canonical} />
+{alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
 {noindex && <meta name="robots" content="noindex" />}
 <meta property="og:type" content="website" />
 <meta property="og:site_name" content="Filip Misiak" />
-<meta property="og:locale" content="pl_PL" />
+<meta property="og:locale" content={ogLocale[lang]} />
+{path && <meta property="og:locale:alternate" content={ogLocale[otherLang(lang)]} />}
 <meta property="og:title" content={title} />
 <meta property="og:description" content={description} />
 <meta property="og:url" content={canonical} />
