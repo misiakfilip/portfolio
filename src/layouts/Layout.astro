@@ -2,10 +2,16 @@
 interface Props {
   title: string;
   description?: string;
+  noindex?: boolean;
 }
 import "../styles/global.css";
+import SeoHead from '../components/SeoHead.astro';
 import { withBase } from '../utils/withBase';
-const { title, description = 'Portfolio projektów GitHub - Filip Misiak' } = Astro.props;
+const {
+  title,
+  description = 'Portfolio Filipa Misiaka - Software Engineer: aplikacje webowe, mobilne i gry (React, Node.js, Unity, Unreal Engine).',
+  noindex = false,
+} = Astro.props;
 const home = withBase('/');
 ---
 
@@ -13,7 +19,7 @@ const home = withBase('/');
 <html lang="pl">
   <head>
     <meta charset="UTF-8" />
-    <meta name="description" content={description} />
+    <SeoHead title={title} description={description} noindex={noindex} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <meta name="generator" content={Astro.generator} />

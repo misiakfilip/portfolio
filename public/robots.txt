@@ -1,0 +1,4 @@
+User-agent: *
+Allow: /
+
+Sitemap: https://misiakfilip.github.io/portfolio/sitemap-index.xml
