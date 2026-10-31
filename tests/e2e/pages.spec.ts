@@ -78,10 +78,11 @@ test('robots.txt i sitemap istnieja', async ({ request }) => {
   expect.soft((await request.get('/portfolio/sitemap-index.xml')).status(), 'sitemap-index.xml').toBe(200);
 });
 
-test('cv.pdf (link Pobierz CV) dostepny pod base', async ({ page, request }) => {
+// Decyzja wlasciciela: przycisk CV jest ukryty, dopoki nie ma public/cv.pdf (config.cvUrl).
+// Test pilnuje, ze jesli jakikolwiek link `download` jest widoczny, to wskazuje na istniejacy plik pod base.
+test('linki download (np. Pobierz CV) nie sa martwe', async ({ page, request }) => {
   await page.goto('');
-  await page.waitForSelector('a[download]');
-  const href = await page.locator('a[download]').first().getAttribute('href');
-  const url = new URL(href!, page.url()).toString();
-  expect((await request.get(url)).status(), `CV ${url}`).toBe(200);
+  await page.waitForSelector('#home');
+  const hrefs = await page.locator('a[download]').evaluateAll(els => els.map(e => (e as HTMLAnchorElement).href));
+  for (const url of hrefs) expect((await request.get(url)).status(), `download ${url}`).toBe(200);
 });

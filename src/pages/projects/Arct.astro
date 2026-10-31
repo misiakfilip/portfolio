@@ -1,5 +1,5 @@
 ---
-// src/pages/projects/praca-dyplomowa.astro
+// src/pages/projects/Arct.astro
 import ProjectLayout from '../../layouts/ProjectLayout.astro';
 import { 
   YouTubeVideo, 
@@ -12,13 +12,18 @@ import {
 
 import { loadGalleryImages } from '../../utils/loadGalleryImages';
 const galleryImages = loadGalleryImages('arct');
+// TODO(owner): wgraj public/downloads/ARCT-GDD.pdf i wpisz ścieżkę tutaj, a sekcja "Do pobrania" pojawi się.
+const downloads: Array<{ href: string; label: string; icon: 'pdf' }> = [];
+// TODO(owner): podaj poprawny URL repozytorium (misiakfilip/arct zwraca 404) i przekaż jako `github` w <ProjectLayout>.
+
+// TODO(owner): wpisz ID filmu z YouTube (np. "abc123XYZ_-"), a sekcja wideo pojawi się sama.
+const videoId: string | undefined = undefined;
 ---
 
 <ProjectLayout
   title="Arct"
   description="Narracyjna gra dokumentalna oparta na historycznej wyprawie statku Belgica (1897–1899), łącząca edukację, narrację i elementy survivalu."
   technologies={["Unreal Engine", "Blueprints", "Narrative Design", "Game Design"]}
-  github="https://github.com/misiakfilip/arct"
 >
   
   <!-- O Projekcie -->
@@ -43,14 +48,16 @@ const galleryImages = loadGalleryImages('arct');
 
   </TextSection>
 
-  <!-- YouTube Video -->
-  <div class="mt-8">
-    <YouTubeVideo 
-      client:load 
-      videoId="dQw4w9WgXcQ" 
-      title="Gameplay - Demonstracja rozgrywki"
-    />
-  </div>
+  <!-- YouTube Video: pokazuje się samo po wpisaniu ID w `videoId` -->
+  {videoId && (
+    <div class="mt-8">
+      <YouTubeVideo
+        client:load
+        videoId={videoId}
+        title="Gameplay - Demonstracja rozgrywki"
+      />
+    </div>
+  )}
 
   <!-- Funkcje -->
   <div class="mt-8">
@@ -136,19 +143,11 @@ const galleryImages = loadGalleryImages('arct');
   </div>
 
   <!-- Pliki do pobrania -->
-  <div class="mt-8">
-    <DownloadsSection 
-      client:load
-      title="Pliki do pobrania"
-      downloads={[
-        {
-          href: "/downloads/ARCT-GDD.pdf",
-          label: "Praca dyplomowa (PDF)",
-          icon: "pdf",
-        },
-      ]}
-    />
-  </div>
+  {downloads.length > 0 && (
+    <div class="mt-8">
+      <DownloadsSection client:load title="Pliki do pobrania" downloads={downloads} />
+    </div>
+  )}
 
   <!-- Linki -->
   <div class="mt-8">

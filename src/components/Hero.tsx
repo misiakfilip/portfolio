@@ -75,14 +75,17 @@ const Hero: React.FC<HeroProps> = ({ name, title, bio, userData, social, cvUrl, 
                 {t.contact[language]}
               </a>
               
-              <a
-                href={withBase(cvUrl)}
-                download
-                className="px-6 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg flex items-center gap-2 transition-colors font-semibold transform hover:-translate-y-0.5"
-              >
-                <Download size={20} />
-                {t.downloadCV[language]}
-              </a>
+              {/* TODO(owner): przycisk pojawi się po ustawieniu config.cvUrl (wgraj public/cv.pdf) */}
+              {cvUrl && (
+                <a
+                  href={withBase(cvUrl)}
+                  download
+                  className="px-6 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg flex items-center gap-2 transition-colors font-semibold transform hover:-translate-y-0.5"
+                >
+                  <Download size={20} />
+                  {t.downloadCV[language]}
+                </a>
+              )}
             </div>
 
             {/* Social Links */}

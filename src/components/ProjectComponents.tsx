@@ -46,7 +46,7 @@ export const DownloadButton: React.FC<DownloadButtonProps> = ({
   return (
     <a
       href={withBase(href)}
-      download
+      download={/^[a-z][a-z0-9+.-]*:|^\/\//i.test(href) ? undefined : true}
       className="inline-flex items-center gap-3 px-6 py-3 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors font-semibold shadow-lg hover:shadow-xl"
     >
       <Icon size={20} />

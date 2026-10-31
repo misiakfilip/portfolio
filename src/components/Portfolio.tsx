@@ -63,10 +63,6 @@ interface Config {
       icon?: string;
     }>;
   };
-  achievements: {
-    pl: Array<{ title: string; issuer: string; date: string; icon: string }>;
-    en: Array<{ title: string; issuer: string; date: string; icon: string }>;
-  };
   featuredProjects: {
     pl: Array<{
       title: string;

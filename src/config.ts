@@ -16,17 +16,14 @@ export const config = {
   // Social links
   social: {
     github: "https://github.com/misiakfilip",
-    linkedin: "https://linkedin.com/in/filip-misiak-031090281", // ZMIEŃ!
-    email: "filip.misiak11@gmail.com", // ZMIEŃ!
-    twitter: "", // Opcjonalnie
+    linkedin: "https://linkedin.com/in/filip-misiak-031090281",
+    email: "filip.misiak11@gmail.com",
   },
   
   // CV
-  cvUrl: "/cv.pdf", // Umieść plik cv.pdf w public/
-  
-  // Google Analytics
-  googleAnalyticsId: "G-XXXXXXXXXX", // ZMIEŃ na swoje ID lub zostaw puste
-  
+  // TODO(owner): wgraj public/cv.pdf i ustaw cvUrl: "/cv.pdf" - przycisk "Pobierz CV" pojawi się sam.
+  cvUrl: undefined as string | undefined,
+
   // Technology icons
   technologies: [
     { name: "Python", icon: "devicon-python-plain" },
@@ -148,26 +145,6 @@ education: {
   ]
 },
   
-  // Certyfikaty i osiągnięcia
-  achievements: {
-    pl: [
-      {
-        title: "AWS Certified Developer",
-        issuer: "Amazon Web Services",
-        date: "2023",
-        icon: "🏆"
-      },
-    ],
-    en: [
-      {
-        title: "AWS Certified Developer",
-        issuer: "Amazon Web Services",
-        date: "2023",
-        icon: "🏆"
-      },
-    ]
-  },
-  
   // Featured Projects (spoza GitHub lub highlight z GitHub)
   featuredProjects: {
     pl: [
@@ -186,8 +163,8 @@ education: {
         image: "/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
         demoUrl: "https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame",
-        githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
-        slug: "brick-breaker",  // ← DODAJ 
+        githubUrl: "", // TODO(owner): URL repozytorium Brick Breaker (ukryte do potwierdzenia)
+        slug: "brick-breaker",
         hasDetailPage: true,
         featured: true
       },
@@ -198,7 +175,7 @@ education: {
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
         demoUrl: "",
         githubUrl: "",
-        slug: "Arct",  // ← DODAJ 
+        slug: "Arct",
         hasDetailPage: true,
         featured: true
       },
@@ -209,7 +186,7 @@ education: {
         technologies: ["Unity", "C#"],
         demoUrl: "",
         githubUrl: "",
-        slug: "skarbnik",  // ← DODAJ 
+        slug: "skarbnik",
         hasDetailPage: true,
         featured: true
       },
@@ -248,8 +225,8 @@ education: {
         description: "A Unity game inspired by the classic arcade games.",
         image: "/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
-        demoUrl: "https://demo2.example.com",
-        githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
+        demoUrl: "", // TODO(owner): adres demo wersji EN (nieznany)
+        githubUrl: "", // TODO(owner): URL repozytorium Brick Breaker (ukryte do potwierdzenia)
         featured: true
       },
       {
