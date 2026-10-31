@@ -216,6 +216,7 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
     viewOnGitHub: { pl: 'Zobacz na GitHub', en: 'View on GitHub' },
     liveDemo: { pl: 'Demo', en: 'Live Demo' },
     loadingReadme: { pl: 'Ładowanie README...', en: 'Loading README...' },
+    filterByLanguage: { pl: 'Filtruj według języka', en: 'Filter by language' },
     noDescription: { pl: 'Brak opisu', en: 'No description' },
   };
 
@@ -270,9 +271,10 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
               <input
                 type="text"
                 placeholder={t.search[language]}
+                aria-label={t.search[language]}
                 value={searchTerm}
                 onChange={(e) => setSearchTerm(e.target.value)}
-                className="w-full pl-10 pr-4 py-3 bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus:ring-2 focus:ring-cyan-500"
+                className="w-full pl-10 pr-4 py-3 bg-white/10 dark:bg-white/10 backdrop-blur-md border border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-400 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500"
               />
             </div>
             
@@ -280,8 +282,9 @@ const GitHubRepos: React.FC<GitHubReposProps> = ({ username, language }) => {
               <Filter className="absolute left-3 top-1/2 transform -translate-y-1/2 text-gray-400" size={20} />
               <select
                 value={selectedLanguageFilter}
+                aria-label={t.filterByLanguage[language]}
                 onChange={(e) => setSelectedLanguageFilter(e.target.value)}
-                className="pl-10 pr-8 py-3 bg-white dark:bg-slate-800 border border-gray-300 dark:border-purple-500 rounded-lg text-gray-900 dark:text-white focus:outline-none focus:ring-2 focus:ring-purple-500 appearance-none cursor-pointer"
+                className="pl-10 pr-8 py-3 bg-white dark:bg-slate-800 border border-gray-300 dark:border-purple-500 rounded-lg text-gray-900 dark:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 appearance-none cursor-pointer"
               >
                 {getUniqueLanguages().map(lang => (
                   <option key={lang} value={lang}>

@@ -97,6 +97,10 @@ const Portfolio: React.FC<PortfolioProps> = ({ config }) => {
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
+    document.documentElement.lang = language;
+  }, [language]);
+
+  useEffect(() => {
     fetchGitHubUser();
   }, []);
 

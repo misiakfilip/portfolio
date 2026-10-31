@@ -6,9 +6,9 @@ const isMobile = (vw: number) => vw < 768;
 test('nawigacja desktop: przyciski przewijaja do sekcji (kotwice)', async ({ page, viewport }) => {
   test.skip(isMobile(viewport!.width), 'tylko desktop');
   await page.goto('');
-  await page.waitForSelector('nav.fixed button');
+  await page.waitForSelector('nav.fixed a[href="#home"]');
   const ids = ['home', 'about', 'education', 'projects', 'contact'];
-  const btns = page.locator('nav.fixed div.hidden > button');
+  const btns = page.locator('nav.fixed div.hidden > a[href^="#"]');
   for (let i = 0; i < ids.length; i++) {
     const id = ids[i];
     expect(await page.locator(`#${id}`).count(), `element #${id}`).toBe(1);
@@ -24,11 +24,18 @@ test('nawigacja desktop: przyciski przewijaja do sekcji (kotwice)', async ({ pag
 test('przelacznik jezyka PL/EN dziala', async ({ page, viewport }) => {
   test.skip(isMobile(viewport!.width), 'desktop');
   await page.goto('');
-  const btn = page.locator('nav.fixed').getByRole('button', { name: /^(EN|PL)$/ }).first();
+  const btn = page.locator('nav.fixed').getByRole('button', { name: /^(EN|PL):/ }).first();
   await btn.waitFor();
   const before = await page.locator('nav.fixed').innerText();
   await btn.click();
   expect(await page.locator('nav.fixed').innerText()).not.toBe(before);
+});
+
+test('przelacznik jezyka ustawia html[lang]', async ({ page, viewport }) => {
+  test.skip(isMobile(viewport!.width), 'desktop');
+  await page.goto('');
+  await page.locator('nav.fixed').getByRole('button', { name: /^EN:/ }).click();
+  await expect(page.locator('html')).toHaveAttribute('lang', 'en');
 });
 
 test('S-01: menu mobilne otwiera sie bez crashu', async ({ page, viewport }) => {
@@ -42,7 +49,7 @@ test('S-01: menu mobilne otwiera sie bez crashu', async ({ page, viewport }) => 
   await page.waitForTimeout(500);
   expect.soft(c.pageErrors, 'bledy JS po otwarciu menu').toEqual([]);
   expect(await page.locator('nav.fixed').count(), 'nav nadal w DOM (drzewo React nie odmontowane)').toBe(1);
-  await expect(page.locator('nav.fixed').getByText(/Wykształcenie|Education/)).toBeVisible();
+  await expect(page.locator('#mobile-menu').getByText(/Wykształcenie|Education/)).toBeVisible();
 });
 
 test('menu mobilne: klik w pozycje przewija i zamyka menu', async ({ page, viewport }) => {
@@ -50,7 +57,7 @@ test('menu mobilne: klik w pozycje przewija i zamyka menu', async ({ page, viewp
   await page.goto('');
   await page.locator('nav.fixed button.md\\:hidden').click();
   await page.waitForTimeout(300);
-  await page.locator('nav.fixed').getByRole('button', { name: /O mnie|About/ }).click();
+  await page.locator('nav.fixed').getByRole('link', { name: /O mnie|About/ }).click();
   await page.waitForTimeout(1500);
   const top = await page.locator('#about').evaluate(e => Math.round(e.getBoundingClientRect().top));
   expect(Math.abs(top)).toBeLessThan(150);

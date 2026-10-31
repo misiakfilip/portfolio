@@ -33,37 +33,44 @@ const Navigation: React.FC<NavigationProps> = ({
     contact: { pl: "Kontakt", en: "Contact" },
   };
 
-  const scrollToSection = (id: Section) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
-    setMobileMenuOpen(false);
+  const closeMenu = () => setMobileMenuOpen(false);
+  const nextLanguage = language === 'pl' ? 'en' : 'pl';
+  const a11y = {
+    nav: { pl: 'Główna nawigacja', en: 'Main navigation' },
+    menu: { pl: 'Menu', en: 'Menu' },
+    switchLang: { pl: 'EN: przełącz język na angielski', en: 'PL: switch language to Polish' },
+    theme: { pl: 'Przełącz motyw', en: 'Toggle theme' },
   };
+  const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 rounded';
 
   return (
-    <nav className="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-white/10 backdrop-blur-xl border-b border-white/10">
+    <nav aria-label={a11y.nav[language]} className="fixed top-0 left-0 right-0 z-50 bg-white/10 dark:bg-white/10 backdrop-blur-xl border-b border-white/10">
       <div className="max-w-7xl mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <button 
-            onClick={() => scrollToSection('home')}
-            className="text-2xl font-bold text-gray-900 dark:text-white hover:text-cyan-400 dark:hover:text-purple-400 transition-colors"
+          <a
+            href="#home"
+            onClick={closeMenu}
+            className={`text-2xl font-bold text-gray-900 dark:text-white hover:text-cyan-400 dark:hover:text-purple-400 transition-colors ${focusRing}`}
           >
             {name}
-          </button>
+          </a>
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
             {SECTIONS.map(section => (
-              <button
+              <a
                 key={section}
-                onClick={() => scrollToSection(section)}
-                className="text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 transition-colors font-medium"
+                href={`#${section}`}
+                className={`text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 transition-colors font-medium ${focusRing}`}
               >
                 {t[section][language]}
-              </button>
+              </a>
             ))}
             
             <button
-              onClick={() => setLanguage(language === 'pl' ? 'en' : 'pl')}
-              className="px-3 py-1 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
+              onClick={() => setLanguage(nextLanguage)}
+              aria-label={a11y.switchLang[language]}
+              className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 px-3 py-1 bg-purple-600 text-white rounded-lg hover:bg-purple-700 transition-colors font-medium"
             >
               {language === 'pl' ? 'EN' : 'PL'}
             </button>
@@ -83,36 +90,42 @@ const Navigation: React.FC<NavigationProps> = ({
           {/* Mobile Menu Button */}
           <button
             onClick={() => setMobileMenuOpen(!mobileMenuOpen)}
-            className="md:hidden p-2 text-gray-900 dark:text-white"
+            aria-label={a11y.menu[language]}
+            aria-expanded={mobileMenuOpen}
+            aria-controls="mobile-menu"
+            className={`md:hidden p-2 text-gray-900 dark:text-white ${focusRing}`}
           >
-            {mobileMenuOpen ? <X size={24} /> : <Menu size={24} />}
+            {mobileMenuOpen ? <X size={24} aria-hidden="true" /> : <Menu size={24} aria-hidden="true" />}
           </button>
         </div>
       </div>
 
       {/* Mobile Menu */}
       {mobileMenuOpen && (
-        <div className="md:hidden bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-purple-500/30">
+        <div id="mobile-menu" className="md:hidden bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-purple-500/30">
           <div className="px-6 py-4 space-y-3">
             {SECTIONS.map(section => (
-              <button
+              <a
                 key={section}
-                onClick={() => scrollToSection(section)}
-                className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 py-2"
+                href={`#${section}`}
+                onClick={closeMenu}
+                className={`block w-full text-left text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 py-2 ${focusRing}`}
               >
                 {t[section][language]}
-              </button>
+              </a>
             ))}
             <div className="flex gap-3 pt-2">
               <button
-                onClick={() => setLanguage(language === 'pl' ? 'en' : 'pl')}
-                className="flex-1 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
+                onClick={() => setLanguage(nextLanguage)}
+                aria-label={a11y.switchLang[language]}
+                className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 flex-1 px-3 py-2 bg-purple-600 text-white rounded-lg hover:bg-purple-700"
               >
                 {language === 'pl' ? 'EN' : 'PL'}
               </button>
               <button
                 onClick={() => setDarkMode(!darkMode)}
-                className="px-3 py-2 rounded-lg bg-gray-200 dark:bg-slate-800"
+                aria-label={a11y.theme[language]}
+                className="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 px-3 py-2 rounded-lg bg-gray-200 dark:bg-slate-800"
               >
                 {darkMode ? <Sun size={20} className="text-yellow-500" /> : <Moon size={20} />}
               </button>
