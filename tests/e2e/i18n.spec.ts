@@ -1,8 +1,8 @@
 import { test, expect, PAGES_PL, PAGES_EN } from './helpers';
 
 // Slowa interfejsu, ktore nie moga pojawic sie w obcojezycznej wersji strony.
-const PL_ONLY = ['Wyróżnione', 'Skontaktuj', 'Wykształcenie', 'Zobacz więcej', 'Powrót', 'Główne funkcje', 'Zrzuty ekranu', 'Dokumentacja', 'Przydatne linki', 'Cześć', 'Wszystkie prawa', 'Pobierz', 'Znaleziono', 'Ładowanie'];
-const EN_ONLY = ['Featured Projects', 'Get In Touch', 'Learn more', 'Back to', 'Key features', 'Screenshots', 'Technical documentation', 'Useful links', 'All rights reserved', 'Found:', 'Loading'];
+const PL_ONLY = ['Wyróżnione', 'Skontaktuj', 'Wykształcenie', 'Zobacz projekt', 'Powrót', 'Główne funkcje', 'Zrzuty ekranu', 'Dokumentacja', 'Przydatne linki', 'Cześć', 'Wszystkie prawa', 'Pobierz', 'Znaleziono', 'Ładowanie'];
+const EN_ONLY = ['Featured Projects', 'Get In Touch', 'View project', 'Back to', 'Key features', 'Screenshots', 'Technical documentation', 'Useful links', 'All rights reserved', 'Found:', 'Loading'];
 
 const bodyText = async (page: import('@playwright/test').Page, path: string) => {
   await page.goto(path);

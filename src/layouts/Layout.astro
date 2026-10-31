@@ -26,15 +26,7 @@ const description = Astro.props.description ?? useTranslations(lang).meta.homeDe
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
 
-    <link rel="preconnect" href="https://cdn.jsdelivr.net" crossorigin />
     <link rel="preconnect" href="https://api.github.com" crossorigin />
-    <!-- Devicons (technology icons, used only by the home page); pinned version + SRI -->
-    <link
-      rel="stylesheet"
-      href="https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css"
-      integrity="sha384-DjehTlU5SubGD1zUGe78SkwLgw+q2y9DXnmy3EaDbXA9nvFMPW3LP5verNrWr9rW"
-      crossorigin="anonymous"
-    />
   </head>
   <body class="min-h-screen relative overflow-x-hidden">
     <!-- Animated Background -->

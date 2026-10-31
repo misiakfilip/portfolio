@@ -7,12 +7,14 @@ const pages = {
   home: '', arct: 'projects/Arct', 'brick-breaker': 'projects/brick-breaker', skarbnik: 'projects/skarbnik',
   'en-home': 'en/', 'en-arct': 'en/projects/Arct', 'en-brick-breaker': 'en/projects/brick-breaker', 'en-skarbnik': 'en/projects/skarbnik',
 };
+// ONLY=home,en-home limits the run to the named pages
+const only = process.env.ONLY?.split(',');
 const out = 'test-results/raporty/lighthouse';
 fs.mkdirSync(out, { recursive: true });
 const summary = [];
 
 const chrome = await chromeLauncher.launch({ chromeFlags: ['--headless=new', '--no-sandbox'] });
-for (const [name, path] of Object.entries(pages)) {
+for (const [name, path] of Object.entries(pages).filter(([n]) => !only || only.includes(n))) {
   for (const form of ['mobile', 'desktop']) {
     const flags = { port: chrome.port, output: ['json', 'html'], logLevel: 'error', formFactor: form };
     const config = form === 'desktop'

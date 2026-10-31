@@ -17,6 +17,23 @@ interface TechCarouselProps {
   labels: Dictionary['tech'];
 }
 
+// Devicon (technology logos) is a 650 kB font, so it is not part of the initial page load: the
+// stylesheet is added when this island hydrates, i.e. when the carousel scrolls into view.
+const DEVICON_CSS = {
+  href: 'https://cdn.jsdelivr.net/gh/devicons/devicon@v2.16.0/devicon.min.css',
+  integrity: 'sha384-DjehTlU5SubGD1zUGe78SkwLgw+q2y9DXnmy3EaDbXA9nvFMPW3LP5verNrWr9rW',
+};
+
+function loadDevicons(): void {
+  if (document.querySelector(`link[href="${DEVICON_CSS.href}"]`)) return;
+  const link = document.createElement('link');
+  link.rel = 'stylesheet';
+  link.href = DEVICON_CSS.href;
+  link.integrity = DEVICON_CSS.integrity;
+  link.crossOrigin = 'anonymous';
+  document.head.appendChild(link);
+}
+
 const AUTO_ADVANCE_MS = 4000;
 const SSR_ITEMS_PER_VIEW = 6;
 
@@ -35,6 +52,8 @@ const TechCarousel = ({ technologies, labels }: TechCarouselProps) => {
 
   const pages = Math.max(1, Math.ceil(technologies.length / perView));
   const current = Math.min(page, pages - 1);
+
+  useEffect(loadDevicons, []);
 
   // Responsive page size.
   useEffect(() => {
@@ -86,9 +105,9 @@ const TechCarousel = ({ technologies, labels }: TechCarouselProps) => {
               style={{ animationDelay: `${(index % perView) * 0.1}s` }}
             >
               {tech.icon.startsWith('devicon') ? (
-                <i className={`${tech.icon} text-4xl md:text-5xl colored`} aria-hidden="true"></i>
+                <i className={`${tech.icon} text-4xl md:text-5xl colored inline-block size-10 md:size-12 text-center leading-none`} aria-hidden="true"></i>
               ) : (
-                <span className="text-4xl md:text-5xl" aria-hidden="true">{tech.icon}</span>
+                <span className="text-4xl md:text-5xl inline-block size-10 md:size-12 text-center leading-none" aria-hidden="true">{tech.icon}</span>
               )}
               <span className="text-gray-900 dark:text-white font-semibold text-center text-sm">{tech.name}</span>
             </li>

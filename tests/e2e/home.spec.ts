@@ -81,7 +81,7 @@ for (const [lang, path] of [['pl', ''], ['en', 'en/']] as const) {
       const html = await (await page.request.get(path)).text();
       expect((html.match(/<astro-island/g) ?? []).length).toBe(2);
       expect(html).not.toMatch(/Loading portfolio/i);
-      expect(html).not.toMatch(/animate-spin/);
+      expect(html, "spinner w znacznikach").not.toMatch(/class="[^"]*animate-spin/);
       expect(html).not.toMatch(/client="load"/);
     });
 

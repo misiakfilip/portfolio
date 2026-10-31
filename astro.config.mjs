@@ -17,6 +17,9 @@ export default defineConfig({
     routing: { prefixDefaultLocale: false },
   },
   
+  // Single small stylesheet: inline it to remove a render-blocking request.
+  build: { inlineStylesheets: 'always' },
+
   vite: {
     plugins: [tailwindcss()],
   },
