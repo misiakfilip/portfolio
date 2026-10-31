@@ -1,4 +1,4 @@
-import { Page } from '@playwright/test';
+import type { Page } from '@playwright/test';
 export const PAGES = ['', 'projects/Arct', 'projects/brick-breaker', 'projects/skarbnik'];
 export const VIEWPORTS = [375, 768, 1280, 1920];
 

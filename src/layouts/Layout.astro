@@ -17,58 +17,27 @@ const base = import.meta.env.BASE_URL;
     <link rel="icon" type="image/svg+xml" href={`${base}favicon.svg`} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
-    
+
     <!-- Devicons for technology icons -->
-    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css">
-    </head>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/gh/devicons/devicon@latest/devicon.min.css" />
+  </head>
+  <body class="min-h-screen relative overflow-x-hidden">
+    <!-- Animated Background -->
+    <div class="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950"></div>
+    <div class="fixed inset-0 -z-10 bg-linear-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
 
-     <!-- Header -->
-    <header class="fixed top-0 left-0 right-0 z-50 bg-slate-900/80 backdrop-blur-md border-b border-purple-500/30">
-      <nav class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <a href={base} class="text-2xl font-bold text-white hover:text-purple-400 transition-colors">
-            Filip Misiak
-          </a>
-          
-          <div class="flex items-center gap-6">
-            <a 
-              href="https://github.com/misiakfilip" 
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-gray-300 hover:text-purple-400 transition-colors"
-            >
-              GitHub
-            </a>
-            <a 
-              href="https://linkedin.com/in/twoj-profil" 
-              target="_blank"
-              rel="noopener noreferrer"
-              class="text-gray-300 hover:text-purple-400 transition-colors"
-            >
-              LinkedIn
-            </a>
-          </div>
-        </div>
-      </nav>
-    </header>
-
-    <!-- Main content -->
-    <body class="min-h-screen relative overflow-x-hidden">
-      <!-- Animated Background -->
-      <div class="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950 dark:from-slate-950 dark:via-slate-900 dark:to-slate-950"></div>
-      <div class="fixed inset-0 -z-10 bg-linear-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
-      
+    <main id="main">
       <slot />
-    </body>
-
-  <style>
-    @keyframes gradient {
-      0%, 100% { opacity: 0.3; }
-      50% { opacity: 0.6; }
-    }
-    .animate-gradient {
-      animation: gradient 15s ease-in-out infinite;
-    }
-  </style>
+    </main>
   </body>
 </html>
+
+<style>
+  @keyframes gradient {
+    0%, 100% { opacity: 0.3; }
+    50% { opacity: 0.6; }
+  }
+  .animate-gradient {
+    animation: gradient 15s ease-in-out infinite;
+  }
+</style>
