@@ -32,7 +32,7 @@ test('linki wewnetrzne (wszystkie) zwracaja 200 i maja base', async ({ page, req
   expect(bad, 'zepsute linki wewnetrzne').toEqual([]);
 });
 
-test('linki zewnetrzne: status HEAD/GET', async ({ request, browser }, info) => {
+test('linki zewnetrzne: status HEAD/GET @external', async ({ request, browser }, info) => {
   test.skip(info.project.name !== 'chromium', 'raz');
   test.setTimeout(300_000);
   const pg = await browser.newPage();
