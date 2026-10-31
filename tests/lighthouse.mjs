@@ -3,7 +3,10 @@ import * as chromeLauncher from 'chrome-launcher';
 import fs from 'node:fs';
 
 const BASE = process.env.BASE || 'http://localhost:4399/portfolio/';
-const pages = { home: '', arct: 'projects/Arct', 'brick-breaker': 'projects/brick-breaker', skarbnik: 'projects/skarbnik' };
+const pages = {
+  home: '', arct: 'projects/Arct', 'brick-breaker': 'projects/brick-breaker', skarbnik: 'projects/skarbnik',
+  'en-home': 'en/', 'en-arct': 'en/projects/Arct', 'en-brick-breaker': 'en/projects/brick-breaker', 'en-skarbnik': 'en/projects/skarbnik',
+};
 const out = 'test-results/raporty/lighthouse';
 fs.mkdirSync(out, { recursive: true });
 const summary = [];

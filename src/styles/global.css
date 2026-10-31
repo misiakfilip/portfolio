@@ -10,6 +10,16 @@ html {
   }
 }
 
+/* Animated page background (Layout, ProjectLayout) */
+@keyframes gradient {
+  0%, 100% { opacity: 0.3; }
+  50% { opacity: 0.6; }
+}
+
+.animate-gradient {
+  animation: gradient 15s ease-in-out infinite;
+}
+
 /* Technology carousel (TechCarousel island) */
 @keyframes slide-in {
   from {
@@ -27,6 +37,7 @@ html {
 }
 
 @media (prefers-reduced-motion: reduce) {
+  .animate-gradient,
   .animate-slide-in {
     animation: none;
   }

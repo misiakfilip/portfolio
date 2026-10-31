@@ -1,0 +1,28 @@
+---
+import { Image as ImageIcon } from 'lucide-react';
+import ProjectSection from './ProjectSection.astro';
+
+interface Props {
+  id?: string;
+  title: string;
+  images: Array<{ src: string; alt: string; caption?: string }>;
+}
+const { id = 'gallery', title, images } = Astro.props;
+---
+
+{images.length > 0 && (
+  <ProjectSection id={id} title={title}>
+    <ImageIcon slot="icon" className="text-cyan-400" size={28} aria-hidden="true" />
+    <ul class="grid md:grid-cols-2 gap-4 list-none">
+      {images.map((image) => (
+        <li class="relative overflow-hidden rounded-lg border border-white/10">
+          {/* TODO(Z-13): astro:assets, width/height, captions/alt from data. */}
+          <img src={image.src} alt={image.alt} loading="lazy" decoding="async" class="w-full h-64 object-cover" />
+          {image.caption && (
+            <p class="absolute bottom-0 left-0 right-0 bg-black/70 backdrop-blur-sm p-3 text-white text-sm">{image.caption}</p>
+          )}
+        </li>
+      ))}
+    </ul>
+  </ProjectSection>
+)}

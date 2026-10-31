@@ -1,0 +1,13 @@
+---
+import type { InferGetStaticPropsType } from 'astro';
+import ProjectPage from '../../../components/ProjectPage.astro';
+import { projectSlugs } from '../../../i18n/projects';
+
+export function getStaticPaths() {
+  return projectSlugs.map((slug) => ({ params: { slug }, props: { slug } }));
+}
+
+const { slug } = Astro.props as InferGetStaticPropsType<typeof getStaticPaths>;
+---
+
+<ProjectPage lang="en" slug={slug} />

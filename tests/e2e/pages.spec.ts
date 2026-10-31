@@ -66,6 +66,24 @@ for (const p of PAGES) {
       expect(await page.locator('form').count(), 'formularze (oczekiwany brak, kontakt przez mailto)').toBe(0);
     });
 
+    test('hierarchia naglowkow: jeden h1, bez przeskokow poziomow, sekcje maja id', async ({ page }) => {
+      await page.goto(p);
+      if (await page.locator('#repos').count()) await page.locator('#repos').scrollIntoViewIfNeeded();
+      await page.waitForLoadState('networkidle').catch(() => {});
+      const levels = await page.locator('h1, h2, h3, h4, h5, h6').evaluateAll(els => els.map(e => Number(e.tagName[1])));
+      expect(levels[0], 'pierwszy naglowek').toBe(1);
+      expect(levels.filter(l => l === 1).length, 'liczba h1').toBe(1);
+      levels.forEach((l, i) => { if (i > 0) expect.soft(l, `naglowek #${i} (h${l}) po h${levels[i - 1]}`).toBeLessThanOrEqual(levels[i - 1] + 1); });
+      expect(await page.locator('main section:not([id]):not([aria-labelledby])').count(), 'sekcje bez id/aria-labelledby').toBe(0);
+    });
+
+    test('zadnych wysp dla statycznej tresci: podstrony projektow bez astro-island', async ({ page }) => {
+      test.skip(!p.includes('projects/'), 'tylko podstrony projektow');
+      const html = await (await page.request.get(p)).text();
+      expect((html.match(/<astro-island/g) ?? []).length, 'liczba astro-island').toBe(0);
+      expect(html, 'skrypty klienckie React').not.toMatch(/client\.[\w-]+\.js/);
+    });
+
     test('SEO: canonical, hreflang, og:title, html[lang] zgodny z jezykiem strony', async ({ page }) => {
       await page.goto(p);
       await expect(page.locator('html')).toHaveAttribute('lang', p.startsWith('en/') ? 'en' : 'pl');

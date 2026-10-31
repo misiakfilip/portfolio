@@ -48,13 +48,3 @@ const description = Astro.props.description ?? useTranslations(lang).meta.homeDe
     <slot name="footer" />
   </body>
 </html>
-
-<style>
-  @keyframes gradient {
-    0%, 100% { opacity: 0.3; }
-    50% { opacity: 0.6; }
-  }
-  .animate-gradient {
-    animation: gradient 15s ease-in-out infinite;
-  }
-</style>

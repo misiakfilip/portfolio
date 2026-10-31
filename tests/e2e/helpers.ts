@@ -5,7 +5,7 @@ export { expect };
 /** Language-neutral page list; PL pages have no prefix, EN pages live under en/. */
 const SLUGS = ['', 'projects/Arct', 'projects/brick-breaker', 'projects/skarbnik'];
 export const PAGES_PL = SLUGS;
-export const PAGES_EN = ['en/']; // TODO: podstrony projektow EN dochodza razem z Z-12
+export const PAGES_EN = SLUGS.map(s => (s ? `en/${s}` : 'en/'));
 export const PAGES = [...PAGES_PL, ...PAGES_EN];
 export const VIEWPORTS = [320, 375, 768, 1280, 1920];
 

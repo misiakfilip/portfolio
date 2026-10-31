@@ -1,0 +1,35 @@
+---
+import { ExternalLink } from 'lucide-react';
+import ProjectSection from './ProjectSection.astro';
+
+interface Props {
+  id?: string;
+  title: string;
+  links: Array<{ href: string; label: string; description?: string }>;
+}
+const { id = 'links', title, links } = Astro.props;
+---
+
+{links.length > 0 && (
+  <ProjectSection id={id} title={title}>
+    <ExternalLink slot="icon" className="text-cyan-400" size={28} aria-hidden="true" />
+    <ul class="space-y-3 list-none">
+      {links.map((link) => (
+        <li>
+          <a
+            href={link.href}
+            target="_blank"
+            rel="noopener noreferrer"
+            class="group flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 hover:border-cyan-500 transition-all"
+          >
+            <span>
+              <span class="block text-white font-semibold group-hover:text-cyan-400 transition-colors">{link.label}</span>
+              {link.description && <span class="block text-gray-400 text-sm mt-1">{link.description}</span>}
+            </span>
+            <ExternalLink className="text-gray-400 group-hover:text-cyan-400 transition-colors" size={20} aria-hidden="true" />
+          </a>
+        </li>
+      ))}
+    </ul>
+  </ProjectSection>
+)}

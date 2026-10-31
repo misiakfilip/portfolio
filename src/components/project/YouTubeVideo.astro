@@ -1,0 +1,26 @@
+---
+import { Video } from 'lucide-react';
+import ProjectSection from './ProjectSection.astro';
+
+interface Props {
+  id?: string;
+  videoId: string;
+  title: string;
+}
+const { id = 'video', videoId, title } = Astro.props;
+---
+
+<ProjectSection id={id} title={title}>
+  <Video slot="icon" className="text-red-500" size={28} aria-hidden="true" />
+  <div class="relative w-full aspect-video">
+    {/* TODO(Z-18): youtube-nocookie, facade instead of an immediate iframe. */}
+    <iframe
+      class="absolute inset-0 w-full h-full rounded-lg"
+      src={`https://www.youtube.com/embed/${videoId}`}
+      title={title}
+      loading="lazy"
+      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
+      allowfullscreen
+    ></iframe>
+  </div>
+</ProjectSection>

@@ -9,14 +9,13 @@ Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna
 - Hosting: GitHub Pages, `site: https://misiakfilip.github.io`, `base: /portfolio`. Deploy: `.github/workflows/deploy.yml` (push na `main`).
 
 ## Struktura
-- `src/pages/index.astro` – strona główna, montuje komponenty React (`client:load`).
-- `src/pages/projects/{Arct,brick-breaker,skarbnik}.astro` – podstrony projektów.
-- `src/layouts/Layout.astro`, `ProjectLayout.astro` – układy i `<head>`.
-- `src/components/*.tsx` – sekcje strony i komponenty projektów.
-- `src/config.ts` – dane osobowe, teksty, linki, lista projektów.
-- `src/utils/loadGalleryImages.ts` – ładowanie galerii projektu.
-- `src/styles/global.css` – style globalne Tailwind.
-- `public/` – statyczne zasoby, w tym `public/projects/` (zrzuty ekranu projektów).
+- `src/pages/index.astro`, `src/pages/en/index.astro` – strona główna PL/EN (cienkie wrappery na `components/HomePage.astro`).
+- `src/pages/projects/[slug].astro`, `src/pages/en/projects/[slug].astro` – podstrony projektów (`getStaticPaths` z `src/i18n/projects.ts`, render w `components/ProjectPage.astro`).
+- `src/layouts/Layout.astro`, `ProjectLayout.astro` – układy i `<head>` (`lang`, `path` → `SeoHead`: canonical, hreflang, OG).
+- `src/components/*.astro` – statyczne sekcje strony głównej (Nav, Hero, Timeline, FeaturedProjects, Contact), `components/project/*.astro` – sekcje podstron projektów.
+- Wyspy React (jedyne, `client:visible`): `components/TechCarousel.tsx`, `components/GitHubRepos.tsx` (+ `RepoModal.tsx`, `utils/githubRepos.ts` – fetch REST API z cache w sessionStorage). Nic innego nie jest hydratowane.
+- `src/i18n/` – słowniki `pl.ts`/`en.ts`, `projects.ts` (treści podstron), helpery. `src/config.ts` – dane osobowe, projekty wyróżnione, `pinnedRepos`.
+- `src/utils/loadGalleryImages.ts`, `withBase.ts`; `src/styles/global.css`; `public/` (zasoby statyczne, `public/projects/` zrzuty ekranu, `public/avatar.webp`).
 
 ## i18n (decyzja architektoniczna)
 - Osobne statyczne strony per język (routing plikowy Astro): PL bez prefiksu (`/`, `/projects/<slug>`), EN pod `/en/` (`/en/`, `/en/projects/<slug>`).
@@ -29,21 +28,21 @@ Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna
 - `npm run dev` – serwer dev
 - `npm run build` – build do `dist/`
 - `npm run preview` – podgląd buildu
-- `astro check`, lint, testy: jeszcze nie skonfigurowane (`astro check` wymaga `@astrojs/check` i `typescript`).
+- `npx astro check` – typy (0 errors), `npm run test:dist` – skan `dist/**/*.html` pod kątem prefiksu `/portfolio/`.
 
 ## Konwencje
-- Komponenty sekcji to React `.tsx`, strony i layouty to `.astro`.
+- Wszystko bez stanu to `.astro` (zero JS); React tylko dla interaktywnych wysp. Ikony: `lucide-react` renderowane po stronie serwera.
 - Stylowanie klasami Tailwind inline.
 - Aktualnie surowe `<img>` zamiast `astro:assets`.
 
 ## Pułapki
 - Ścieżki absolutne (`/favicon.svg`, `/projects/...`, `/downloads/...`) nie uwzględniają `base: /portfolio`; używaj `import.meta.env.BASE_URL` z poprawnym ukośnikiem.
-- Dodając projekt: nowy plik w `src/pages/projects/`, wpis w `src/config.ts`, obrazy w `public/projects/<nazwa>/`.
+- Dodając projekt: wpis w `src/i18n/projects.ts` (pl+en), wpis w `src/config.ts` (`featuredProjects` pl+en ze `slug`), obrazy w `public/projects/`.
 - Nie ma formularza kontaktowego (tylko `mailto`), nie ma analityki ani ciasteczek.
 - Nie commituj `dist/`, `.astro/`, `node_modules/`.
 
 ## Testy i raporty
-Playwright, Lighthouse i axe zostaną dodane w Etapie 4 (testy w `tests/e2e/`, raporty w `docs/`).
+Testy w `tests/e2e/` mockują `api.github.com` (fixture w `helpers.ts`); nie zależą od limitu API.
 
 ## Stan audytu
 - Notatki: `../Astro-audyt/notatki/01-rekonesans.md`, `../Astro-audyt/notatki/02-komendy.md`

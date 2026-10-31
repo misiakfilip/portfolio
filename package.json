@@ -9,7 +9,7 @@
     "astro": "astro",
     "test:e2e": "playwright test",
     "test:lighthouse": "node tests/lighthouse.mjs",
-    "test:html": "html-validate dist/index.html dist/en/index.html dist/projects/*/index.html",
+    "test:html": "html-validate dist/index.html dist/en/index.html dist/projects/*/index.html dist/en/projects/*/index.html",
     "test:dist": "node tests/check-dist-base.mjs"
   },
   "dependencies": {

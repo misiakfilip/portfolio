@@ -3,115 +3,108 @@
 import "../styles/global.css";
 import SeoHead from '../components/SeoHead.astro';
 import { withBase } from '../utils/withBase';
-import { localizedPath, useTranslations, type Lang } from '../i18n';
+import { localizedPath, otherLang, useTranslations, type Lang } from '../i18n';
 
 interface Props {
   title: string;
   description: string;
-  lang?: Lang;
+  lang: Lang;
   /** Language-neutral route, e.g. "/projects/Arct". */
-  path?: string;
+  path: string;
   technologies?: string[];
   github?: string;
   demo?: string;
 }
 
-const { title, description, lang = 'pl', path, technologies = [], github, demo } = Astro.props;
-const t = useTranslations(lang).project;
+const { title, description, lang, path, technologies = [], github, demo } = Astro.props;
+const dictionary = useTranslations(lang);
+const t = dictionary.project;
 const home = localizedPath(lang);
+const other = otherLang(lang);
+const fullTitle = `${title} - ${dictionary.meta.projectTitleSuffix}`;
+const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400';
 ---
 
 <!doctype html>
 <html lang={lang}>
   <head>
     <meta charset="UTF-8" />
-    <SeoHead title={`${title} - Filip Misiak`} description={description} lang={lang} path={path} />
+    <SeoHead title={fullTitle} description={description} lang={lang} path={path} />
     <meta name="viewport" content="width=device-width" />
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <meta name="generator" content={Astro.generator} />
-    <title>{title} - Filip Misiak</title>
-    <style>
-      @keyframes gradient {
-        0%, 100% { opacity: 0.3; }
-        50% { opacity: 0.6; }
-      }
-      .animate-gradient {
-        animation: gradient 15s ease-in-out infinite;
-      }
-    </style>
+    <title>{fullTitle}</title>
   </head>
   <body class="min-h-screen relative overflow-x-hidden">
     <!-- Animated Background -->
     <div class="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950"></div>
     <div class="fixed inset-0 -z-10 bg-linear-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
-    
-    <!-- Navigation Bar -->
-    <nav class="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/10">
-      <div class="max-w-7xl mx-auto px-6 py-4">
-        <div class="flex items-center justify-between">
-          <a href={home} class="text-xl font-bold text-white hover:text-cyan-400 transition-colors">
+
+    <nav aria-label={dictionary.nav.label} class="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/10">
+      <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4">
+        <div class="flex items-center justify-between gap-3">
+          <a href={home} class={`text-base sm:text-xl font-bold text-white hover:text-cyan-400 transition-colors rounded ${focus}`}>
             {t.backToPortfolio}
           </a>
-          
-          <div class="flex gap-4">
+
+          <div class="flex items-center gap-2 sm:gap-4">
             {github && (
-              <a 
+              <a
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors backdrop-blur-md border border-white/10"
+                class={`px-3 sm:px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors backdrop-blur-md border border-white/10 ${focus}`}
               >
-                GitHub
+                {t.github}
               </a>
             )}
             {demo && (
-              <a 
+              <a
                 href={demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                class="px-4 py-2 bg-purple-600 hover:bg-purple-700 text-white rounded-lg transition-colors"
+                class={`px-3 sm:px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors ${focus}`}
               >
-                Demo
+                {t.demo}
               </a>
             )}
+            <a
+              href={localizedPath(other, path)}
+              hreflang={other}
+              aria-label={dictionary.nav.switchLabel}
+              class={`px-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors font-medium ${focus}`}
+            >
+              {dictionary.nav.switchShort}
+            </a>
           </div>
         </div>
       </div>
     </nav>
 
-    <!-- Hero Section -->
-    <section class="pt-32 pb-12 px-6">
+    <main id="main" class="pt-28 md:pt-32 pb-20 px-6">
       <div class="max-w-5xl mx-auto">
-        <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
-          {title}
-        </h1>
-        <p class="text-xl text-gray-300 mb-8">
-          {description}
-        </p>
-        
-        {technologies.length > 0 && (
-          <div class="flex flex-wrap gap-3">
-            {technologies.map((tech) => (
-              <span class="px-4 py-2 bg-purple-500/20 border border-purple-500/30 text-purple-300 rounded-full text-sm font-medium backdrop-blur-sm">
-                {tech}
-              </span>
-            ))}
-          </div>
-        )}
-      </div>
-    </section>
+        <header class="pb-12">
+          <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 wrap-break-word">{title}</h1>
+          <p class="text-lg sm:text-xl text-gray-300 mb-8">{description}</p>
 
-    <!-- Main Content -->
-    <main class="pb-20 px-6">
-      <div class="max-w-5xl mx-auto">
+          {technologies.length > 0 && (
+            <ul class="flex flex-wrap gap-3 list-none">
+              {technologies.map((tech) => (
+                <li class="px-4 py-2 bg-purple-500/20 border border-purple-500/30 text-purple-300 rounded-full text-sm font-medium backdrop-blur-sm">
+                  {tech}
+                </li>
+              ))}
+            </ul>
+          )}
+        </header>
+
         <slot />
       </div>
     </main>
 
-    <!-- Footer -->
     <footer class="py-8 border-t border-white/10 bg-transparent backdrop-blur-md">
       <div class="max-w-7xl mx-auto px-6 text-center text-gray-400">
-        <a href={home} class="text-cyan-400 hover:text-cyan-300 transition-colors">
+        <a href={home} class={`text-cyan-400 hover:text-cyan-300 transition-colors rounded ${focus}`}>
           {t.backToHome}
         </a>
       </div>
