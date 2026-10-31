@@ -2,6 +2,10 @@
 import React from 'react';
 import { Menu, X, Sun, Moon } from 'lucide-react';
 
+// Single source of truth for nav items (desktop and mobile menus).
+const SECTIONS = ['home', 'about', 'education', 'projects', 'contact'] as const;
+type Section = (typeof SECTIONS)[number];
+
 interface NavigationProps {
   darkMode: boolean;
   setDarkMode: (value: boolean) => void;
@@ -21,7 +25,7 @@ const Navigation: React.FC<NavigationProps> = ({
   mobileMenuOpen,
   setMobileMenuOpen,
 }) => {
-  const t = {
+  const t: Record<Section, { pl: string; en: string }> = {
     home: { pl: "Start", en: "Home" },
     about: { pl: "O mnie", en: "About" },
     education: { pl: "Wykształcenie", en: "Education" },
@@ -29,7 +33,7 @@ const Navigation: React.FC<NavigationProps> = ({
     contact: { pl: "Kontakt", en: "Contact" },
   };
 
-  const scrollToSection = (id: string) => {
+  const scrollToSection = (id: Section) => {
     document.getElementById(id)?.scrollIntoView({ behavior: 'smooth' });
     setMobileMenuOpen(false);
   };
@@ -47,13 +51,13 @@ const Navigation: React.FC<NavigationProps> = ({
 
           {/* Desktop Nav */}
           <div className="hidden md:flex items-center gap-6">
-            {['home', 'about', 'education', 'projects', 'contact'].map(section => (
+            {SECTIONS.map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
                 className="text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 transition-colors font-medium"
               >
-                {t[section as keyof typeof t][language]}
+                {t[section][language]}
               </button>
             ))}
             
@@ -90,13 +94,13 @@ const Navigation: React.FC<NavigationProps> = ({
       {mobileMenuOpen && (
         <div className="md:hidden bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-purple-500/30">
           <div className="px-6 py-4 space-y-3">
-            {['home', 'about', 'experience', 'projects', 'contact'].map(section => (
+            {SECTIONS.map(section => (
               <button
                 key={section}
                 onClick={() => scrollToSection(section)}
                 className="block w-full text-left text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 py-2"
               >
-                {t[section as keyof typeof t][language]}
+                {t[section][language]}
               </button>
             ))}
             <div className="flex gap-3 pt-2">
