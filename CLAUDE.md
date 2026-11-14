@@ -4,8 +4,8 @@
 Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna strona główna z sekcjami (Hero, About, Education, Achievements, Tech, Featured projects, Portfolio/GitHub repos, Contact) oraz podstrony projektów. Treść jest w `src/config.ts` (zawiera markery `ZMIEŃ` do uzupełnienia).
 
 ## Stack
-- Astro 5.16.3 (output statyczny, bez adaptera), React 19.2 (`@astrojs/react`), Tailwind 4.1 (`@tailwindcss/vite`, konfiguracja tylko w `global.css`), lucide-react, `marked` + `dompurify` (tylko modal README, ładowane dynamicznie), TypeScript.
-- npm, Node 24 lokalnie (CI: build/deploy Node 20, job `test` Node 22, bo `@lhci/cli` i `lighthouse` 13 wymagają >= 22.19).
+- Astro 7.4 (Vite 8, kompilator Rust) (output statyczny, bez adaptera), React 19.2 (`@astrojs/react` 7.1), Tailwind 4.3 (`@tailwindcss/vite`, konfiguracja tylko w `global.css`), lucide-react, `marked` + `dompurify` (tylko modal README, ładowane dynamicznie), TypeScript.
+- npm, Node 24 lokalnie; CI (build, deploy i test) Node 22 (`22` w setup-node), bo Astro 7 wymaga >= 22.23.4, a `@lhci/cli` i `lighthouse` 13 >= 22.19.
 - Hosting: GitHub Pages, `site: https://misiakfilip.github.io`, `base: /portfolio`. Deploy: `.github/workflows/deploy.yml` (push na `main`).
 
 ## Struktura

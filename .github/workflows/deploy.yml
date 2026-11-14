@@ -37,7 +37,7 @@ jobs:
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
+          node-version: '22'
           cache: 'npm'
 
       - name: Install dependencies
@@ -61,7 +61,7 @@ jobs:
       - name: Checkout
         uses: actions/checkout@v4
 
-      # Node 22: @lhci/cli i lighthouse 13 wymagaja >= 22.19 (deploy build zostaje na Node 20)
+      # Node 22: Astro 7 wymaga >= 22.23.4; @lhci/cli i lighthouse 13 >= 22.19
       - name: Setup Node
         uses: actions/setup-node@v4
         with:
@@ -118,7 +118,7 @@ jobs:
           if-no-files-found: ignore
           retention-days: 7
 
-      # Informacyjnie: krytyczna podatnosc w astro 5 zniknie po migracji do Astro 7
+      # Informacyjnie: po migracji do Astro 7 zostaja tylko zaleznosci dev (lhci/lighthouse)
       - name: npm audit (informational)
         continue-on-error: true
         run: npm audit --audit-level=critical --omit=dev
