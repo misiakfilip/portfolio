@@ -22,7 +22,7 @@ export const pl = {
     switchShort: 'EN',
   },
   hero: {
-    greeting: 'Cześć, jestem',
+    greeting: '',
     viewGitHub: 'Zobacz GitHub',
     contact: 'Kontakt',
     downloadCV: 'Pobierz CV',

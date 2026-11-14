@@ -23,7 +23,7 @@ export const en: Dictionary = {
     switchShort: 'PL',
   },
   hero: {
-    greeting: "Hi, I'm",
+    greeting: '',
     viewGitHub: 'View GitHub',
     contact: 'Contact',
     downloadCV: 'Download CV',

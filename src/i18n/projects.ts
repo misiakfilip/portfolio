@@ -65,9 +65,14 @@ export const projects: Record<ProjectSlug, Project> = {
       'arct-sunset.png': { pl: 'Zachód słońca w grze Arct', en: 'Sunset in Arct' },
     },
     // TODO(owner): podaj poprawny URL repozytorium (misiakfilip/arct zwraca 404) w polu `github`.
-    // TODO(owner): wgraj public/downloads/ARCT-GDD.pdf i dodaj wpis do `downloads` - sekcja "Pliki do pobrania" pojawi się sama.
     // TODO(owner): wpisz ID filmu z YouTube w `videoId` - sekcja wideo pojawi się sama.
-    downloads: [],
+    downloads: [
+      {
+        href: '/downloads/Arct-GDD.pdf',
+        label: { pl: 'Arct GDD', en: 'Arct GDD' },
+        icon: 'pdf',
+      },
+    ],
     links: [
       {
         href: 'https://UnrealEngine.com/',
@@ -82,7 +87,7 @@ export const projects: Record<ProjectSlug, Project> = {
           'Narracyjna gra dokumentalna oparta na historycznej wyprawie statku Belgica (1897–1899), łącząca edukację, narrację i elementy survivalu.',
         technologies: ['Unreal Engine', 'Blueprints', 'Narrative Design', 'Game Design'],
         about: [
-          'Praca dyplomowa pt. <em>„Projekt i implementacja narracyjnej gry dokumentalnej”</em> koncentruje się na wykorzystaniu medium gier wideo do przekazywania treści historycznych i edukacyjnych. Projekt gry <strong>Arct</strong> stanowi praktyczną realizację założeń teoretycznych opisanych w pracy, w szczególności w obszarze narracyjnych gier dokumentalnych.',
+          'Projekt koncentruje się na wykorzystaniu medium gier wideo do przekazywania treści historycznych i edukacyjnych.',
           'Gra opowiada o pierwszej w historii wyprawie antarktycznej, podczas której statek <strong>Belgica</strong> został uwięziony w lodach Morza Bellingshausena. Gracz wciela się w członków ekspedycji, uczestnicząc w codziennym życiu załogi, badaniach naukowych oraz walce o przetrwanie w ekstremalnych warunkach.',
           'Projekt łączy elementy przygodowej gry narracyjnej, dokumentu historycznego oraz subtelne mechaniki survival horroru, które służą budowaniu napięcia i oddaniu psychologicznych aspektów izolacji.',
         ],
@@ -146,7 +151,7 @@ export const projects: Record<ProjectSlug, Project> = {
           'A narrative documentary game based on the historic voyage of the ship Belgica (1897–1899), combining education, storytelling and survival elements.',
         technologies: ['Unreal Engine', 'Blueprints', 'Narrative Design', 'Game Design'],
         about: [
-          'The thesis <em>“Design and Implementation of a Narrative Documentary Game”</em> explores how the video game medium can convey historical and educational content. The game <strong>Arct</strong> is a practical realisation of the theoretical principles described in the thesis, particularly in the area of narrative documentary games.',
+          'The project explores how the video game medium can convey historical and educational content.',
           'The game tells the story of the first Antarctic expedition in history, during which the ship <strong>Belgica</strong> became trapped in the ice of the Bellingshausen Sea. The player takes the role of expedition members, taking part in the crew’s daily life, scientific work and the struggle to survive in extreme conditions.',
           'The project blends an adventure narrative game, a historical documentary and subtle survival-horror mechanics that build tension and convey the psychological side of isolation.',
         ],
@@ -208,14 +213,21 @@ export const projects: Record<ProjectSlug, Project> = {
   },
 
   'brick-breaker': {
-    // TODO(owner): wgraj zrzuty ekranu do src/assets/projects/ (np. arkanoid-1.jpg) i ustaw `galleryPrefix: 'arkanoid'` - galeria pojawi się sama.
-    // TODO(owner): podaj poprawny URL repozytorium gry (retro-brick-breaker / arkanoid) w polu `github`.
+    galleryPrefix: 'brick-breaker-',
+    // TODO(owner): zweryfikuj opisy (alt) - wywnioskowane z nazw plików; popraw na faktyczną zawartość zrzutów.
+    imageAlts: {
+      'brick-breaker-menu.png': { pl: 'Menu główne gry Retro Brick Breaker', en: 'Retro Brick Breaker main menu' },
+      'brick-breaker-game.png': { pl: 'Rozgrywka w grze Retro Brick Breaker (1)', en: 'Retro Brick Breaker gameplay (1)' },
+      'brick-breaker-game2.png': { pl: 'Rozgrywka w grze Retro Brick Breaker (2)', en: 'Retro Brick Breaker gameplay (2)' },
+      'brick-breaker-end.png': { pl: 'Ekran końcowy gry Retro Brick Breaker', en: 'Retro Brick Breaker end screen' },
+    },
+    github: 'https://github.com/misiakfilip/retro-brick-breaker',
     // TODO(owner): wpisz ID filmu z YouTube w `videoId` - sekcja wideo pojawi się sama.
     downloads: [
       {
-        href: 'https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame',
-        label: { pl: 'Gra - Unity Player WebGL', en: 'Game - Unity Player WebGL' },
-        icon: 'file',
+        href: 'https://github.com/misiakfilip/retro-brick-breaker',
+        label: { pl: 'Kod źródłowy (GitHub)', en: 'Source code (GitHub)' },
+        icon: 'code',
       },
     ],
     links: [
@@ -224,20 +236,23 @@ export const projects: Record<ProjectSlug, Project> = {
         label: { pl: 'Unity Engine', en: 'Unity Engine' },
         description: { pl: 'Oficjalna strona silnika Unity', en: 'Official website of the Unity engine' },
       },
+      {
+        href: 'https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame',
+        label: { pl: 'Unity Play', en: 'Unity Play' },
+        description: { pl: 'Link do gry na Unity Play', en: 'Link to the game on Unity Play' },
+      },
     ],
     content: {
       pl: {
         title: 'Retro Brick Breaker',
         description:
-          'Implementacja gry wzorowanej na klasycznych grach Arcade z nowoczesnymi mechanikami i efektami wizualnymi.',
+          'Gra inspirowana klasycznymi grami Arcade typu brick breaker z nowoczesnymi mechanikami i efektami wizualnymi.',
         technologies: ['Unity', 'C#', '.NET', 'Game Design'],
         about: [
-          'Implementacja gry wzorowanej na klasycznych grach Arcade z nowoczesnymi mechanikami i efektami wizualnymi.',
-          'Gra zawiera zaawansowane mechaniki rozgrywki, system power-upów, różnorodne poziomy oraz dynamiczny system trudności dostosowujący się do umiejętności gracza.',
+          'Gra zawiera zaawansowane mechaniki rozgrywki, system power-upów, automatyczne generowanie poziomów oraz tablice najlepszych wyników.',
         ],
         features: [
-          'System poziomów z rosnącą trudnością',
-          'Power-upy wpływające na rozgrywkę',
+          'System power-upów wpływających na rozgrywkę',
           'Dynamiczny system fizyki piłki',
           'System highscore’ów z zapisem lokalnym',
           'Efekty wizualne i dźwiękowe',
@@ -271,15 +286,13 @@ export const projects: Record<ProjectSlug, Project> = {
       en: {
         title: 'Retro Brick Breaker',
         description:
-          'An implementation of a game inspired by classic arcade titles, with modern mechanics and visual effects.',
+          'A game inspired by classic arcade brick breaker titles, with modern mechanics and visual effects.',
         technologies: ['Unity', 'C#', '.NET', 'Game Design'],
         about: [
-          'An implementation of a game inspired by classic arcade titles, with modern mechanics and visual effects.',
-          'The game features advanced gameplay mechanics, a power-up system, varied levels and a dynamic difficulty system that adapts to the player’s skill.',
+          'The game features advanced gameplay mechanics, a power-up system, automatic level generation and high-score tables.',
         ],
         features: [
-          'Level system with increasing difficulty',
-          'Power-ups that change the gameplay',
+          'Power-up system that changes the gameplay',
           'Dynamic ball physics system',
           'High-score system with local saving',
           'Visual and sound effects',
@@ -336,12 +349,12 @@ export const projects: Record<ProjectSlug, Project> = {
     ],
     content: {
       pl: {
-        title: 'Skarbnik / Treasurer – Gra Survival Horror',
+        title: 'Skarbnik – Gra Survival Horror',
         description:
           'Narracyjna gra survival horror FPP osadzona w kopalni na Górnym Śląsku w okresie międzywojennym, inspirowana słowiańską mitologią.',
-        technologies: ['Unity', 'C#', 'HDRP', 'FMOD', 'Game Design', 'Narrative Design'],
+        technologies: ['Unity', 'C#', 'HDRP', 'Game Design', 'Narrative Design'],
         about: [
-          '<strong>Skarbnik</strong> to autorska gra typu survival horror z perspektywy pierwszej osoby, tworzona w silniku Unity. Akcja rozgrywa się w zawalonej kopalni na terenie Górnego Śląska w okresie dwudziestolecia międzywojennego.',
+          '<strong>„Skarbnik”</strong> to autorska gra typu survival horror z perspektywy pierwszej osoby, tworzona w silniku Unity. Akcja rozgrywa się w zawalonej kopalni na terenie Górnego Śląska w okresie dwudziestolecia międzywojennego.',
           'Gracz wciela się w Niklausa Pieruna – górnika, który po katastrofie górniczej zostaje uwięziony pod ziemią i musi odnaleźć drogę ucieczki, jednocześnie mierząc się z nadprzyrodzonym antagonistą – Skarbnikiem, duchem kopalni znanym ze słowiańskich wierzeń.',
           'Projekt skupia się na budowaniu napięcia poprzez światło, dźwięk, eksplorację oraz narrację środowiskową, zamiast bezpośredniej walki.',
         ],
@@ -353,7 +366,6 @@ export const projects: Record<ProjectSlug, Project> = {
           'Dynamiczna obecność antagonisty – Skarbnika',
           'Narracja środowiskowa (notatki, ślady, dźwięki)',
           'Elementy słowiańskiej mitologii',
-          'Kilka możliwych zakończeń zależnych od decyzji gracza',
         ],
         docs: [
           {
@@ -368,7 +380,6 @@ export const projects: Record<ProjectSlug, Project> = {
               '<strong>Unity 6.3 LTS</strong> – silnik gry',
               '<strong>C#</strong> – logika rozgrywki',
               '<strong>HDRP</strong> – realistyczne oświetlenie i cienie',
-              '<strong>Cinemachine</strong> – kamera FPP',
             ],
           },
         ],
@@ -388,10 +399,10 @@ export const projects: Record<ProjectSlug, Project> = {
         ],
       },
       en: {
-        title: 'Skarbnik / Treasurer – Survival Horror Game',
+        title: 'Skarbnik – Survival Horror Game',
         description:
           'A narrative first-person survival horror game set in a mine in Upper Silesia in the interwar period, inspired by Slavic mythology.',
-        technologies: ['Unity', 'C#', 'HDRP', 'FMOD', 'Game Design', 'Narrative Design'],
+        technologies: ['Unity', 'C#', 'HDRP', 'Game Design', 'Narrative Design'],
         about: [
           '<strong>Skarbnik</strong> (“the Treasurer”) is an original first-person survival horror game made in Unity. It takes place in a collapsed mine in Upper Silesia during the interwar period.',
           'The player takes the role of Niklaus Pierun, a miner who is trapped underground after a mining disaster and has to find a way out while facing a supernatural antagonist – the Treasurer, the spirit of the mine known from Slavic folklore.',
@@ -405,7 +416,6 @@ export const projects: Record<ProjectSlug, Project> = {
           'Dynamic presence of the antagonist – the Treasurer',
           'Environmental storytelling (notes, traces, sounds)',
           'Elements of Slavic mythology',
-          'Several possible endings depending on the player’s decisions',
         ],
         docs: [
           {
@@ -420,7 +430,6 @@ export const projects: Record<ProjectSlug, Project> = {
               '<strong>Unity 6.3 LTS</strong> – game engine',
               '<strong>C#</strong> – gameplay logic',
               '<strong>HDRP</strong> – realistic lighting and shadows',
-              '<strong>Cinemachine</strong> – first-person camera',
             ],
           },
         ],
