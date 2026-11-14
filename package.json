@@ -12,7 +12,8 @@
     "test:lighthouse": "node tests/lighthouse.mjs",
     "test:html": "html-validate dist/index.html dist/en/index.html dist/projects/*/index.html dist/en/projects/*/index.html",
     "test:dist": "node tests/check-dist-base.mjs",
-    "test:images": "node tests/check-image-budget.mjs"
+    "test:images": "node tests/check-image-budget.mjs",
+    "test:lhci": "lhci autorun"
   },
   "dependencies": {
     "@astrojs/react": "^4.4.2",
@@ -31,6 +32,7 @@
   "devDependencies": {
     "@astrojs/check": "^0.9.12",
     "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.16.1",
     "@playwright/test": "^1.64.1",
     "chrome-launcher": "^1.2.2",
     "html-validate": "^11.17.0",

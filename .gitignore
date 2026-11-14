@@ -26,3 +26,4 @@ pnpm-debug.log*
 # wyniki testów
 test-results/
 playwright-report/
+.lighthouseci/
