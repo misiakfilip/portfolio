@@ -106,3 +106,29 @@ body {
     transition-duration: 0.01ms !important;
   }
 }
+
+/* Sanitised README HTML in the repo modal (RepoModal, utils/renderReadme.ts). */
+.readme {
+  color: var(--body);
+  line-height: 1.7;
+  overflow-wrap: anywhere;
+}
+.readme > * + * { margin-top: 1rem; }
+.readme h1, .readme h2, .readme h3, .readme h4 { color: var(--fg); font-weight: 700; margin-top: 1.5rem; }
+.readme h1 { font-size: 1.875rem; }
+.readme h2 { font-size: 1.5rem; }
+.readme h3 { font-size: 1.25rem; }
+.readme a { color: var(--accent); text-decoration: underline; }
+.readme ul, .readme ol { padding-left: 1.5rem; }
+.readme ul { list-style: disc; }
+.readme ol { list-style: decimal; }
+.readme li + li { margin-top: 0.25rem; }
+.readme img { max-width: 100%; height: auto; border-radius: 0.5rem; }
+.readme blockquote { border-left: 4px solid var(--accent); padding-left: 1rem; color: var(--muted); }
+.readme code { background: var(--chip); color: var(--chip-fg); padding: 0.1rem 0.4rem; border-radius: 0.25rem; font-size: 0.875em; }
+.readme pre { background: #0f172a; color: #e2e8f0; padding: 1rem; border-radius: 0.5rem; overflow-x: auto; }
+.readme pre code { background: none; color: inherit; padding: 0; }
+.readme hr { border-color: var(--line); }
+.readme table { display: block; overflow-x: auto; border-collapse: collapse; }
+.readme th, .readme td { border: 1px solid var(--line); padding: 0.4rem 0.75rem; }
+.readme th { color: var(--fg); }

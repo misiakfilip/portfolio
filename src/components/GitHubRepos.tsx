@@ -1,7 +1,7 @@
 // src/components/GitHubRepos.tsx
 // Island (client:visible). Renders a fixed-height skeleton on the server and until the data arrives,
 // so the section does not shift the layout; errors (rate limit, network) are shown in the UI.
-import { useEffect, useMemo, useRef, useState } from 'react';
+import { useEffect, useMemo, useState } from 'react';
 import { Search, Star, GitFork, Code, Calendar, Filter } from 'lucide-react';
 import type { Dictionary, Lang } from '../i18n';
 import { format } from '../i18n/format';
@@ -33,9 +33,6 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
   const [includeForks, setIncludeForks] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [selected, setSelected] = useState<Repository | null>(null);
-  const [readme, setReadme] = useState('');
-  const [loadingReadme, setLoadingReadme] = useState(false);
-  const readmeRequest = useRef<AbortController | null>(null);
 
   // One request per visit (plus one per explicit retry); aborted on unmount.
   useEffect(() => {
@@ -73,32 +70,6 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
         (needle === '' || r.name.toLowerCase().includes(needle) || (r.description ?? '').toLowerCase().includes(needle)),
     );
   }, [repos, pinnedRepos, showPinned, search, languageFilter, includeForks]);
-
-  const openRepo = async (repo: Repository) => {
-    readmeRequest.current?.abort();
-    const controller = new AbortController();
-    readmeRequest.current = controller;
-    setSelected(repo);
-    setReadme('');
-    setLoadingReadme(true);
-    try {
-      const response = await fetch(`https://api.github.com/repos/${username}/${repo.name}/readme`, {
-        headers: { Accept: 'application/vnd.github.v3.raw' },
-        signal: controller.signal,
-      });
-      setReadme(response.ok ? await response.text() : labels.readmeMissing);
-    } catch {
-      if (controller.signal.aborted) return;
-      setReadme(labels.readmeError);
-    }
-    setLoadingReadme(false);
-  };
-
-  const closeRepo = () => {
-    readmeRequest.current?.abort();
-    setSelected(null);
-    setReadme('');
-  };
 
   const retry = () => {
     setState({ status: 'loading' });
@@ -138,7 +109,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
           <ul className={`${GRID} list-none`}>
             {pinnedRepos.map((repo) => (
               <li key={repo.id}>
-                <RepoCard repo={repo} onOpen={openRepo} labels={labels} dateFormat={dateFormat} badge />
+                <RepoCard repo={repo} onOpen={setSelected} labels={labels} dateFormat={dateFormat} badge />
               </li>
             ))}
           </ul>
@@ -206,7 +177,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
           <ul className={`${GRID} list-none`}>
             {filtered.slice(0, visibleCount).map((repo) => (
               <li key={repo.id}>
-                <RepoCard repo={repo} onOpen={openRepo} labels={labels} dateFormat={dateFormat} />
+                <RepoCard repo={repo} onOpen={setSelected} labels={labels} dateFormat={dateFormat} />
               </li>
             ))}
           </ul>
@@ -226,7 +197,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
       </div>
 
       {selected && (
-        <RepoModal repo={selected} readme={readme} loadingReadme={loadingReadme} onClose={closeRepo} labels={labels} />
+        <RepoModal username={username} repo={selected} labels={labels} onClose={() => setSelected(null)} />
       )}
     </div>
   );
@@ -240,16 +211,22 @@ interface RepoCardProps {
   badge?: boolean;
 }
 
-// TODO(Z-15): make the card a real button/link with keyboard support.
 const RepoCard = ({ repo, onOpen, labels, dateFormat, badge }: RepoCardProps) => (
-  <div
-    onClick={() => onOpen(repo)}
-    className={`${CARD_HEIGHT} overflow-hidden bg-card backdrop-blur-md rounded-lg p-6 border border-line hover:border-accent-2 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer ${badge ? 'ring-2 ring-accent-2' : ''}`}
+  <article
+    className={`relative ${CARD_HEIGHT} overflow-hidden bg-card backdrop-blur-md rounded-lg p-6 border border-line hover:border-accent-2 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 has-[button:focus-visible]:outline-2 has-[button:focus-visible]:outline-accent-2 ${badge ? 'ring-2 ring-accent-2' : ''}`}
   >
     <div className="flex items-start justify-between gap-2 mb-3">
       <h4 className="text-xl font-semibold text-fg flex items-center gap-2 flex-1 min-w-0">
         <Code size={20} className="text-accent shrink-0" aria-hidden="true" />
-        <span className="truncate">{repo.name}</span>
+        {/* Stretched button: the whole card is clickable and keyboard-operable. */}
+        <button
+          type="button"
+          onClick={() => onOpen(repo)}
+          aria-haspopup="dialog"
+          className="truncate text-left cursor-pointer after:absolute after:inset-0 focus-visible:outline-none"
+        >
+          {repo.name}
+        </button>
       </h4>
       {badge && (
         <span className="text-xs bg-chip border border-line text-chip-fg px-2 py-1 rounded-full shrink-0">
@@ -295,7 +272,7 @@ const RepoCard = ({ repo, onOpen, labels, dateFormat, badge }: RepoCardProps) =>
         ))}
       </ul>
     )}
-  </div>
+  </article>
 );
 
 /** Placeholder with the same geometry as the loaded state. Also the server-rendered output. */
