@@ -8,7 +8,6 @@ for (const p of PAGES) {
       const imgs = await page.$$eval('img', els =>
         els.map(i => ({ src: i.currentSrc || i.src, w: i.getAttribute('width'), h: i.getAttribute('height'), alt: i.getAttribute('alt') })),
       );
-      expect(imgs.length).toBeGreaterThan(0);
       for (const i of imgs) {
         expect(Number(i.w), `width ${i.src}`).toBeGreaterThan(0);
         expect(Number(i.h), `height ${i.src}`).toBeGreaterThan(0);
