@@ -1,0 +1,37 @@
+---
+import { Image as ImageIcon } from 'lucide-react';
+import { Picture } from 'astro:assets';
+import type { ImageMetadata } from 'astro';
+import ProjectSection from './ProjectSection.astro';
+
+interface Props {
+  id?: string;
+  title: string;
+  images: Array<{ image: ImageMetadata; alt: string }>;
+}
+const { id = 'gallery', title, images } = Astro.props;
+---
+
+{images.length > 0 && (
+  <ProjectSection id={id} title={title}>
+    <ImageIcon slot="icon" className="text-accent-2" size={28} aria-hidden="true" />
+    <ul class="grid md:grid-cols-2 gap-4 list-none">
+      {images.map((image) => (
+        <li class="overflow-hidden rounded-lg border border-line">
+          {/* 16:9 frame, whole screenshot visible (object-contain). TODO(owner): uniform 16:9 screenshots, see Astro-audyt/PROPOZYCJA-OBRAZY.md */}
+          <Picture
+            src={image.image}
+            alt={image.alt}
+            formats={['avif']}
+            fallbackFormat="webp"
+            widths={[480, 800, 1200]}
+            sizes="(min-width: 768px) 50vw, 100vw"
+            loading="lazy"
+            decoding="async"
+            class="w-full aspect-video object-contain bg-black/20"
+          />
+        </li>
+      ))}
+    </ul>
+  </ProjectSection>
+)}

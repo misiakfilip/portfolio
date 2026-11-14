@@ -1,0 +1,16 @@
+---
+// Card with an <h2> heading; the base of every section on a project subpage.
+interface Props {
+  id: string;
+  title: string;
+}
+const { id, title } = Astro.props;
+---
+
+<section id={id} aria-labelledby={`${id}-title`} class="bg-card backdrop-blur-md rounded-xl p-6 border border-line scroll-mt-24">
+  <h2 id={`${id}-title`} class="text-2xl font-bold text-fg mb-5 flex items-center gap-2">
+    <slot name="icon" />
+    {title}
+  </h2>
+  <slot />
+</section>

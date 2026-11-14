@@ -1,0 +1,39 @@
+---
+// Shared SEO tags for every page: canonical, hreflang alternates, Open Graph, Twitter Card, theme-color.
+import { languages, localizedPath, ogLocale, otherLang, type Lang } from '../i18n';
+
+interface Props {
+  title: string;
+  description: string;
+  lang: Lang;
+  /** Language-neutral route (e.g. "/projects/Arct"); enables hreflang alternates. Omit for pages without a translation. */
+  path?: string;
+  noindex?: boolean;
+}
+const { title, description, lang, path, noindex = false } = Astro.props;
+// Directory-style URLs with a trailing slash, matching the sitemap and what GitHub Pages finally serves.
+const withSlash = (p: string) => (p.endsWith('/') ? p : `${p}/`);
+const abs = (p: string) => new URL(withSlash(p), Astro.site).href;
+const canonical = abs(path ? localizedPath(lang, path) : Astro.url.pathname);
+const alternates = path
+  ? [...(Object.keys(languages) as Lang[]).map((l) => ({ hreflang: l, href: abs(localizedPath(l, path)) })),
+     { hreflang: 'x-default', href: abs(localizedPath('pl', path)) }]
+  : [];
+---
+
+<meta name="description" content={description} />
+<meta name="theme-color" content="#0f172a" />
+<link rel="canonical" href={canonical} />
+{alternates.map((a) => <link rel="alternate" hreflang={a.hreflang} href={a.href} />)}
+{noindex && <meta name="robots" content="noindex" />}
+<meta property="og:type" content="website" />
+<meta property="og:site_name" content="Filip Misiak" />
+<meta property="og:locale" content={ogLocale[lang]} />
+{path && <meta property="og:locale:alternate" content={ogLocale[otherLang(lang)]} />}
+<meta property="og:title" content={title} />
+<meta property="og:description" content={description} />
+<meta property="og:url" content={canonical} />
+<!-- TODO(owner): dodaj obraz 1200x630 (public/og.png) i og:image / twitter:image -->
+<meta name="twitter:card" content="summary" />
+<meta name="twitter:title" content={title} />
+<meta name="twitter:description" content={description} />

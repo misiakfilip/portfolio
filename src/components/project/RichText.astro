@@ -1,0 +1,17 @@
+---
+// Paragraphs and list for project content. Strings come from src/i18n/projects.ts (trusted, may contain <strong>/<em>).
+interface Props {
+  paragraphs?: string[];
+  items?: string[];
+}
+const { paragraphs = [], items = [] } = Astro.props;
+---
+
+<div class="text-body space-y-4 [&_strong]:text-accent [&_em]:italic">
+  {paragraphs.map((text) => <p set:html={text} />)}
+  {items.length > 0 && (
+    <ul class="list-disc ml-6 space-y-2">
+      {items.map((text) => <li set:html={text} />)}
+    </ul>
+  )}
+</div>

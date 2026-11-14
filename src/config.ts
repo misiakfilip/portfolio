@@ -1,4 +1,16 @@
 // src/config.ts
+export interface FeaturedProject {
+  title: string;
+  description: string;
+  /** File name in src/assets/projects/ (e.g. "blog.jpg"). */
+  image?: string;
+  technologies: string[];
+  demoUrl?: string;
+  githubUrl?: string;
+  /** Route slug of the project subpage (see src/i18n/projects.ts); when set, the card links there. */
+  slug?: string;
+}
+
 export const config = {
   // Podstawowe info
   name: "Filip Misiak",
@@ -16,17 +28,21 @@ export const config = {
   // Social links
   social: {
     github: "https://github.com/misiakfilip",
-    linkedin: "https://linkedin.com/in/filip-misiak-031090281", // ZMIEŃ!
-    email: "filip.misiak11@gmail.com", // ZMIEŃ!
-    twitter: "", // Opcjonalnie
+    linkedin: "https://linkedin.com/in/filip-misiak-031090281",
+    email: "filip.misiak11@gmail.com",
   },
   
+  // "Pinned" repositories on the home page: a curated list of repo names, fetched live from the
+  // public REST API together with the rest of the repos (no token needed, nothing secret in the
+  // client). The GitHub "pinned" list itself is only exposed by the GraphQL API, which requires
+  // an auth token that must not ship in client code, so the list is maintained here instead.
+  // Names that do not exist (or are forks of other people's projects) are simply skipped.
+  // TODO(owner): potwierdź, które repozytoria mają być wyróżnione.
+  pinnedRepos: ["recipe", "impostor-demo"],
+
   // CV
-  cvUrl: "/cv.pdf", // Umieść plik cv.pdf w public/
-  
-  // Google Analytics
-  googleAnalyticsId: "G-XXXXXXXXXX", // ZMIEŃ na swoje ID lub zostaw puste
-  
+  cvUrl: "/downloads/Filip_Misiak_CV_ENG.pdf" as string | undefined,
+
   // Technology icons
   technologies: [
     { name: "Python", icon: "devicon-python-plain" },
@@ -106,21 +122,18 @@ education: {
       school: "Zespół Szkół Elektronicznych Elektrycznych i Mechanicznych w Bielsku-Białej im. Jędrzeja Śniadeckiego",
       website: "https://zseeim.edu.pl/",
       period: "2019",
-      icon: "🎓"
     },
     {
       title: "Studia I Stopnia, kierunek: informatyka, specjalizacja: Programowanie gier i aplikacji mobilnych",
       school: "Uniwersytet Ekonomiczny w Katowicach",
       website: "https://www.ue.katowice.pl/",
       period: "2024",
-      icon: "🎓"
     },
     {
       title: "Studia II Stopnia, kierunek: informatyka, specjalizacja: Analiza danych",
       school: "Uniwersytet Ekonomiczny w Katowicach",
       website: "https://www.ue.katowice.pl/",
       period: "w trakcie",
-      icon: "🎓"
     }
   ],
   en: [
@@ -129,170 +142,114 @@ education: {
       school: "Zespół Szkół Elektronicznych Elektrycznych i Mechanicznych w Bielsku-Białej im. Jędrzeja Śniadeckiego",
       website: "https://zseeim.edu.pl/",
       period: "2019",
-      icon: "🎓"
     },
     {
       title: "Bachelor of Computer Science, specialization: Game and Mobile App Programming",
       school: "University of Economics in Katowice",
       website: "https://www.ue.katowice.pl/",
       period: "2024",
-      icon: "🎓"
     },
     {
       title: "Master of Computer Science, specialization: Data Analysis",
       school: "University of Economics in Katowice",
       website: "https://www.ue.katowice.pl/",
       period: "in progress",
-      icon: "🎓"
     }
   ]
 },
   
-  // Certyfikaty i osiągnięcia
-  achievements: {
-    pl: [
-      {
-        title: "AWS Certified Developer",
-        issuer: "Amazon Web Services",
-        date: "2023",
-        icon: "🏆"
-      },
-    ],
-    en: [
-      {
-        title: "AWS Certified Developer",
-        issuer: "Amazon Web Services",
-        date: "2023",
-        icon: "🏆"
-      },
-    ]
-  },
-  
   // Featured Projects (spoza GitHub lub highlight z GitHub)
   featuredProjects: {
-    pl: [
+    pl: <FeaturedProject[]>[
       {
         title: "Blog Najlepszy muzyczny adres",
         description: "Blog muzyczny stworzony z wykorzystaniem Payload CMS.",
-        image: "/portfolio/projects/blog.jpg", 
+        image: "blog.jpg",
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
-        githubUrl: "", 
-        featured: true
       },
       {
         title: "Retro Brick Breaker",
         description: "Gra stworzona w Unity wzorująca się na klasycznych grach Arcade.",
-        image: "/portfolio/projects/retro-brick-breaker.png",
+        image: "retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
         demoUrl: "https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
-        slug: "brick-breaker", 
-        hasDetailPage: true,
-        featured: true
+        slug: "brick-breaker",
       },
       {
         title: "Arct",
         description: "Narracyjna gra dokumentalna stworzona w Unreal Engine 5, skupiona na interaktywnej opowieści i immersji. Projekt bada połączenie narracji dokumentalnej z mechanikami gier.",
-        image: "/portfolio/projects/arct.svg",
+        image: "arct.svg",
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
-        demoUrl: "",
-        githubUrl: "",
-        slug: "Arct",  
-        hasDetailPage: true,
-        featured: true
+        slug: "Arct",
       },
       {
         title: "Skarbnik: Duch kopalni",
         description: "Survival horror osadzony w polskiej kopalni, inspirowany słowiańską mitologią. Gra kładzie nacisk na atmosferę, narrację środowiskową i psychologiczny horror.",
-        image: "/portfolio/projects/skarbnik.jpg",
+        image: "skarbnik.jpg",
         technologies: ["Unity", "C#"],
-        demoUrl: "",
-        githubUrl: "",
-        slug: "skarbnik", 
-        hasDetailPage: true,
-        featured: true
+        slug: "skarbnik",
       },
       {
         title: "Impostor",
         description: "Imprezowa gra mobilna stworzona w React Native, przeznaczona do wspólnej zabawy w grupie. Projekt skupia się na prostych zasadach, szybkiej rozgrywce i interakcji między graczami.",
-        image: "/portfolio/projects/impostor.png",
+        image: "impostor.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
-        githubUrl: "",
-        featured: false
       },
       {
         title: "recipE",
         description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
-        image: "/portfolio/projects/recipe.jpg",
-        technologies: [" .Net Maui", "C#"],
-        demoUrl: "",
+        image: "recipe.png",
+        technologies: [".NET MAUI", "C#"],
         githubUrl: "https://github.com/misiakfilip/recipe",
-        featured: false
       }
 
     ],
-    en: [
+    en: <FeaturedProject[]>[
       {
         title: "Music Blog",
         description: "A music blog created using Payload CMS.",
-        image: "/portfolio/projects/blog.jpg", 
+        image: "blog.jpg",
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
-        githubUrl: "", 
-        featured: true
       },
       {
         title: "Retro Brick Breaker",
         description: "A Unity game inspired by the classic arcade games.",
-        image: "/portfolio/projects/retro-brick-breaker.png",
+        image: "retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
-        demoUrl: "https://demo2.example.com",
         githubUrl: "https://github.com/misiakfilip/retro-brick-breaker",
-        slug: "brick_breaker", 
-        hasDetailPage: true,
-        featured: true
+        slug: "brick-breaker",
       },
       {
         title: "Arct",
         description: "A narrative documentary game developed in Unreal Engine 5, focused on interactive storytelling and immersion. The project explores documentary-driven game design.",
-        image: "/portfolio/projects/arct.jpg",
+        image: "arct.svg",
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
-        demoUrl: "",
-        githubUrl: "",
-        slug: "Arct", 
-        hasDetailPage: true,
-        featured: true
+        slug: "Arct",
       },
       {
         title: "Skarbnik: Spirit of the Mine",
         description: "A survival horror set in a Polish coal mine, inspired by Slavic mythology. The game focuses on atmosphere, environmental storytelling, and psychological horror.",
-        image: "/portfolio/projects/skarbnik.jpg",
+        image: "skarbnik.jpg",
         technologies: ["Unity", "C#"],
-        demoUrl: "",
-        githubUrl: "",
-        slug: "skarbnik", 
-        hasDetailPage: true,
-        featured: true
+        slug: "skarbnik",
       },
       {
         title: "Impostor",
         description: "A party mobile game developed in React Native, designed for group play. The project focuses on simple rules, fast-paced gameplay, and player interaction.",
-        image: "/portfolio/projects/impostor.png",
+        image: "impostor.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
-        githubUrl: "",
-        featured: false
       },
       {
         title: "recipE",
         description: "A mobile application for storing and managing cooking recipes. It allows users to organize, edit, and quickly access their personal recipe collection.",
-        image: "/portfolio/projects/recipe.jpg",
-        technologies: [".NET Maui", "C#"],
-        demoUrl: "",
+        image: "recipe.png",
+        technologies: [".NET MAUI", "C#"],
         githubUrl: "https://github.com/misiakfilip/recipe",
-        featured: false
       }
 
     ]

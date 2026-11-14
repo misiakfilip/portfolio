@@ -1,0 +1,104 @@
+---
+import { ExternalLink, Code } from 'lucide-react';
+import BrandIcon from './BrandIcon.astro';
+import type { FeaturedProject } from '../config';
+import { localizedPath, useTranslations, type Lang } from '../i18n';
+import { Image, Picture } from 'astro:assets';
+import { getProjectImage } from '../utils/projectImages';
+
+interface Props {
+  lang: Lang;
+  projects: FeaturedProject[];
+}
+
+const { lang, projects } = Astro.props;
+const t = useTranslations(lang).featured;
+const button = 'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors font-medium';
+---
+
+{projects.length > 0 && (
+  <section id="projects" class="py-20 px-6 scroll-mt-16">
+    <div class="max-w-7xl mx-auto">
+      <div class="text-center mb-16">
+        <h2 class="text-3xl sm:text-4xl md:text-5xl font-bold text-fg mb-4">{t.title}</h2>
+        <p class="text-lg sm:text-xl text-muted">{t.subtitle}</p>
+      </div>
+
+      <ul class="grid md:grid-cols-2 gap-8 list-none">
+        {projects.map((project) => (
+          <li class="bg-card backdrop-blur-md rounded-xl overflow-hidden shadow-lg border border-line hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-2">
+            <div class="relative aspect-video overflow-hidden bg-linear-to-br from-purple-600 to-cyan-400">
+              {project.image && getProjectImage(project.image) ? (
+                // TODO(owner): jednolite zrzuty 16:9 (np. 1600x900) dla kart, patrz Astro-audyt/PROPOZYCJA-OBRAZY.md
+                getProjectImage(project.image)!.format === 'svg' ? (
+                <Image
+                  src={getProjectImage(project.image)!}
+                  alt={t.previewAlt.replace('{title}', project.title)}
+                  format="svg"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-contain"
+                />
+                ) : (
+                <Picture
+                  src={getProjectImage(project.image)!}
+                  alt={t.previewAlt.replace('{title}', project.title)}
+                  formats={['avif']}
+                  fallbackFormat="webp"
+                  widths={[400, 640, 960]}
+                  sizes="(min-width: 768px) 50vw, 100vw"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-contain"
+                />
+                )
+              ) : (
+                <div class="w-full h-full flex items-center justify-center">
+                  <Code size={80} aria-hidden="true" className="text-white/30" />
+                </div>
+              )}
+              <div class="absolute inset-0 bg-linear-to-t from-black/50 to-transparent"></div>
+            </div>
+
+            <div class="p-6">
+              <h3 class="text-2xl font-bold text-fg mb-3">{project.title}</h3>
+              <p class="text-body mb-4 leading-relaxed">{project.description}</p>
+
+              <ul class="flex flex-wrap gap-2 mb-6 list-none">
+                {project.technologies.map((tech) => (
+                  <li class="px-3 py-1 bg-chip border border-line text-chip-fg rounded-full text-sm font-medium">
+                    {tech}
+                  </li>
+                ))}
+              </ul>
+
+              <div class="flex gap-4 flex-wrap">
+                {project.slug ? (
+                  <a href={localizedPath(lang, `/projects/${project.slug}`)} class={`${button} bg-purple-700 hover:bg-purple-800 text-white`}>
+                    <ExternalLink size={18} aria-hidden="true" />
+                    {t.learnMore}
+                  </a>
+                ) : (
+                  <>
+                    {project.demoUrl && (
+                      <a href={project.demoUrl} target="_blank" rel="noopener noreferrer" class={`${button} bg-purple-700 hover:bg-purple-800 text-white`}>
+                        <ExternalLink size={18} aria-hidden="true" />
+                        {t.demo}
+                      </a>
+                    )}
+                    {project.githubUrl && (
+                      <a href={project.githubUrl} target="_blank" rel="noopener noreferrer" class={`${button} border-2 border-accent text-accent hover:bg-chip`}>
+                        <BrandIcon name="github" size={18} />
+                        {t.github}
+                      </a>
+                    )}
+                  </>
+                )}
+              </div>
+            </div>
+          </li>
+        ))}
+      </ul>
+    </div>
+  </section>
+)}

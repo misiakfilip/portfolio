@@ -1,0 +1,80 @@
+---
+// One implementation of a project subpage for every language: data from src/i18n/projects.ts,
+// UI labels from the dictionary. All sections are static HTML (no hydration).
+import ProjectLayout from '../layouts/ProjectLayout.astro';
+import ProjectSection from './project/ProjectSection.astro';
+import RichText from './project/RichText.astro';
+import FeaturesList from './project/FeaturesList.astro';
+import ImageGallery from './project/ImageGallery.astro';
+import DownloadsSection from './project/DownloadsSection.astro';
+import LinksSection from './project/LinksSection.astro';
+import YouTubeVideo from './project/YouTubeVideo.astro';
+import { useTranslations, type Lang } from '../i18n';
+import { projects, type ProjectSlug } from '../i18n/projects';
+import { loadGalleryImages } from '../utils/loadGalleryImages';
+
+interface Props {
+  lang: Lang;
+  slug: ProjectSlug;
+}
+
+const { lang, slug } = Astro.props;
+const t = useTranslations(lang).project;
+const project = projects[slug];
+const content = project.content[lang];
+const images = project.galleryPrefix ? loadGalleryImages(project.galleryPrefix, project.imageAlts ?? {}, lang) : [];
+const localize = <T extends { label: Record<Lang, string> }>(item: T) => ({ ...item, label: item.label[lang] });
+---
+
+<ProjectLayout
+  lang={lang}
+  path={`/projects/${slug}`}
+  title={content.title}
+  description={content.description}
+  technologies={content.technologies}
+  github={project.github}
+  demo={project.demo}
+>
+  <div class="space-y-8">
+    <ProjectSection id="about" title={t.about}>
+      <RichText paragraphs={content.about} />
+    </ProjectSection>
+
+    {project.videoId && <YouTubeVideo videoId={project.videoId} title={t.video} />}
+
+    <FeaturesList title={t.features} features={content.features} />
+
+    <ImageGallery title={t.screenshots} images={images} />
+
+    <ProjectSection id="docs" title={t.docs}>
+      <div class="space-y-6">
+        {content.docs.map((section) => (
+          <div>
+            <h3 class="text-xl font-bold text-fg mb-3">{section.heading}</h3>
+            <RichText paragraphs={section.paragraphs} items={section.items} />
+          </div>
+        ))}
+      </div>
+    </ProjectSection>
+
+    {content.challenges && (
+      <ProjectSection id="challenges" title={t.challenges}>
+        <div class="space-y-5">
+          {content.challenges.map((section) => (
+            <div>
+              <h3 class="text-lg font-bold text-fg mb-2">{section.heading}</h3>
+              <RichText paragraphs={section.paragraphs} items={section.items} />
+            </div>
+          ))}
+        </div>
+      </ProjectSection>
+    )}
+
+    <DownloadsSection title={t.downloads} downloads={project.downloads.map(localize)} />
+
+    <LinksSection
+      title={t.links}
+      links={project.links.map((link) => ({ href: link.href, label: link.label[lang], description: link.description[lang] }))}
+    />
+  </div>
+</ProjectLayout>

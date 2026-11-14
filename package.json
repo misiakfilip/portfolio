@@ -1,22 +1,46 @@
 {
   "name": "c-users-filip-astro",
   "type": "module",
+  "engines": {
+    "node": ">=22.23.4"
+  },
   "version": "0.0.1",
   "scripts": {
     "dev": "astro dev",
     "build": "astro build",
     "preview": "astro preview",
-    "astro": "astro"
+    "astro": "astro",
+    "test:e2e": "playwright test --grep-invert @external",
+    "test:e2e:full": "FULL=1 playwright test --grep-invert @external",
+    "test:lighthouse": "node tests/lighthouse.mjs",
+    "test:html": "html-validate dist/index.html dist/en/index.html dist/projects/*/index.html dist/en/projects/*/index.html",
+    "test:dist": "node tests/check-dist-base.mjs",
+    "test:images": "node tests/check-image-budget.mjs",
+    "test:lhci": "lhci autorun"
   },
   "dependencies": {
-    "@astrojs/react": "^4.4.2",
-    "@tailwindcss/vite": "^4.1.17",
+    "@astrojs/react": "^7.1.9",
+    "@astrojs/sitemap": "^3.7.5",
+    "@tailwindcss/vite": "^4.3.5",
     "@types/react": "^19.2.7",
     "@types/react-dom": "^19.2.3",
-    "astro": "^5.16.3",
+    "astro": "^7.4.12",
+    "dompurify": "^3.4.17",
     "lucide-react": "^0.555.0",
+    "marked": "^18.2.0",
     "react": "^19.2.0",
     "react-dom": "^19.2.0",
-    "tailwindcss": "^4.1.17"
+    "tailwindcss": "^4.3.5",
+    "vite": "^8.3.8"
+  },
+  "devDependencies": {
+    "@astrojs/check": "^0.9.12",
+    "@axe-core/playwright": "^4.14.0",
+    "@lhci/cli": "^0.16.1",
+    "@playwright/test": "^1.64.1",
+    "chrome-launcher": "^1.2.2",
+    "html-validate": "^11.17.0",
+    "lighthouse": "^13.6.0",
+    "typescript": "^5.9.3"
   }
 }

@@ -1,11 +1,5 @@
 ---
-// src/pages/index.astro
-import Layout from '../layouts/Layout.astro';
-import Portfolio from '../components/Portfolio';
-import { config } from '../config';
-import "../styles/global.css";
+import HomePage from '../components/HomePage.astro';
 ---
 
-<Layout title={`${config.name} - Portfolio`}>
-  <Portfolio client:load config={config} />
-</Layout>
+<HomePage lang="pl" />
