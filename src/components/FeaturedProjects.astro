@@ -3,7 +3,7 @@ import { ExternalLink, Code } from 'lucide-react';
 import BrandIcon from './BrandIcon.astro';
 import type { FeaturedProject } from '../config';
 import { localizedPath, useTranslations, type Lang } from '../i18n';
-import { Picture } from 'astro:assets';
+import { Image, Picture } from 'astro:assets';
 import { getProjectImage } from '../utils/projectImages';
 
 interface Props {
@@ -30,6 +30,16 @@ const button = 'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors f
             <div class="relative aspect-video overflow-hidden bg-linear-to-br from-purple-600 to-cyan-400">
               {project.image && getProjectImage(project.image) ? (
                 // TODO(owner): jednolite zrzuty 16:9 (np. 1600x900) dla kart, patrz Astro-audyt/PROPOZYCJA-OBRAZY.md
+                getProjectImage(project.image)!.format === 'svg' ? (
+                <Image
+                  src={getProjectImage(project.image)!}
+                  alt={t.previewAlt.replace('{title}', project.title)}
+                  format="svg"
+                  loading="lazy"
+                  decoding="async"
+                  class="w-full h-full object-contain"
+                />
+                ) : (
                 <Picture
                   src={getProjectImage(project.image)!}
                   alt={t.previewAlt.replace('{title}', project.title)}
@@ -41,6 +51,7 @@ const button = 'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors f
                   decoding="async"
                   class="w-full h-full object-contain"
                 />
+                )
               ) : (
                 <div class="w-full h-full flex items-center justify-center">
                   <Code size={80} aria-hidden="true" className="text-white/30" />
