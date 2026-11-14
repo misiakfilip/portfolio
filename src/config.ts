@@ -6,10 +6,8 @@ export interface FeaturedProject {
   technologies: string[];
   demoUrl?: string;
   githubUrl?: string;
-  /** Route slug of the project subpage (see src/i18n/projects.ts); set together with hasDetailPage. */
+  /** Route slug of the project subpage (see src/i18n/projects.ts); when set, the card links there. */
   slug?: string;
-  hasDetailPage?: boolean;
-  featured: boolean;
 }
 
 export const config = {
@@ -124,21 +122,18 @@ education: {
       school: "Zespół Szkół Elektronicznych Elektrycznych i Mechanicznych w Bielsku-Białej im. Jędrzeja Śniadeckiego",
       website: "https://zseeim.edu.pl/",
       period: "2019",
-      icon: "🎓"
     },
     {
       title: "Studia I Stopnia, kierunek: informatyka, specjalizacja: Programowanie gier i aplikacji mobilnych",
       school: "Uniwersytet Ekonomiczny w Katowicach",
       website: "https://www.ue.katowice.pl/",
       period: "2024",
-      icon: "🎓"
     },
     {
       title: "Studia II Stopnia, kierunek: informatyka, specjalizacja: Analiza danych",
       school: "Uniwersytet Ekonomiczny w Katowicach",
       website: "https://www.ue.katowice.pl/",
       period: "w trakcie",
-      icon: "🎓"
     }
   ],
   en: [
@@ -147,21 +142,18 @@ education: {
       school: "Zespół Szkół Elektronicznych Elektrycznych i Mechanicznych w Bielsku-Białej im. Jędrzeja Śniadeckiego",
       website: "https://zseeim.edu.pl/",
       period: "2019",
-      icon: "🎓"
     },
     {
       title: "Bachelor of Computer Science, specialization: Game and Mobile App Programming",
       school: "University of Economics in Katowice",
       website: "https://www.ue.katowice.pl/",
       period: "2024",
-      icon: "🎓"
     },
     {
       title: "Master of Computer Science, specialization: Data Analysis",
       school: "University of Economics in Katowice",
       website: "https://www.ue.katowice.pl/",
       period: "in progress",
-      icon: "🎓"
     }
   ]
 },
@@ -172,11 +164,9 @@ education: {
       {
         title: "Blog Najlepszy muzyczny adres",
         description: "Blog muzyczny stworzony z wykorzystaniem Payload CMS.",
-        image: "/projects/blog.jpg", 
+        image: "/projects/blog.jpg",
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
-        githubUrl: "", 
-        featured: true
       },
       {
         title: "Retro Brick Breaker",
@@ -184,32 +174,22 @@ education: {
         image: "/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
         demoUrl: "https://play.unity.com/api/v1/games/game/c479b58a-bbc7-447c-93bb-204a03f6cecc/build/latest/frame",
-        githubUrl: "", // TODO(owner): URL repozytorium Brick Breaker (ukryte do potwierdzenia)
+        // TODO(owner): URL repozytorium Brick Breaker (ukryte do potwierdzenia)
         slug: "brick-breaker",
-        hasDetailPage: true,
-        featured: true
       },
       {
         title: "Arct",
         description: "Narracyjna gra dokumentalna stworzona w Unreal Engine 5, skupiona na interaktywnej opowieści i immersji. Projekt bada połączenie narracji dokumentalnej z mechanikami gier.",
         image: "/projects/arct.svg",
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
-        demoUrl: "",
-        githubUrl: "",
         slug: "Arct",
-        hasDetailPage: true,
-        featured: true
       },
       {
         title: "Skarbnik: Duch kopalni",
         description: "Survival horror osadzony w polskiej kopalni, inspirowany słowiańską mitologią. Gra kładzie nacisk na atmosferę, narrację środowiskową i psychologiczny horror.",
         image: "/projects/skarbnik.jpg",
         technologies: ["Unity", "C#"],
-        demoUrl: "",
-        githubUrl: "",
         slug: "skarbnik",
-        hasDetailPage: true,
-        featured: true
       },
       {
         title: "Impostor",
@@ -217,17 +197,13 @@ education: {
         image: "/projects/impostor.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
-        githubUrl: "",
-        featured: false
       },
       {
         title: "recipE",
         description: "Aplikacja mobilna do zapisywania i zarządzania przepisami kulinarnymi. Umożliwia organizację, edycję i szybki dostęp do własnej bazy przepisów.",
         image: "/projects/recipe.png",
         technologies: ["React Native", "JavaScript"],
-        demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
-        featured: false
       }
 
     ],
@@ -235,44 +211,32 @@ education: {
       {
         title: "Best Music Blog",
         description: "A music blog created using Payload CMS.",
-        image: "/projects/blog.jpg", 
+        image: "/projects/blog.jpg",
         technologies: ["React", "Node.js", "TypeScript", "Payload CMS"],
         demoUrl: "https://payload-website-starter-one-rust.vercel.app/posts",
-        githubUrl: "", 
-        featured: true
       },
       {
         title: "Retro Brick Breaker",
         description: "A Unity game inspired by the classic arcade games.",
         image: "/projects/retro-brick-breaker.png",
         technologies: ["Unity", "C#"],
-        demoUrl: "", // TODO(owner): adres demo wersji EN (nieznany)
-        githubUrl: "", // TODO(owner): URL repozytorium Brick Breaker (ukryte do potwierdzenia)
+        // TODO(owner): adres demo wersji EN (nieznany)
+        // TODO(owner): URL repozytorium Brick Breaker (ukryte do potwierdzenia)
         slug: "brick-breaker",
-        hasDetailPage: true,
-        featured: true
       },
       {
         title: "Arct",
         description: "A narrative documentary game developed in Unreal Engine 5, focused on interactive storytelling and immersion. The project explores documentary-driven game design.",
         image: "/projects/arct.svg",
         technologies: ["Unreal Engine 5", "Blueprints", "C++"],
-        demoUrl: "",
-        githubUrl: "",
         slug: "Arct",
-        hasDetailPage: true,
-        featured: true
       },
       {
         title: "Skarbnik: Spirit of the Mine",
         description: "A survival horror set in a Polish coal mine, inspired by Slavic mythology. The game focuses on atmosphere, environmental storytelling, and psychological horror.",
         image: "/projects/skarbnik.jpg",
         technologies: ["Unity", "C#"],
-        demoUrl: "",
-        githubUrl: "",
         slug: "skarbnik",
-        hasDetailPage: true,
-        featured: true
       },
       {
         title: "Impostor",
@@ -280,17 +244,13 @@ education: {
         image: "/projects/impostor.png",
         technologies: ["React Native", "JavaScript"],
         demoUrl: "https://github.com/misiakfilip/impostor-demo/releases/download/v1.0.0/impostor.apk",
-        githubUrl: "",
-        featured: false
       },
       {
         title: "recipE",
         description: "A mobile application for storing and managing cooking recipes. It allows users to organize, edit, and quickly access their personal recipe collection.",
         image: "/projects/recipe.png",
         technologies: ["React Native", "JavaScript"],
-        demoUrl: "",
         githubUrl: "https://github.com/misiakfilip/recipe",
-        featured: false
       }
 
     ]

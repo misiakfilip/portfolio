@@ -41,7 +41,6 @@ export const MOCK_REPOS = [
   pushed_at: new Date(Date.UTC(2025, 0, 30 - i)).toISOString(),
   topics: ['demo'],
   fork: r.fork,
-  archived: false,
 }));
 
 export async function mockGithub(page: Page) {

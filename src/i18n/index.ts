@@ -25,14 +25,6 @@ export function useTranslations(lang: Lang): Dictionary {
   return dictionaries[lang];
 }
 
-/** Detects the language from the URL, ignoring Astro's `base` (e.g. /portfolio/en/ -> "en"). */
-export function getLangFromUrl(url: URL): Lang {
-  const base = import.meta.env.BASE_URL.replace(/\/+$/, '');
-  const path = base && url.pathname.startsWith(base) ? url.pathname.slice(base.length) : url.pathname;
-  const [first] = path.split('/').filter(Boolean);
-  return first === 'en' ? 'en' : defaultLang;
-}
-
 /**
  * Builds a base-aware URL for a language-neutral route.
  * localizedPath('en', '/projects/Arct') -> "/portfolio/en/projects/Arct"; localizedPath('pl') -> "/portfolio/".
@@ -42,5 +34,3 @@ export function localizedPath(lang: Lang, path = '/'): string {
   if (lang === defaultLang) return withBase(clean);
   return withBase(clean === '/' ? '/en/' : `/en${clean}`);
 }
-
-export { format } from './format';

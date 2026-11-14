@@ -13,7 +13,6 @@ export interface Repository {
   pushed_at: string;
   topics: string[];
   fork: boolean;
-  archived: boolean;
 }
 
 export type RepoErrorKind = 'rate-limit' | 'network';
@@ -64,7 +63,6 @@ function slim(r: Repository): Repository {
     pushed_at: r.pushed_at,
     topics: r.topics ?? [],
     fork: r.fork,
-    archived: r.archived,
   };
 }
 

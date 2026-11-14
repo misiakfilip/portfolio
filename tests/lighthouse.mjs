@@ -43,5 +43,5 @@ for (const [name, path] of Object.entries(pages).filter(([n]) => !only || only.i
     }
   }
 }
-await chrome.kill();
+chrome.kill();
 fs.writeFileSync(`${out}/summary.json`, JSON.stringify(summary, null, 2));

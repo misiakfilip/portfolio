@@ -11,7 +11,7 @@ const ALLOWED_ATTR = ['href', 'src', 'alt', 'title', 'align', 'width', 'height',
 const ALLOWED_URI = /^(?:https?:|mailto:|#)/i;
 
 /** Relative links and images in a README point into the repo: they resolve to raw.githubusercontent.com. */
-export const readmeBase = (owner: string, repo: string) => `https://raw.githubusercontent.com/${owner}/${repo}/HEAD/`;
+const readmeBase = (owner: string, repo: string) => `https://raw.githubusercontent.com/${owner}/${repo}/HEAD/`;
 
 // Base of the README being rendered (set right before each sanitising; rendering is synchronous).
 let base = '';

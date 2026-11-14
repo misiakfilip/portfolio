@@ -56,7 +56,7 @@ const button = 'flex items-center gap-2 px-4 py-2 rounded-lg transition-colors f
               </ul>
 
               <div class="flex gap-4 flex-wrap">
-                {project.hasDetailPage && project.slug ? (
+                {project.slug ? (
                   <a href={localizedPath(lang, `/projects/${project.slug}`)} class={`${button} bg-purple-700 hover:bg-purple-800 text-white`}>
                     <ExternalLink size={18} aria-hidden="true" />
                     {t.learnMore}
