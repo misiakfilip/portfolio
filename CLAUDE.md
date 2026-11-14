@@ -5,7 +5,7 @@ Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna
 
 ## Stack
 - Astro 5.16.3 (output statyczny, bez adaptera), React 19.2 (`@astrojs/react`), Tailwind 4.1 (`@tailwindcss/vite`, konfiguracja tylko w `global.css`), lucide-react, `marked` + `dompurify` (tylko modal README, ładowane dynamicznie), TypeScript.
-- npm, Node 24 lokalnie (CI używa Node 20).
+- npm, Node 24 lokalnie (CI: build/deploy Node 20, job `test` Node 22, bo `@lhci/cli` i `lighthouse` 13 wymagają >= 22.19).
 - Hosting: GitHub Pages, `site: https://misiakfilip.github.io`, `base: /portfolio`. Deploy: `.github/workflows/deploy.yml` (push na `main`).
 
 ## Struktura
@@ -35,6 +35,12 @@ Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna
 - `npm run preview` – podgląd buildu
 - `npx astro check` – typy (0 errors / 0 warnings / 0 hints), `npm run test:images` – budżet rozmiaru obrazów w `dist/`, `npm run test:dist` – skan `dist/**/*.html` pod kątem prefiksu `/portfolio/`.
 
+- `npm run test:lhci` – Lighthouse CI (`lighthouserc.json`, 8 stron x 3 przebiegi, mobile; asercje: 4 kategorie >= 0.95, CLS <= 0.1, LCP <= 2500, TBT <= 200, brak błędów konsoli, skrypty <= 50 kB, obrazy <= 250 kB na stronę; ok. 4,5 min lokalnie).
+
+## CI (`.github/workflows/deploy.yml`)
+- Triggery: `push` na `main` (testy + deploy), `pull_request` (build + testy, bez deployu), `workflow_dispatch` z opcją `full` (FULL=1: Firefox, WebKit, iPhone).
+- Job `test`: build, `astro check`, `test:dist`, `test:images`, Playwright (chromium + mobile-chrome; raport `playwright-report` jako artefakt przy porażce), `test:lhci`, `npm audit --audit-level=critical --omit=dev` (informacyjnie, `continue-on-error` do migracji na Astro 7). `deploy` wymaga `build` i `test`, działa tylko dla push na `main`.
+
 ## Konwencje
 - Wszystko bez stanu to `.astro` (zero JS); React tylko dla interaktywnych wysp. Ikony: `lucide-react` renderowane po stronie serwera.
 - Stylowanie klasami Tailwind inline.
@@ -54,4 +60,4 @@ Testy w `tests/e2e/` mockują `api.github.com` (fixture w `helpers.ts`); nie zal
 - `npm run test:lighthouse` (wszystkie 8 stron, mobile+desktop; `ONLY=home,en-home` ogranicza), `npm run test:html`.
 
 ## Raporty audytu (poza repo)
-`../Astro-audyt/` (AUDYT-WYNIKI.md, PLAN-NAPRAWY.md, DECYZJE.md, notatki/). Zadania Z-14, Z-15, Z-16, Z-18, Z-20 zrobione; zostaje Z-13 (obrazy `astro:assets`), Astro 7 i CI (Z-21).
+`../Astro-audyt/` (AUDYT-WYNIKI.md, PLAN-NAPRAWY.md, DECYZJE.md, notatki/). Zadania Z-14, Z-15, Z-16, Z-18, Z-20 zrobione; Z-13 i Z-21 (CI) zrobione; zostaje Astro 7.
