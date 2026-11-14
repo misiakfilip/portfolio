@@ -47,6 +47,7 @@ export const pl = {
   featured: {
     title: 'Wyróżnione projekty',
     subtitle: 'Wybrane projekty, nad którymi pracowałem',
+    previewAlt: 'Podgląd projektu: {title}',
     learnMore: 'Zobacz projekt',
     demo: 'Demo',
     github: 'GitHub',

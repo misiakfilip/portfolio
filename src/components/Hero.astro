@@ -1,5 +1,7 @@
 ---
 import { Mail, Download } from 'lucide-react';
+import { Image } from 'astro:assets';
+import avatar from '../assets/avatar.webp';
 import BrandIcon from './BrandIcon.astro';
 import { useTranslations, type Lang } from '../i18n';
 import { withBase } from '../utils/withBase';
@@ -79,11 +81,14 @@ const iconLink =
       {/* Self-hosted copy of the GitHub avatar: no third-party request, fixed size (no layout shift). */}
       <div class="shrink-0 relative">
         <div class="absolute inset-0 bg-purple-500 rounded-full blur-2xl opacity-20"></div>
-        <img
-          src={withBase('/avatar.webp')}
+        <Image
+          src={avatar}
           alt={t.avatarAlt}
-          width="320"
-          height="320"
+          width={320}
+          height={320}
+          widths={[320, 640]}
+          sizes="(min-width: 768px) 320px, (min-width: 640px) 256px, 224px"
+          loading="eager"
           fetchpriority="high"
           decoding="async"
           class="relative w-56 h-56 sm:w-64 sm:h-64 md:w-80 md:h-80 rounded-full border-4 border-purple-500 shadow-2xl object-cover"

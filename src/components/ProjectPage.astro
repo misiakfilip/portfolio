@@ -22,7 +22,7 @@ const { lang, slug } = Astro.props;
 const t = useTranslations(lang).project;
 const project = projects[slug];
 const content = project.content[lang];
-const images = project.galleryPrefix ? loadGalleryImages(project.galleryPrefix) : [];
+const images = project.galleryPrefix ? loadGalleryImages(project.galleryPrefix, project.imageAlts ?? {}, lang) : [];
 const localize = <T extends { label: Record<Lang, string> }>(item: T) => ({ ...item, label: item.label[lang] });
 ---
 

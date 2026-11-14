@@ -48,6 +48,7 @@ export const en: Dictionary = {
   featured: {
     title: 'Featured Projects',
     subtitle: "Selected projects I've worked on",
+    previewAlt: 'Project preview: {title}',
     learnMore: 'View project',
     demo: 'Demo',
     github: 'GitHub',

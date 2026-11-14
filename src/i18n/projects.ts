@@ -24,8 +24,10 @@ export interface ProjectContent {
 }
 
 export interface Project {
-  /** Prefix of gallery files in public/projects/ (e.g. "arct" -> arct-*.png). */
+  /** Prefix of gallery files in src/assets/projects/ (e.g. "arct" -> arct-*.png). */
   galleryPrefix?: string;
+  /** Alt text per gallery file name (PL+EN). */
+  imageAlts?: Record<string, Localized>;
   /** YouTube video id; the video section appears once it is set. */
   videoId?: string;
   /** Repository URL; the GitHub button appears once it is set. */
@@ -42,6 +44,26 @@ export type ProjectSlug = 'Arct' | 'brick-breaker' | 'skarbnik';
 export const projects: Record<ProjectSlug, Project> = {
   Arct: {
     galleryPrefix: 'arct',
+    // TODO(owner): zweryfikuj opisy (alt) - wywnioskowane z nazw plików; popraw na faktyczną zawartość zrzutów.
+    imageAlts: {
+      'arct.jpg': { pl: 'Okładka gry Arct', en: 'Arct key art' },
+      'arct-moonboard.jpg': { pl: 'Moodboard z inspiracjami wizualnymi gry Arct', en: 'Arct visual inspiration moodboard' },
+      'arct-menu.png': { pl: 'Menu główne gry Arct', en: 'Arct main menu' },
+      'arct-settings.png': { pl: 'Ekran ustawień w grze Arct', en: 'Arct settings screen' },
+      'arct-pouse.png': { pl: 'Menu pauzy w grze Arct', en: 'Arct pause menu' },
+      'arct-quests.png': { pl: 'Dziennik zadań w grze Arct', en: 'Arct quest log' },
+      'arct-eq.png': { pl: 'Ekwipunek bohatera w grze Arct', en: 'Arct player inventory' },
+      'arct-dialog1.png': { pl: 'Scena dialogowa w grze Arct (1)', en: 'Arct dialogue scene (1)' },
+      'arct-dialog2.png': { pl: 'Scena dialogowa w grze Arct (2)', en: 'Arct dialogue scene (2)' },
+      'arct-fish.png': { pl: 'Łowienie ryb w grze Arct', en: 'Fishing in Arct' },
+      'arct-level1.png': { pl: 'Pierwszy poziom gry Arct', en: 'Arct, level 1' },
+      'arct-level2.png': { pl: 'Drugi poziom gry Arct', en: 'Arct, level 2' },
+      'arct-ship.png': { pl: 'Statek Belgica w grze Arct (1)', en: 'The Belgica ship in Arct (1)' },
+      'arct-ship2.png': { pl: 'Statek Belgica w grze Arct (2)', en: 'The Belgica ship in Arct (2)' },
+      'arct-ship3.png': { pl: 'Statek Belgica w grze Arct (3)', en: 'The Belgica ship in Arct (3)' },
+      'arct-night.png': { pl: 'Nocna scena w grze Arct', en: 'Night scene in Arct' },
+      'arct-sunset.png': { pl: 'Zachód słońca w grze Arct', en: 'Sunset in Arct' },
+    },
     // TODO(owner): podaj poprawny URL repozytorium (misiakfilip/arct zwraca 404) w polu `github`.
     // TODO(owner): wgraj public/downloads/ARCT-GDD.pdf i dodaj wpis do `downloads` - sekcja "Pliki do pobrania" pojawi się sama.
     // TODO(owner): wpisz ID filmu z YouTube w `videoId` - sekcja wideo pojawi się sama.
@@ -186,7 +208,7 @@ export const projects: Record<ProjectSlug, Project> = {
   },
 
   'brick-breaker': {
-    // TODO(owner): wgraj zrzuty ekranu do public/projects/ (np. arkanoid-1.jpg) i ustaw `galleryPrefix: 'arkanoid'` - galeria pojawi się sama.
+    // TODO(owner): wgraj zrzuty ekranu do src/assets/projects/ (np. arkanoid-1.jpg) i ustaw `galleryPrefix: 'arkanoid'` - galeria pojawi się sama.
     // TODO(owner): podaj poprawny URL repozytorium gry (retro-brick-breaker / arkanoid) w polu `github`.
     // TODO(owner): wpisz ID filmu z YouTube w `videoId` - sekcja wideo pojawi się sama.
     downloads: [
@@ -293,6 +315,14 @@ export const projects: Record<ProjectSlug, Project> = {
 
   skarbnik: {
     galleryPrefix: 'skarbnik',
+    // TODO(owner): zweryfikuj opisy (alt) - wywnioskowane z nazw plików; popraw na faktyczną zawartość zrzutów.
+    imageAlts: {
+      'skarbnik.jpg': { pl: 'Ekran główny aplikacji Skarbnik', en: 'Skarbnik app main screen' },
+      'skarbnik2.jpg': { pl: 'Widok aplikacji Skarbnik (2)', en: 'Skarbnik app view (2)' },
+      'skarbnik3.png': { pl: 'Widok mobilny aplikacji Skarbnik', en: 'Skarbnik app mobile view' },
+      'skarbnik4.png': { pl: 'Widok aplikacji Skarbnik na komputerze (1)', en: 'Skarbnik app desktop view (1)' },
+      'skarbnik5.png': { pl: 'Widok aplikacji Skarbnik na komputerze (2)', en: 'Skarbnik app desktop view (2)' },
+    },
     // TODO(owner): podaj poprawny URL repozytorium (misiakfilip/skarbnk to prawdopodobnie literówka) w polu `github`.
     // TODO(owner): wgraj public/downloads/skarbnik-gdd.pdf i dodaj wpis do `downloads` - sekcja "Pliki do pobrania" pojawi się sama.
     // TODO(owner): wpisz ID filmu z YouTube w `videoId` - sekcja wideo pojawi się sama.
