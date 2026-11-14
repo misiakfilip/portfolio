@@ -1,7 +1,7 @@
 // src/components/GitHubRepos.tsx
 // Island (client:visible). Renders a fixed-height skeleton on the server and until the data arrives,
 // so the section does not shift the layout; errors (rate limit, network) are shown in the UI.
-import { useEffect, useMemo, useState } from 'react';
+import { useEffect, useMemo, useRef, useState } from 'react';
 import { Search, Star, GitFork, Code, Calendar, Filter } from 'lucide-react';
 import type { Dictionary, Lang } from '../i18n';
 import { format } from '../i18n/format';
@@ -33,6 +33,16 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
   const [includeForks, setIncludeForks] = useState(false);
   const [visibleCount, setVisibleCount] = useState(PAGE_SIZE);
   const [selected, setSelected] = useState<Repository | null>(null);
+  // Safari does not focus a button on click, so the dialog could not restore focus itself.
+  const opener = useRef<HTMLElement | null>(null);
+  const openRepo = (repo: Repository, trigger: HTMLElement) => {
+    opener.current = trigger;
+    setSelected(repo);
+  };
+  const closeRepo = () => {
+    setSelected(null);
+    opener.current?.focus();
+  };
 
   // One request per visit (plus one per explicit retry); aborted on unmount.
   useEffect(() => {
@@ -109,7 +119,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
           <ul className={`${GRID} list-none`}>
             {pinnedRepos.map((repo) => (
               <li key={repo.id}>
-                <RepoCard repo={repo} onOpen={setSelected} labels={labels} dateFormat={dateFormat} badge />
+                <RepoCard repo={repo} onOpen={openRepo} labels={labels} dateFormat={dateFormat} badge />
               </li>
             ))}
           </ul>
@@ -177,7 +187,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
           <ul className={`${GRID} list-none`}>
             {filtered.slice(0, visibleCount).map((repo) => (
               <li key={repo.id}>
-                <RepoCard repo={repo} onOpen={setSelected} labels={labels} dateFormat={dateFormat} />
+                <RepoCard repo={repo} onOpen={openRepo} labels={labels} dateFormat={dateFormat} />
               </li>
             ))}
           </ul>
@@ -197,7 +207,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
       </div>
 
       {selected && (
-        <RepoModal username={username} repo={selected} labels={labels} onClose={() => setSelected(null)} />
+        <RepoModal username={username} repo={selected} labels={labels} onClose={closeRepo} />
       )}
     </div>
   );
@@ -205,7 +215,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
 
 interface RepoCardProps {
   repo: Repository;
-  onOpen: (repo: Repository) => void;
+  onOpen: (repo: Repository, trigger: HTMLElement) => void;
   labels: Dictionary['repos'];
   dateFormat: Intl.DateTimeFormat;
   badge?: boolean;
@@ -221,7 +231,7 @@ const RepoCard = ({ repo, onOpen, labels, dateFormat, badge }: RepoCardProps) =>
         {/* Stretched button: the whole card is clickable and keyboard-operable. */}
         <button
           type="button"
-          onClick={() => onOpen(repo)}
+          onClick={(e) => onOpen(repo, e.currentTarget)}
           aria-haspopup="dialog"
           className="truncate text-left cursor-pointer after:absolute after:inset-0 focus-visible:outline-none"
         >
