@@ -15,7 +15,7 @@ Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna
 - `src/components/*.astro` – statyczne sekcje strony głównej (Nav, Hero, Timeline, FeaturedProjects, Contact), `Background`, `ThemeScript` (inline w `<head>`), `ThemeToggle`, `BrandIcon` (inline SVG GitHub/LinkedIn/YouTube); `components/project/*.astro` – sekcje podstron projektów.
 - Wyspy React (jedyne, `client:visible`): `components/TechCarousel.tsx`, `components/GitHubRepos.tsx` (+ `RepoModal.tsx` na natywnym `<dialog>`, `utils/githubRepos.ts` – fetch REST API z cache w sessionStorage, `utils/renderReadme.ts` – marked + DOMPurify, `import()` dopiero po otwarciu modala). Nic innego nie jest hydratowane.
 - `src/i18n/` – słowniki `pl.ts`/`en.ts`, `projects.ts` (treści podstron), helpery. `src/config.ts` – dane osobowe, projekty wyróżnione, `pinnedRepos`.
-- `src/utils/loadGalleryImages.ts`, `withBase.ts`, `youtube.ts` (atrybuty iframe: nocookie, lazy); `src/styles/global.css`; `public/` (zasoby statyczne, `public/projects/` zrzuty ekranu, `public/avatar.webp`).
+- `src/utils/loadGalleryImages.ts`, `withBase.ts`, `youtube.ts` (atrybuty iframe: nocookie, lazy); `src/styles/global.css`; `src/assets/` (obrazy optymalizowane przez astro:assets, `projects/` zrzuty ekranu, `avatar.webp`); `public/` (tylko statyczne: favicon, robots).
 
 ## i18n (decyzja architektoniczna)
 - Osobne statyczne strony per język (routing plikowy Astro): PL bez prefiksu (`/`, `/projects/<slug>`), EN pod `/en/` (`/en/`, `/en/projects/<slug>`).
@@ -33,17 +33,17 @@ Osobista strona wizytówka/portfolio Filipa Misiaka (GitHub: misiakfilip). Jedna
 - `npm run dev` – serwer dev
 - `npm run build` – build do `dist/`
 - `npm run preview` – podgląd buildu
-- `npx astro check` – typy (0 errors / 0 warnings / 0 hints), `npm run test:dist` – skan `dist/**/*.html` pod kątem prefiksu `/portfolio/`.
+- `npx astro check` – typy (0 errors / 0 warnings / 0 hints), `npm run test:images` – budżet rozmiaru obrazów w `dist/`, `npm run test:dist` – skan `dist/**/*.html` pod kątem prefiksu `/portfolio/`.
 
 ## Konwencje
 - Wszystko bez stanu to `.astro` (zero JS); React tylko dla interaktywnych wysp. Ikony: `lucide-react` renderowane po stronie serwera.
 - Stylowanie klasami Tailwind inline.
-- Aktualnie surowe `<img>` zamiast `astro:assets` (Z-13, do zrobienia).
+- Obrazy przez `astro:assets` (`<Picture>`/`<Image>`: AVIF+WebP, srcset, width/height); pliki w `src/assets/` (zrzuty projektów: `src/assets/projects/`, wyszukiwanie po nazwie w `src/utils/projectImages.ts`), nie w `public/`. Alt zrzutów: `imageAlts` w `src/i18n/projects.ts`.
 
 ## Pułapki
 - Wideo YouTube pokazuje się dopiero po wpisaniu `videoId` w `src/i18n/projects.ts` (walidacja ID w `utils/youtube.ts`).
 - Ścieżki absolutne (`/favicon.svg`, `/projects/...`, `/downloads/...`) nie uwzględniają `base: /portfolio`; używaj `import.meta.env.BASE_URL` z poprawnym ukośnikiem.
-- Dodając projekt: wpis w `src/i18n/projects.ts` (pl+en), wpis w `src/config.ts` (`featuredProjects` pl+en, `slug` gdy jest podstrona), obrazy w `public/projects/`.
+- Dodając projekt: wpis w `src/i18n/projects.ts` (pl+en), wpis w `src/config.ts` (`featuredProjects` pl+en, `slug` gdy jest podstrona), obrazy w `src/assets/projects/` (+ `imageAlts` w `projects.ts`).
 - Nie ma formularza kontaktowego (tylko `mailto`), nie ma analityki ani ciasteczek.
 - Nie commituj `dist/`, `.astro/`, `node_modules/`.
 
