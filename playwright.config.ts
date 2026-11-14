@@ -8,7 +8,11 @@ export default defineConfig({
   fullyParallel: true,
   retries: 0,
   workers: process.env.CI ? 2 : '75%',
-  reporter: [['list'], ['json', { outputFile: 'test-results/raporty/data/playwright-results.json' }]],
+  reporter: [
+    ['list'],
+    ['json', { outputFile: 'test-results/raporty/data/playwright-results.json' }],
+    ...(process.env.CI ? [['html', { open: 'never' }] as const] : []),
+  ],
   outputDir: 'test-results/raporty/data/test-artifacts',
   use: {
     baseURL: 'http://localhost:4399/portfolio/',
