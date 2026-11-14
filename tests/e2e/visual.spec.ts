@@ -24,3 +24,16 @@ for (const p of PAGES) for (const w of VIEWPORTS) {
     expect(o.sw, `scrollWidth ${o.sw} > clientWidth ${o.cw}; szerokie: ${o.wide.join(' | ')}`).toBeLessThanOrEqual(o.cw);
   });
 }
+
+// Screenshoty obu motywow (do przegladu wzrokowego); tylko chromium, jeden viewport.
+for (const p of PAGES) for (const scheme of ['light', 'dark'] as const) {
+  test(`screenshot /${p} (${scheme})`, async ({ page }, info) => {
+    test.skip(info.project.name !== 'chromium', 'tylko chromium');
+    await page.emulateMedia({ colorScheme: scheme });
+    await page.goto(p);
+    await page.waitForLoadState('networkidle').catch(() => {});
+    await page.waitForTimeout(500);
+    const slug = (p || 'home').replace(/\//g, '-');
+    await page.screenshot({ path: `test-results/raporty/screenshots/${slug}-${scheme}-full.png`, fullPage: true });
+  });
+}

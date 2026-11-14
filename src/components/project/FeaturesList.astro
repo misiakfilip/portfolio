@@ -12,8 +12,8 @@ const { id = 'features', title, features } = Astro.props;
 <ProjectSection id={id} title={title}>
   <ul class="space-y-3 list-none">
     {features.map((feature) => (
-      <li class="flex items-start gap-3 text-gray-300">
-        <span class="text-cyan-400 text-xl" aria-hidden="true">✓</span>
+      <li class="flex items-start gap-3 text-body">
+        <span class="text-accent-2 text-xl" aria-hidden="true">✓</span>
         <span>{feature}</span>
       </li>
     ))}

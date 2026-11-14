@@ -1,0 +1,41 @@
+---
+// Light/dark switch: a plain button, state lives in <html class="dark"> + localStorage (no React).
+import { Moon, Sun } from 'lucide-react';
+
+interface Props {
+  label: string;
+  class?: string;
+}
+
+const { label, class: className = '' } = Astro.props;
+---
+
+<button
+  type="button"
+  data-theme-toggle
+  aria-label={label}
+  aria-pressed="false"
+  class={`inline-flex items-center justify-center size-10 rounded-lg text-fg hover:text-accent transition-colors ${className}`}
+>
+  <Sun size={20} aria-hidden="true" className="hidden dark:block" />
+  <Moon size={20} aria-hidden="true" className="dark:hidden" />
+</button>
+
+<script>
+  const root = document.documentElement;
+  const buttons = document.querySelectorAll<HTMLButtonElement>('[data-theme-toggle]');
+  const sync = () => buttons.forEach((b) => b.setAttribute('aria-pressed', String(root.classList.contains('dark'))));
+
+  buttons.forEach((button) =>
+    button.addEventListener('click', () => {
+      const dark = root.classList.toggle('dark');
+      try {
+        localStorage.setItem('theme', dark ? 'dark' : 'light');
+      } catch {
+        // storage unavailable: the choice just lasts until the page is closed
+      }
+      sync();
+    }),
+  );
+  sync();
+</script>

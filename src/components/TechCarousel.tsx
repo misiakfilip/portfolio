@@ -101,7 +101,7 @@ const TechCarousel = ({ technologies, labels }: TechCarouselProps) => {
             <li
               key={tech.name}
               hidden={!visible}
-              className="flex flex-col items-center gap-3 p-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-xl shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-2 min-w-[120px] animate-slide-in"
+              className="flex flex-col items-center gap-3 p-4 bg-card backdrop-blur-md border border-line rounded-xl shadow-lg hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 hover:-translate-y-2 min-w-[120px] animate-slide-in"
               style={{ animationDelay: `${(index % perView) * 0.1}s` }}
             >
               {tech.icon.startsWith('devicon') ? (
@@ -109,7 +109,7 @@ const TechCarousel = ({ technologies, labels }: TechCarouselProps) => {
               ) : (
                 <span className="text-4xl md:text-5xl inline-block size-10 md:size-12 text-center leading-none" aria-hidden="true">{tech.icon}</span>
               )}
-              <span className="text-gray-900 dark:text-white font-semibold text-center text-sm">{tech.name}</span>
+              <span className="text-fg font-semibold text-center text-sm">{tech.name}</span>
             </li>
           );
         })}
@@ -121,7 +121,7 @@ const TechCarousel = ({ technologies, labels }: TechCarouselProps) => {
             type="button"
             onClick={() => setPlaying((p) => !p)}
             aria-label={playing ? labels.pause : labels.play}
-            className="p-2 rounded-lg text-gray-700 dark:text-gray-300 hover:text-cyan-400 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400"
+            className="p-2 rounded-lg text-body hover:text-accent"
           >
             {playing ? <Pause size={20} aria-hidden="true" /> : <Play size={20} aria-hidden="true" />}
           </button>
@@ -132,11 +132,11 @@ const TechCarousel = ({ technologies, labels }: TechCarouselProps) => {
               onClick={() => setPage(idx)}
               aria-label={format(labels.goToSlide, { n: idx + 1 })}
               aria-current={idx === current ? 'true' : undefined}
-              className="group flex items-center justify-center w-6 h-6 focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 rounded-full"
+              className="group flex items-center justify-center w-6 h-6 rounded-full"
             >
               <span
                 className={`block h-2 rounded-full transition-all ${
-                  idx === current ? 'bg-purple-600 w-6' : 'bg-gray-400 dark:bg-gray-600 w-2 group-hover:bg-gray-500'
+                  idx === current ? 'bg-accent w-6' : 'bg-muted w-2 group-hover:bg-body'
                 }`}
               />
             </button>

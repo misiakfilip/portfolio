@@ -12,7 +12,7 @@ const { id = 'links', title, links } = Astro.props;
 
 {links.length > 0 && (
   <ProjectSection id={id} title={title}>
-    <ExternalLink slot="icon" className="text-cyan-400" size={28} aria-hidden="true" />
+    <ExternalLink slot="icon" className="text-accent-2" size={28} aria-hidden="true" />
     <ul class="space-y-3 list-none">
       {links.map((link) => (
         <li>
@@ -20,13 +20,13 @@ const { id = 'links', title, links } = Astro.props;
             href={link.href}
             target="_blank"
             rel="noopener noreferrer"
-            class="group flex items-center justify-between p-4 bg-white/5 hover:bg-white/10 rounded-lg border border-white/10 hover:border-cyan-500 transition-all"
+            class="group flex items-center justify-between p-4 bg-card hover:bg-card-hover rounded-lg border border-line hover:border-accent-2 transition-all"
           >
             <span>
-              <span class="block text-white font-semibold group-hover:text-cyan-400 transition-colors">{link.label}</span>
-              {link.description && <span class="block text-gray-400 text-sm mt-1">{link.description}</span>}
+              <span class="block text-fg font-semibold group-hover:text-accent-2 transition-colors">{link.label}</span>
+              {link.description && <span class="block text-muted text-sm mt-1">{link.description}</span>}
             </span>
-            <ExternalLink className="text-gray-400 group-hover:text-cyan-400 transition-colors" size={20} aria-hidden="true" />
+            <ExternalLink className="text-muted group-hover:text-accent-2 transition-colors" size={20} aria-hidden="true" />
           </a>
         </li>
       ))}

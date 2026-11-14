@@ -3,6 +3,9 @@
 import "../styles/global.css";
 import SeoHead from '../components/SeoHead.astro';
 import { withBase } from '../utils/withBase';
+import Background from '../components/Background.astro';
+import ThemeScript from '../components/ThemeScript.astro';
+import ThemeToggle from '../components/ThemeToggle.astro';
 import { localizedPath, otherLang, useTranslations, type Lang } from '../i18n';
 
 interface Props {
@@ -22,7 +25,6 @@ const t = dictionary.project;
 const home = localizedPath(lang);
 const other = otherLang(lang);
 const fullTitle = `${title} - ${dictionary.meta.projectTitleSuffix}`;
-const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400';
 ---
 
 <!doctype html>
@@ -34,16 +36,15 @@ const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visi
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <meta name="generator" content={Astro.generator} />
     <title>{fullTitle}</title>
+    <ThemeScript />
   </head>
   <body class="min-h-screen relative overflow-x-hidden">
-    <!-- Animated Background -->
-    <div class="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950"></div>
-    <div class="fixed inset-0 -z-10 bg-linear-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
+    <Background />
 
-    <nav aria-label={dictionary.nav.label} class="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/10">
+    <nav aria-label={dictionary.nav.label} class="fixed top-0 left-0 right-0 z-50 bg-card backdrop-blur-xl border-b border-line">
       <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4">
         <div class="flex items-center justify-between gap-3">
-          <a href={home} class={`text-base sm:text-xl font-bold text-white hover:text-cyan-400 transition-colors rounded ${focus}`}>
+          <a href={home} class={`text-base sm:text-xl font-bold text-fg hover:text-accent transition-colors rounded`}>
             {t.backToPortfolio}
           </a>
 
@@ -53,7 +54,7 @@ const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visi
                 href={github}
                 target="_blank"
                 rel="noopener noreferrer"
-                class={`px-3 sm:px-4 py-2 bg-white/10 hover:bg-white/20 text-white rounded-lg transition-colors backdrop-blur-md border border-white/10 ${focus}`}
+                class={`px-3 sm:px-4 py-2 bg-card hover:bg-card-hover text-fg rounded-lg transition-colors backdrop-blur-md border border-line`}
               >
                 {t.github}
               </a>
@@ -63,16 +64,17 @@ const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visi
                 href={demo}
                 target="_blank"
                 rel="noopener noreferrer"
-                class={`px-3 sm:px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors ${focus}`}
+                class={`px-3 sm:px-4 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors`}
               >
                 {t.demo}
               </a>
             )}
+            <ThemeToggle label={dictionary.nav.theme} />
             <a
               href={localizedPath(other, path)}
               hreflang={other}
               aria-label={dictionary.nav.switchLabel}
-              class={`px-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors font-medium ${focus}`}
+              class={`px-3 py-2 bg-purple-700 hover:bg-purple-800 text-white rounded-lg transition-colors font-medium`}
             >
               {dictionary.nav.switchShort}
             </a>
@@ -84,13 +86,13 @@ const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visi
     <main id="main" class="pt-28 md:pt-32 pb-20 px-6">
       <div class="max-w-5xl mx-auto">
         <header class="pb-12">
-          <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-white mb-6 wrap-break-word">{title}</h1>
-          <p class="text-lg sm:text-xl text-gray-300 mb-8">{description}</p>
+          <h1 class="text-3xl sm:text-4xl md:text-6xl font-bold text-fg mb-6 wrap-break-word">{title}</h1>
+          <p class="text-lg sm:text-xl text-body mb-8">{description}</p>
 
           {technologies.length > 0 && (
             <ul class="flex flex-wrap gap-3 list-none">
               {technologies.map((tech) => (
-                <li class="px-4 py-2 bg-purple-500/20 border border-purple-500/30 text-purple-300 rounded-full text-sm font-medium backdrop-blur-sm">
+                <li class="px-4 py-2 bg-chip border border-line text-chip-fg rounded-full text-sm font-medium backdrop-blur-sm">
                   {tech}
                 </li>
               ))}
@@ -102,9 +104,9 @@ const focus = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visi
       </div>
     </main>
 
-    <footer class="py-8 border-t border-white/10 bg-transparent backdrop-blur-md">
-      <div class="max-w-7xl mx-auto px-6 text-center text-gray-400">
-        <a href={home} class={`text-cyan-400 hover:text-cyan-300 transition-colors rounded ${focus}`}>
+    <footer class="py-8 border-t border-line bg-transparent backdrop-blur-md">
+      <div class="max-w-7xl mx-auto px-6 text-center text-muted">
+        <a href={home} class={`text-accent-2 hover:underline transition-colors rounded`}>
           {t.backToHome}
         </a>
       </div>

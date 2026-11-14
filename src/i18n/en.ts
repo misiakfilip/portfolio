@@ -18,6 +18,7 @@ export const en: Dictionary = {
     projects: 'Projects',
     contact: 'Contact',
     menu: 'Menu',
+    theme: 'Dark theme',
     switchLabel: 'PL: switch language to Polish',
     switchShort: 'PL',
   },

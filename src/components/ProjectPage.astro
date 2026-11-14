@@ -50,7 +50,7 @@ const localize = <T extends { label: Record<Lang, string> }>(item: T) => ({ ...i
       <div class="space-y-6">
         {content.docs.map((section) => (
           <div>
-            <h3 class="text-xl font-bold text-white mb-3">{section.heading}</h3>
+            <h3 class="text-xl font-bold text-fg mb-3">{section.heading}</h3>
             <RichText paragraphs={section.paragraphs} items={section.items} />
           </div>
         ))}
@@ -62,7 +62,7 @@ const localize = <T extends { label: Record<Lang, string> }>(item: T) => ({ ...i
         <div class="space-y-5">
           {content.challenges.map((section) => (
             <div>
-              <h3 class="text-lg font-bold text-white mb-2">{section.heading}</h3>
+              <h3 class="text-lg font-bold text-fg mb-2">{section.heading}</h3>
               <RichText paragraphs={section.paragraphs} items={section.items} />
             </div>
           ))}

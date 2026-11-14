@@ -10,6 +10,8 @@ interface Props {
   noindex?: boolean;
 }
 import "../styles/global.css";
+import Background from '../components/Background.astro';
+import ThemeScript from '../components/ThemeScript.astro';
 import SeoHead from '../components/SeoHead.astro';
 import { withBase } from '../utils/withBase';
 const { title, lang = 'pl', path, noindex = false } = Astro.props;
@@ -25,13 +27,12 @@ const description = Astro.props.description ?? useTranslations(lang).meta.homeDe
     <link rel="icon" type="image/svg+xml" href={withBase('/favicon.svg')} />
     <meta name="generator" content={Astro.generator} />
     <title>{title}</title>
+    <ThemeScript />
 
     <link rel="preconnect" href="https://api.github.com" crossorigin />
   </head>
   <body class="min-h-screen relative overflow-x-hidden">
-    <!-- Animated Background -->
-    <div class="fixed inset-0 -z-10 bg-linear-to-br from-slate-950 via-slate-900 to-slate-950"></div>
-    <div class="fixed inset-0 -z-10 bg-linear-to-tr from-purple-950/20 via-transparent to-cyan-950/20 animate-gradient"></div>
+    <Background />
 
     <slot name="nav" />
     <main id="main">

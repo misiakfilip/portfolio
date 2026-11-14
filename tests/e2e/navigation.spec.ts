@@ -78,17 +78,34 @@ test('menu mobilne zawiera te same pozycje i link jezyka co nawigacja desktop', 
   expect(mobile).toEqual(desktop);
 });
 
-// Z-14 (przelacznik jasny/ciemny) jest osobnym etapem; testy ponizej zostaja jako wymaganie do spelnienia.
-test('przelacznik motywu: istnieje i zmienia klase html.dark', async ({ page, viewport }) => {
-  test.fixme(true, 'Z-14: przelacznik motywu jeszcze nie zaimplementowany');
+test('przelacznik motywu: zmienia klase html.dark, aria-pressed i zapamietuje wybor', async ({ page, viewport }) => {
   await page.goto('');
-  if (isMobile(viewport!.width)) await page.locator('nav summary').click();
-  const toggle = page.locator('nav button[aria-label*="otyw"], nav button[aria-label*="heme"]').filter({ visible: true });
-  expect(await toggle.count(), 'widoczny przelacznik motywu').toBeGreaterThan(0);
-  const before = await page.evaluate(() => document.documentElement.classList.contains('dark'));
-  await toggle.first().click();
-  const after = await page.evaluate(() => document.documentElement.classList.contains('dark'));
-  expect(after).not.toBe(before);
+  if (isMobile(viewport!.width)) await expect(page.locator('nav summary')).toBeVisible();
+  const toggle = page.locator('nav button[data-theme-toggle]').filter({ visible: true });
+  await expect(toggle).toHaveCount(1);
+  await expect(toggle).toHaveAttribute('aria-label', /Motyw|theme/i);
+  const isDark = () => page.evaluate(() => document.documentElement.classList.contains('dark'));
+  const before = await isDark();
+  await expect(toggle).toHaveAttribute('aria-pressed', String(before));
+  await toggle.click();
+  expect(await isDark()).toBe(!before);
+  await expect(toggle).toHaveAttribute('aria-pressed', String(!before));
+  // wybor przetrwa przeladowanie i dotyczy tez podstrony projektu (bez mignieciem: klasa jest ustawiona przed renderem)
+  await page.goto('projects/Arct');
+  expect(await isDark()).toBe(!before);
+  await page.locator('nav button[data-theme-toggle]').filter({ visible: true }).click();
+  expect(await isDark()).toBe(before);
+});
+
+test('przelacznik motywu: dziala tez gdy localStorage jest niedostepny', async ({ page }) => {
+  await page.addInitScript(() => {
+    Object.defineProperty(window, 'localStorage', { get() { throw new Error('blocked'); } });
+  });
+  const c = collect(page);
+  await page.goto('');
+  await page.locator('nav button[data-theme-toggle]').filter({ visible: true }).click();
+  expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(true);
+  expect(c.pageErrors).toEqual([]);
 });
 
 test('S-03: brak zdublowanej nawigacji (header + nav)', async ({ page, viewport }) => {
@@ -97,12 +114,16 @@ test('S-03: brak zdublowanej nawigacji (header + nav)', async ({ page, viewport 
   expect(await page.locator('header, nav').filter({ visible: true }).count(), 'liczba widocznych header/nav').toBe(1);
 });
 
-test('S-09: ciemny motyw systemowy daje klase dark', async ({ browser }) => {
-  test.fixme(true, 'Z-14: klasa dark ustawiana skryptem w <head> jeszcze nie istnieje');
-  const ctx = await browser.newContext({ colorScheme: 'dark' });
-  const page = await ctx.newPage();
-  await page.goto('http://localhost:4399/portfolio/');
-  const hasDarkClass = await page.evaluate(() => document.documentElement.classList.contains('dark'));
-  await ctx.close();
-  expect(hasDarkClass, 'klasa dark zgodna z systemowym ciemnym motywem').toBe(true);
-});
+for (const scheme of ['dark', 'light'] as const) {
+  test(`S-09: systemowy motyw ${scheme} ustawia klase dark przed renderem`, async ({ browser }) => {
+    const ctx = await browser.newContext({ colorScheme: scheme });
+    const page = await ctx.newPage();
+    await page.goto('http://localhost:4399/portfolio/');
+    expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(scheme === 'dark');
+    // zapisany wybor wygrywa z systemem
+    await page.evaluate(() => localStorage.setItem('theme', document.documentElement.classList.contains('dark') ? 'light' : 'dark'));
+    await page.reload();
+    expect(await page.evaluate(() => document.documentElement.classList.contains('dark'))).toBe(scheme !== 'dark');
+    await ctx.close();
+  });
+}

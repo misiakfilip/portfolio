@@ -12,10 +12,10 @@ const { id = 'gallery', title, images } = Astro.props;
 
 {images.length > 0 && (
   <ProjectSection id={id} title={title}>
-    <ImageIcon slot="icon" className="text-cyan-400" size={28} aria-hidden="true" />
+    <ImageIcon slot="icon" className="text-accent-2" size={28} aria-hidden="true" />
     <ul class="grid md:grid-cols-2 gap-4 list-none">
       {images.map((image) => (
-        <li class="relative overflow-hidden rounded-lg border border-white/10">
+        <li class="relative overflow-hidden rounded-lg border border-line">
           {/* TODO(Z-13): astro:assets, width/height, captions/alt from data. */}
           <img src={image.src} alt={image.alt} loading="lazy" decoding="async" class="w-full h-64 object-cover" />
           {image.caption && (

@@ -1,5 +1,6 @@
 ---
-import { Github, Linkedin, Mail, Download } from 'lucide-react';
+import { Mail, Download } from 'lucide-react';
+import BrandIcon from './BrandIcon.astro';
 import { useTranslations, type Lang } from '../i18n';
 import { withBase } from '../utils/withBase';
 
@@ -15,20 +16,20 @@ interface Props {
 const { lang, name, title, bio, social, cvUrl } = Astro.props;
 const t = useTranslations(lang).hero;
 const iconLink =
-  'text-gray-700 dark:text-gray-300 hover:text-purple-600 dark:hover:text-purple-400 transition-colors hover:scale-110 p-1 -m-1';
+  'text-body hover:text-accent transition-colors hover:scale-110 p-2 -m-2';
 ---
 
 <section id="home" class="pt-28 md:pt-32 pb-20 px-6">
   <div class="max-w-7xl mx-auto">
     <div class="flex flex-col md:flex-row items-center gap-12">
       <div class="flex-1 text-center md:text-left">
-        <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-gray-900 dark:text-white mb-6 wrap-break-word">
+        <h1 class="text-4xl sm:text-5xl md:text-7xl font-bold text-fg mb-6 wrap-break-word">
           {t.greeting}{' '}
-          <span class="text-transparent bg-clip-text bg-linear-to-r from-purple-400 to-cyan-400">{name}</span>
+          <span class="text-transparent bg-clip-text bg-linear-to-r from-purple-700 to-cyan-700 dark:from-purple-400 dark:to-cyan-400">{name}</span>
         </h1>
 
-        <p class="text-2xl md:text-3xl text-gray-700 dark:text-gray-300 mb-4 font-semibold">{title}</p>
-        <p class="text-lg text-gray-600 dark:text-gray-400 mb-8 max-w-2xl">{bio}</p>
+        <p class="text-2xl md:text-3xl text-body mb-4 font-semibold">{title}</p>
+        <p class="text-lg text-muted mb-8 max-w-2xl">{bio}</p>
 
         <div class="flex gap-4 justify-center md:justify-start flex-wrap mb-8">
           <a
@@ -37,13 +38,13 @@ const iconLink =
             rel="noopener noreferrer"
             class="px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white rounded-lg flex items-center gap-2 transition-colors font-semibold shadow-lg hover:shadow-xl"
           >
-            <Github size={20} aria-hidden="true" />
+            <BrandIcon name="github" size={20} />
             {t.viewGitHub}
           </a>
 
           <a
             href={`mailto:${social.email}`}
-            class="px-6 py-3 bg-gray-800 hover:bg-gray-700 text-white rounded-lg flex items-center gap-2 transition-colors font-semibold shadow-lg hover:shadow-xl"
+            class="px-6 py-3 bg-slate-800 hover:bg-slate-700 text-white rounded-lg flex items-center gap-2 transition-colors font-semibold shadow-lg hover:shadow-xl"
           >
             <Mail size={20} aria-hidden="true" />
             {t.contact}
@@ -54,7 +55,7 @@ const iconLink =
             <a
               href={withBase(cvUrl)}
               download
-              class="px-6 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg flex items-center gap-2 transition-colors font-semibold"
+              class="px-6 py-3 border-2 border-accent text-accent hover:bg-chip rounded-lg flex items-center gap-2 transition-colors font-semibold"
             >
               <Download size={20} aria-hidden="true" />
               {t.downloadCV}
@@ -64,10 +65,10 @@ const iconLink =
 
         <div class="flex gap-6 justify-center md:justify-start">
           <a href={social.github} target="_blank" rel="noopener noreferrer" class={iconLink} aria-label="GitHub">
-            <Github size={28} aria-hidden="true" />
+            <BrandIcon name="github" size={28} />
           </a>
           <a href={social.linkedin} target="_blank" rel="noopener noreferrer" class={iconLink} aria-label="LinkedIn">
-            <Linkedin size={28} aria-hidden="true" />
+            <BrandIcon name="linkedin" size={28} />
           </a>
           <a href={`mailto:${social.email}`} class={iconLink} aria-label="Email">
             <Mail size={28} aria-hidden="true" />

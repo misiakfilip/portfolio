@@ -1,16 +1,72 @@
 @import "tailwindcss";
 
+/* Theme switch: the `dark` class on <html> is set by the inline script in ThemeScript.astro. */
+@custom-variant dark (&:where(.dark, .dark *));
+
+/*
+ * Semantic colour tokens (light by default, `.dark` overrides). Components use `text-fg`,
+ * `bg-card`, ... so a colour never needs a `dark:` twin. Every text/background pair used on the
+ * page keeps a contrast ratio of at least 4.5:1 (UI parts 3:1) in both palettes.
+ */
+:root {
+  color-scheme: light;
+  --page: #f8fafc; /* slate-50, also the base under the gradient (Background.astro) */
+  --fg: #0f172a; /* headings (slate-900) */
+  --body: #334155; /* paragraphs (slate-700) */
+  --muted: #475569; /* secondary text (slate-600) */
+  --card: rgb(255 255 255 / 0.72);
+  --card-hover: rgb(255 255 255 / 0.95);
+  --line: rgb(15 23 42 / 0.14);
+  --accent: #7e22ce; /* purple-700 */
+  --accent-2: #0e7490; /* cyan-700 */
+  --chip: #f3e8ff; /* purple-100 */
+  --chip-fg: #6b21a8; /* purple-800 */
+}
+
+:root.dark {
+  color-scheme: dark;
+  --page: #020617; /* slate-950 */
+  --fg: #fff;
+  --body: #d1d5db; /* gray-300 */
+  --muted: #9ca3af; /* gray-400 */
+  --card: rgb(255 255 255 / 0.1);
+  --card-hover: rgb(255 255 255 / 0.18);
+  --line: rgb(255 255 255 / 0.12);
+  --accent: #c084fc; /* purple-400 */
+  --accent-2: #22d3ee; /* cyan-400 */
+  --chip: rgb(168 85 247 / 0.2);
+  --chip-fg: #d8b4fe; /* purple-300 */
+}
+
+@theme inline {
+  --color-fg: var(--fg);
+  --color-body: var(--body);
+  --color-muted: var(--muted);
+  --color-card: var(--card);
+  --color-card-hover: var(--card-hover);
+  --color-line: var(--line);
+  --color-accent: var(--accent);
+  --color-accent-2: var(--accent-2);
+  --color-chip: var(--chip);
+  --color-chip-fg: var(--chip-fg);
+}
+
 html {
   scroll-behavior: smooth;
 }
 
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
+body {
+  background-color: var(--page);
+  color: var(--body);
 }
 
-/* Animated page background (Layout, ProjectLayout) */
+/* One visible focus indicator for the whole site (>= 3:1 on both backgrounds). */
+:focus-visible {
+  outline: 2px solid var(--accent-2);
+  outline-offset: 2px;
+}
+
+/* Animated page background (Background.astro) */
 @keyframes gradient {
   0%, 100% { opacity: 0.3; }
   50% { opacity: 0.6; }
@@ -36,9 +92,17 @@ html {
   animation: slide-in 0.5s ease-out both;
 }
 
+/* Reduced motion: no decorative animation, transitions or smooth scrolling anywhere. */
 @media (prefers-reduced-motion: reduce) {
-  .animate-gradient,
-  .animate-slide-in {
-    animation: none;
+  html {
+    scroll-behavior: auto;
+  }
+
+  *,
+  *::before,
+  *::after {
+    animation-duration: 0.01ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.01ms !important;
   }
 }

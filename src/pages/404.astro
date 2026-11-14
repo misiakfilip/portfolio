@@ -9,8 +9,8 @@ const en = useTranslations('en');
 
 <Layout title={pl.meta.notFoundTitle} description={pl.meta.notFoundDescription} noindex>
   <section class="min-h-screen flex flex-col items-center justify-center text-center px-6">
-    <h1 class="text-6xl font-bold text-white mb-4">404</h1>
-    <p class="text-xl text-gray-300 mb-8">{pl.notFound.message} / <span lang="en">{en.notFound.message}</span></p>
+    <h1 class="text-6xl font-bold text-fg mb-4">404</h1>
+    <p class="text-xl text-body mb-8">{pl.notFound.message} / <span lang="en">{en.notFound.message}</span></p>
     <div class="flex gap-4 flex-wrap justify-center">
       <a href={localizedPath('pl')} class="px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white rounded-lg font-semibold transition-colors">{pl.notFound.back}</a>
       <a href={localizedPath('en')} lang="en" class="px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white rounded-lg font-semibold transition-colors">{en.notFound.back}</a>

@@ -24,7 +24,6 @@ type LoadState =
 const PAGE_SIZE = 6;
 const CARD_HEIGHT = 'h-60'; // fixed, so skeleton and real cards have identical height
 const GRID = 'grid md:grid-cols-2 lg:grid-cols-3 gap-6';
-const FOCUS = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400';
 
 const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
   const [state, setState] = useState<LoadState>({ status: 'loading' });
@@ -111,13 +110,13 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
   if (state.status === 'error') {
     return (
       <div role="alert" className="max-w-xl mx-auto text-center py-10">
-        <p className="text-lg text-gray-800 dark:text-gray-200 mb-6">
+        <p className="text-lg text-body mb-6">
           {state.kind === 'rate-limit' ? labels.errorRateLimit : labels.errorNetwork}
         </p>
         <button
           type="button"
           onClick={retry}
-          className={`px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white rounded-lg font-semibold transition-colors ${FOCUS}`}
+          className={`px-6 py-3 bg-purple-700 hover:bg-purple-800 text-white rounded-lg font-semibold transition-colors`}
         >
           {labels.retry}
         </button>
@@ -135,7 +134,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
     <div>
       {showPinned && (
         <div className="mb-16">
-          <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-8 text-center">{labels.pinnedTitle}</h3>
+          <h3 className="text-2xl md:text-3xl font-bold text-fg mb-8 text-center">{labels.pinnedTitle}</h3>
           <ul className={`${GRID} list-none`}>
             {pinnedRepos.map((repo) => (
               <li key={repo.id}>
@@ -147,11 +146,11 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
       )}
 
       <div>
-        <h3 className="text-2xl md:text-3xl font-bold text-gray-900 dark:text-white mb-6 text-center">{labels.allTitle}</h3>
+        <h3 className="text-2xl md:text-3xl font-bold text-fg mb-6 text-center">{labels.allTitle}</h3>
 
         <div className="mb-4 flex flex-col md:flex-row gap-4 max-w-4xl mx-auto">
           <div className="flex-1 relative">
-            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} aria-hidden="true" />
+            <Search className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" size={20} aria-hidden="true" />
             <input
               type="search"
               placeholder={labels.search}
@@ -161,12 +160,12 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
                 setSearch(e.target.value);
                 setVisibleCount(PAGE_SIZE);
               }}
-              className={`w-full h-12 pl-10 pr-4 bg-white/10 backdrop-blur-md border border-white/10 rounded-lg text-gray-900 dark:text-white placeholder-gray-500 focus:outline-none focus-visible:ring-2 focus-visible:ring-cyan-500`}
+              className={`w-full h-12 pl-10 pr-4 bg-card backdrop-blur-md border border-line rounded-lg text-fg placeholder:text-muted`}
             />
           </div>
 
           <div className="relative">
-            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-gray-400" size={20} aria-hidden="true" />
+            <Filter className="absolute left-3 top-1/2 -translate-y-1/2 text-muted" size={20} aria-hidden="true" />
             <select
               value={languageFilter}
               aria-label={labels.filterByLanguage}
@@ -174,7 +173,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
                 setLanguageFilter(e.target.value);
                 setVisibleCount(PAGE_SIZE);
               }}
-              className="h-12 w-full pl-10 pr-8 bg-white dark:bg-slate-800 border border-gray-300 dark:border-purple-500 rounded-lg text-gray-900 dark:text-white focus:outline-none focus-visible:ring-2 focus-visible:ring-purple-500 appearance-none cursor-pointer"
+              className="h-12 w-full pl-10 pr-8 bg-white dark:bg-slate-800 border border-line rounded-lg text-fg appearance-none cursor-pointer"
             >
               <option value="all">{labels.allLanguages}</option>
               {languages.map((l) => (
@@ -186,7 +185,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
           </div>
         </div>
 
-        <div className="h-8 mb-4 flex items-center justify-center gap-6 text-gray-600 dark:text-gray-400">
+        <div className="h-8 mb-4 flex items-center justify-center gap-6 text-muted">
           <p aria-live="polite">{format(labels.found, { count: filtered.length })}</p>
           {hasForks && (
             <label className="flex items-center gap-2 cursor-pointer">
@@ -202,7 +201,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
         </div>
 
         {filtered.length === 0 ? (
-          <p className="text-center py-12 text-lg text-gray-600 dark:text-gray-400">{labels.noResults}</p>
+          <p className="text-center py-12 text-lg text-muted">{labels.noResults}</p>
         ) : (
           <ul className={`${GRID} list-none`}>
             {filtered.slice(0, visibleCount).map((repo) => (
@@ -218,7 +217,7 @@ const GitHubRepos = ({ username, pinned, lang, labels }: GitHubReposProps) => {
             <button
               type="button"
               onClick={() => setVisibleCount((n) => n + PAGE_SIZE)}
-              className={`px-6 py-3 border-2 border-purple-600 text-purple-600 dark:text-purple-400 hover:bg-purple-50 dark:hover:bg-purple-900/20 rounded-lg font-semibold transition-colors ${FOCUS}`}
+              className={`px-6 py-3 border-2 border-accent text-accent hover:bg-chip rounded-lg font-semibold transition-colors`}
             >
               {labels.showMore}
             </button>
@@ -245,25 +244,25 @@ interface RepoCardProps {
 const RepoCard = ({ repo, onOpen, labels, dateFormat, badge }: RepoCardProps) => (
   <div
     onClick={() => onOpen(repo)}
-    className={`${CARD_HEIGHT} overflow-hidden bg-white/10 backdrop-blur-md rounded-lg p-6 border border-white/10 hover:border-cyan-500 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer ${badge ? 'ring-2 ring-cyan-500' : ''}`}
+    className={`${CARD_HEIGHT} overflow-hidden bg-card backdrop-blur-md rounded-lg p-6 border border-line hover:border-accent-2 hover:shadow-2xl hover:shadow-cyan-500/20 transition-all duration-300 cursor-pointer ${badge ? 'ring-2 ring-accent-2' : ''}`}
   >
     <div className="flex items-start justify-between gap-2 mb-3">
-      <h4 className="text-xl font-semibold text-gray-900 dark:text-white flex items-center gap-2 flex-1 min-w-0">
-        <Code size={20} className="text-purple-600 dark:text-purple-400 shrink-0" aria-hidden="true" />
+      <h4 className="text-xl font-semibold text-fg flex items-center gap-2 flex-1 min-w-0">
+        <Code size={20} className="text-accent shrink-0" aria-hidden="true" />
         <span className="truncate">{repo.name}</span>
       </h4>
       {badge && (
-        <span className="text-xs bg-cyan-500/20 border border-cyan-500/30 text-cyan-300 px-2 py-1 rounded-full shrink-0">
+        <span className="text-xs bg-chip border border-line text-chip-fg px-2 py-1 rounded-full shrink-0">
           {labels.pinnedBadge}
         </span>
       )}
     </div>
 
-    <p className="text-gray-700 dark:text-gray-300 text-sm mb-4 line-clamp-2 min-h-10">
+    <p className="text-body text-sm mb-4 line-clamp-2 min-h-10">
       {repo.description || labels.noDescription}
     </p>
 
-    <div className="flex items-center gap-4 text-sm text-gray-600 dark:text-gray-400 mb-4">
+    <div className="flex items-center gap-4 text-sm text-muted mb-4">
       {repo.language && (
         <div className="flex items-center gap-1">
           <span className="w-3 h-3 rounded-full" style={{ backgroundColor: languageColor(repo.language) }}></span>
@@ -280,7 +279,7 @@ const RepoCard = ({ repo, onOpen, labels, dateFormat, badge }: RepoCardProps) =>
       </div>
     </div>
 
-    <div className="flex items-center gap-2 text-xs text-gray-600 dark:text-gray-400 mb-4">
+    <div className="flex items-center gap-2 text-xs text-muted mb-4">
       <Calendar size={14} aria-hidden="true" />
       <span>
         {labels.updated}: {dateFormat.format(new Date(repo.pushed_at))}
@@ -290,7 +289,7 @@ const RepoCard = ({ repo, onOpen, labels, dateFormat, badge }: RepoCardProps) =>
     {repo.topics.length > 0 && (
       <ul className="flex flex-wrap gap-2 list-none max-h-7 overflow-hidden">
         {repo.topics.slice(0, 3).map((topic) => (
-          <li key={topic} className="px-2 py-1 bg-gray-100 dark:bg-slate-700 text-gray-700 dark:text-gray-300 text-xs rounded-full">
+          <li key={topic} className="px-2 py-1 bg-chip text-chip-fg text-xs rounded-full">
             {topic}
           </li>
         ))}
@@ -308,18 +307,18 @@ const ReposSkeleton = ({ pinnedCount, labels }: { pinnedCount: number; labels: D
         <div className="h-9 mb-8"></div>
         <div className={GRID}>
           {Array.from({ length: pinnedCount }, (_, i) => (
-            <div key={i} className={`${CARD_HEIGHT} rounded-lg bg-white/10 border border-white/10 motion-safe:animate-pulse`}></div>
+            <div key={i} className={`${CARD_HEIGHT} rounded-lg bg-card border border-line motion-safe:animate-pulse`}></div>
           ))}
         </div>
       </div>
     )}
     <div aria-hidden="true">
       <div className="h-9 mb-6"></div>
-      <div className="h-12 mb-4 max-w-4xl mx-auto rounded-lg bg-white/10"></div>
+      <div className="h-12 mb-4 max-w-4xl mx-auto rounded-lg bg-card"></div>
       <div className="h-8 mb-4"></div>
       <div className={GRID}>
         {Array.from({ length: PAGE_SIZE }, (_, i) => (
-          <div key={i} className={`${CARD_HEIGHT} rounded-lg bg-white/10 border border-white/10 motion-safe:animate-pulse`}></div>
+          <div key={i} className={`${CARD_HEIGHT} rounded-lg bg-card border border-line motion-safe:animate-pulse`}></div>
         ))}
       </div>
     </div>

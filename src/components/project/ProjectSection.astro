@@ -7,8 +7,8 @@ interface Props {
 const { id, title } = Astro.props;
 ---
 
-<section id={id} aria-labelledby={`${id}-title`} class="bg-white/10 backdrop-blur-md rounded-xl p-6 border border-white/10 scroll-mt-24">
-  <h2 id={`${id}-title`} class="text-2xl font-bold text-white mb-5 flex items-center gap-2">
+<section id={id} aria-labelledby={`${id}-title`} class="bg-card backdrop-blur-md rounded-xl p-6 border border-line scroll-mt-24">
+  <h2 id={`${id}-title`} class="text-2xl font-bold text-fg mb-5 flex items-center gap-2">
     <slot name="icon" />
     {title}
   </h2>

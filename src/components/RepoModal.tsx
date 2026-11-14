@@ -75,24 +75,24 @@ export const RepoModal = ({
     onClick={onClose}
   >
     <div 
-      className="bg-white/10 dark:bg-white/10 backdrop-blur-xl rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden border-2 border-cyan-500 shadow-2xl"
+      className="bg-white dark:bg-slate-900 backdrop-blur-xl rounded-xl max-w-4xl w-full max-h-[90vh] overflow-hidden border-2 border-accent-2 shadow-2xl"
       onClick={(e) => e.stopPropagation()}
     >
       {/* Modal Header */}
-      <div className="bg-white/5 dark:bg-white/5 backdrop-blur-md p-6 border-b border-white/10">
+      <div className="bg-card backdrop-blur-md p-6 border-b border-line">
         <div className="flex items-start justify-between">
           <div className="flex-1">
-            <h2 className="text-2xl font-bold text-gray-900 dark:text-white mb-2">
+            <h2 className="text-2xl font-bold text-fg mb-2">
               {repo.name}
             </h2>
             {repo.description && (
-              <p className="text-gray-700 dark:text-gray-300">{repo.description}</p>
+              <p className="text-body">{repo.description}</p>
             )}
           </div>
           <button
             onClick={onClose}
             aria-label={labels.close}
-            className="text-gray-500 hover:text-gray-700 dark:text-gray-400 dark:hover:text-white transition-colors ml-4"
+            className="text-muted hover:text-fg transition-colors ml-4"
           >
             <X size={24} aria-hidden="true" />
           </button>
@@ -100,7 +100,7 @@ export const RepoModal = ({
 
         <div className="flex flex-wrap items-center gap-4 mt-4 text-sm">
           {repo.language && (
-            <div className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
+            <div className="flex items-center gap-1 text-body">
               <span
                 className="w-3 h-3 rounded-full"
                 style={{ backgroundColor: languageColor(repo.language) }}
@@ -108,11 +108,11 @@ export const RepoModal = ({
               <span>{repo.language}</span>
             </div>
           )}
-          <div className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
+          <div className="flex items-center gap-1 text-body">
             <Star size={16} />
             <span>{repo.stargazers_count} {labels.stars}</span>
           </div>
-          <div className="flex items-center gap-1 text-gray-700 dark:text-gray-300">
+          <div className="flex items-center gap-1 text-body">
             <GitFork size={16} />
             <span>{repo.forks_count} {labels.forks}</span>
           </div>
@@ -123,7 +123,7 @@ export const RepoModal = ({
                 href={repo.homepage}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+                className="flex items-center gap-1 text-accent hover:underline transition-colors"
               >
                 <ExternalLink size={16} />
                 <span>{labels.liveDemo}</span>
@@ -133,7 +133,7 @@ export const RepoModal = ({
               href={repo.html_url}
               target="_blank"
               rel="noopener noreferrer"
-              className="flex items-center gap-1 text-purple-600 dark:text-purple-400 hover:text-purple-700 dark:hover:text-purple-300 transition-colors"
+              className="flex items-center gap-1 text-accent hover:underline transition-colors"
             >
               <Eye size={16} />
               <span>{labels.viewOnGitHub}</span>
@@ -143,11 +143,11 @@ export const RepoModal = ({
       </div>
 
       {/* Modal Content */}
-      <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)] bg-white/5 dark:bg-white/5 backdrop-blur-md">
+      <div className="p-6 overflow-y-auto max-h-[calc(90vh-200px)] bg-card backdrop-blur-md">
         {loadingReadme ? (
           <div className="text-center py-8">
             <div className="inline-block animate-spin rounded-full h-8 w-8 border-t-2 border-b-2 border-purple-500"></div>
-            <p className="mt-4 text-gray-600 dark:text-gray-400">{labels.loadingReadme}</p>
+            <p className="mt-4 text-muted">{labels.loadingReadme}</p>
           </div>
         ) : (
           <div 

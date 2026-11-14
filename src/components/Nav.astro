@@ -3,6 +3,7 @@
 // native <details>, so it opens and works without JavaScript too.
 import { Menu, X } from 'lucide-react';
 import { localizedPath, otherLang, useTranslations, type Lang } from '../i18n';
+import ThemeToggle from './ThemeToggle.astro';
 
 interface Props {
   lang: Lang;
@@ -15,67 +16,58 @@ const { lang, name, path } = Astro.props;
 const t = useTranslations(lang).nav;
 const SECTIONS = ['home', 'about', 'education', 'projects', 'contact'] as const;
 const other = otherLang(lang);
-const focusRing = 'focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 rounded';
 ---
 
-<nav aria-label={t.label} class="fixed top-0 left-0 right-0 z-50 bg-white/10 backdrop-blur-xl border-b border-white/10">
+<nav aria-label={t.label} class="fixed top-0 left-0 right-0 z-50 bg-card backdrop-blur-xl border-b border-line">
   <div class="max-w-7xl mx-auto px-4 sm:px-6 py-3 md:py-4">
     <div class="flex items-center justify-between gap-4">
-      <a
-        href="#home"
-        class={`text-xl sm:text-2xl font-bold text-gray-900 dark:text-white hover:text-cyan-400 dark:hover:text-purple-400 transition-colors ${focusRing}`}
-      >
+      <a href="#home" class="text-xl sm:text-2xl font-bold text-fg hover:text-accent transition-colors rounded">
         {name}
       </a>
 
       <div class="hidden md:flex items-center gap-6">
         {SECTIONS.map((section) => (
-          <a
-            href={`#${section}`}
-            class={`text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 transition-colors font-medium ${focusRing}`}
-          >
+          <a href={`#${section}`} class="text-body hover:text-accent transition-colors font-medium rounded">
             {t[section]}
           </a>
         ))}
+        <ThemeToggle label={t.theme} />
         <a
           href={localizedPath(other, path)}
           hreflang={other}
           aria-label={t.switchLabel}
-          class="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 px-3 py-1 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors font-medium"
+          class="px-3 py-1 bg-purple-700 text-white rounded-lg hover:bg-purple-800 transition-colors font-medium"
         >
           {t.switchShort}
         </a>
       </div>
 
-      <details id="mobile-nav" class="group md:hidden">
-        <summary
-          aria-label={t.menu}
-          class={`list-none cursor-pointer p-2.5 text-gray-900 dark:text-white [&::-webkit-details-marker]:hidden ${focusRing}`}
-        >
-          <Menu size={24} aria-hidden="true" className="group-open:hidden" />
-          <X size={24} aria-hidden="true" className="hidden group-open:block" />
-        </summary>
-        <div id="mobile-menu" class="absolute left-0 right-0 top-full bg-white dark:bg-slate-900 border-t border-gray-200 dark:border-purple-500/30">
-          <div class="px-6 py-4 space-y-3">
-            {SECTIONS.map((section) => (
+      <div class="flex items-center gap-1 md:hidden">
+        <ThemeToggle label={t.theme} />
+        <details id="mobile-nav" class="group">
+          <summary aria-label={t.menu} class="list-none cursor-pointer p-2.5 text-fg [&::-webkit-details-marker]:hidden rounded">
+            <Menu size={24} aria-hidden="true" className="group-open:hidden" />
+            <X size={24} aria-hidden="true" className="hidden group-open:block" />
+          </summary>
+          <div id="mobile-menu" class="absolute left-0 right-0 top-full bg-white dark:bg-slate-900 border-t border-line">
+            <div class="px-6 py-4 space-y-3">
+              {SECTIONS.map((section) => (
+                <a href={`#${section}`} class="block w-full text-left text-body hover:text-accent py-2 rounded">
+                  {t[section]}
+                </a>
+              ))}
               <a
-                href={`#${section}`}
-                class={`block w-full text-left text-gray-700 dark:text-gray-300 hover:text-cyan-400 dark:hover:text-purple-400 py-2 ${focusRing}`}
+                href={localizedPath(other, path)}
+                hreflang={other}
+                aria-label={t.switchLabel}
+                class="inline-block px-3 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800"
               >
-                {t[section]}
+                {t.switchShort}
               </a>
-            ))}
-            <a
-              href={localizedPath(other, path)}
-              hreflang={other}
-              aria-label={t.switchLabel}
-              class="focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-cyan-400 inline-block px-3 py-2 bg-purple-700 text-white rounded-lg hover:bg-purple-800"
-            >
-              {t.switchShort}
-            </a>
+            </div>
           </div>
-        </div>
-      </details>
+        </details>
+      </div>
     </div>
   </div>
 </nav>

@@ -7,7 +7,7 @@ interface Props {
 const { paragraphs = [], items = [] } = Astro.props;
 ---
 
-<div class="text-gray-300 space-y-4 [&_strong]:text-violet-400 [&_em]:italic">
+<div class="text-body space-y-4 [&_strong]:text-accent [&_em]:italic">
   {paragraphs.map((text) => <p set:html={text} />)}
   {items.length > 0 && (
     <ul class="list-disc ml-6 space-y-2">

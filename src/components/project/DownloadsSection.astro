@@ -14,7 +14,7 @@ const isExternal = (href: string) => /^[a-z][a-z0-9+.-]*:|^\/\//i.test(href);
 
 {downloads.length > 0 && (
   <ProjectSection id={id} title={title}>
-    <Download slot="icon" className="text-cyan-400" size={28} aria-hidden="true" />
+    <Download slot="icon" className="text-accent-2" size={28} aria-hidden="true" />
     <ul class="flex flex-col gap-4 list-none">
       {downloads.map(({ href, label, icon = 'file', size }) => {
         const Icon = icon === 'pdf' ? FileText : icon === 'code' ? Code : Download;

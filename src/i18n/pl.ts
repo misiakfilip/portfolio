@@ -17,6 +17,7 @@ export const pl = {
     projects: 'Projekty',
     contact: 'Kontakt',
     menu: 'Menu',
+    theme: 'Motyw ciemny',
     switchLabel: 'EN: przełącz język na angielski',
     switchShort: 'EN',
   },
