@@ -1,6 +1,8 @@
 ---
+// Rendered only when the project has a `videoId` (see ProjectPage.astro). Attributes: utils/youtube.ts.
 import BrandIcon from '../BrandIcon.astro';
 import ProjectSection from './ProjectSection.astro';
+import { youtubeIframeAttrs } from '../../utils/youtube';
 
 interface Props {
   id?: string;
@@ -13,14 +15,6 @@ const { id = 'video', videoId, title } = Astro.props;
 <ProjectSection id={id} title={title}>
   <span slot="icon" class="text-red-600 dark:text-red-500"><BrandIcon name="youtube" size={28} /></span>
   <div class="relative w-full aspect-video">
-    {/* TODO(Z-18): youtube-nocookie, facade instead of an immediate iframe. */}
-    <iframe
-      class="absolute inset-0 w-full h-full rounded-lg"
-      src={`https://www.youtube.com/embed/${videoId}`}
-      title={title}
-      loading="lazy"
-      allow="accelerometer; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
-      allowfullscreen
-    ></iframe>
+    <iframe class="absolute inset-0 w-full h-full rounded-lg" {...youtubeIframeAttrs(videoId, title)}></iframe>
   </div>
 </ProjectSection>
